@@ -1,0 +1,185 @@
+@define-color window_bg_color alpha(#1a1b26, 0.55);
+@define-color window_fg_color #c0caf5;
+@define-color view_bg_color alpha(#1e1e2e, 0.55);
+@define-color view_fg_color @window_fg_color;
+@define-color accent_bg_color #7aa2f7;
+@define-color accent_fg_color #c0caf5;
+@define-color accent_color @accent_bg_color;
+@define-color headerbar_bg_color #181825;
+@define-color headerbar_backdrop_color @window_bg_color;
+@define-color headerbar_fg_color @window_fg_color;
+@define-color popover_bg_color @headerbar_bg_color;
+@define-color popover_fg_color @view_fg_color;
+@define-color dialog_bg_color @popover_bg_color;
+@define-color dialog_fg_color @popover_fg_color;
+@define-color card_bg_color @popover_bg_color;
+@define-color card_fg_color @window_fg_color;
+decoration {
+  box-shadow: 0 3px 12px 1px rgba(0, 0, 0, 0.7),
+    0 0 0 1px shade(@headerbar_bg_color, 1.3);
+}
+
+decoration:backdrop {
+  box-shadow: 0 3px 12px 1px transparent, 0 2px 6px 2px rgba(0, 0, 0, 0.4),
+    0 0 0 1px shade(@headerbar_bg_color, 1.1);
+}
+
+.tiled decoration,
+.tiled-top decoration,
+.tiled-bottom decoration,
+.tiled-right decoration,
+.tiled-left decoration {
+  box-shadow: 0 0 0 1px shade(@headerbar_bg_color, 1.1), 0 0 0 20px transparent;
+}
+
+messagedialog.csd decoration,
+.csd.popup decoration,
+.maximized .csd.popup decoration {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8),
+    0 0 0 1px alpha(shade(@headerbar_bg_color, 1.3), 0.9);
+}
+
+.maximized .csd.popup decoration {
+  border-radius: 6px;
+}
+
+.maximized decoration,
+.fullscreen decoration {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.ssd decoration {
+  box-shadow: 0 0 0 1px shade(@headerbar_bg_color, 1.3);
+}
+
+.ssd decoration:backdrop {
+  box-shadow: 0 0 0 1px shade(@headerbar_bg_color, 1.1);
+}
+
+.ssd.maximized decoration,
+.ssd.maximized decoration:backdrop {
+  box-shadow: none;
+}
+
+.solid-csd decoration {
+  box-shadow: inset 0 0 0 5px alpha(currentColor, 0.5),
+    inset 0 0 0 4px @headerbar_bg_color,
+    inset 0 0 0 1px alpha(currentColor, 0.5);
+}
+
+.solid-csd decoration:backdrop {
+  box-shadow: inset 0 0 0 3px @window_bg_color;
+}
+
+.titlebar,
+headerbar {
+  border-bottom-color: alpha(currentColor, 0.15);
+}
+
+.titlebar:backdrop,
+headerbar:backdrop {
+  border-bottom-color: alpha(currentColor, 0.2);
+}
+
+button.titlebutton,
+windowcontrols > button {
+  color: transparent;
+  min-width: 18px;
+  min-height: 18px;
+}
+
+button.titlebutton {
+  margin: 0 2px;
+}
+
+/* Was about to use first-child,
+   but firefox do margin on right
+   instead of left, idk why it happend */
+button.titlebutton.close {
+  margin-left: 13px;
+}
+
+button.titlebutton:backdrop {
+  opacity: 0.5;
+}
+
+windowcontrols > button {
+  border-radius: 100%;
+  padding: 0;
+  margin: 0 3px;
+}
+
+windowcontrols:first-child {
+  margin-left: 13px;
+}
+
+windowcontrols > button > image {
+  padding: 0;
+}
+
+button.titlebutton.close,
+button.titlebutton.close:hover:backdrop,
+windowcontrols > button.close,
+windowcontrols > button.close:hover:backdrop {
+  background-color: #f7768e;
+}
+button.titlebutton.close:hover,
+windowcontrols > button.close:hover {
+  background-color: shade(#f7768e, 1.2);
+}
+
+button.titlebutton.maximize,
+button.titlebutton.maximize:hover:backdrop,
+windowcontrols > button.maximize,
+windowcontrols > button.maximize:hover:backdrop {
+  background-color: #9ece6a;
+}
+
+button.titlebutton.maximize:hover,
+windowcontrols > button.maximize:hover {
+  background-color: shade(#9ece6a, 1.2);
+}
+
+button.titlebutton.minimize,
+button.titlebutton.minimize:hover:backdrop,
+windowcontrols > button.minimize,
+windowcontrols > button.minimize:hover:backdrop {
+  background-color: #e0af68;
+}
+
+button.titlebutton.minimize:hover,
+windowcontrols > button.minimize:hover {
+  background-color: shade(#e0af68, 1.2);
+}
+
+button.titlebutton.close:backdrop,
+button.titlebutton.maximize:backdrop,
+button.titlebutton.minimize:backdrop,
+windowcontrols > button.close:backdrop,
+windowcontrols > button.maximize:backdrop,
+windowcontrols > button.minimize:backdrop {
+  background-color: #707f8c;
+}
+
+button.titlebutton.close:active,
+button.titlebutton.maximize:active,
+button.titlebutton.minimize:active,
+windowcontrols > button.close:active,
+windowcontrols > button.maximize:active,
+windowcontrols > button.minimize:active {
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+notebook > header tab:not(:backdrop):checked.reorderable-page,
+tabbar tab:not(:backdrop):checked {
+  background-color: @headerbar_bg_color;
+}
+
+.nautilus-window .sidebar {
+  background-color: @view_bg_color;
+}
+
+.nautilus-window .sidebar:backdrop {
+  background-color: @window_bg_color;
+}
