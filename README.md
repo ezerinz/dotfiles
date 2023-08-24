@@ -1,6 +1,6 @@
 # Dotfiles
 My personal dotfiles. 
-- WM/Compositor: Wayland
+- WM/Compositor: Hyprland
 - Terminal: Kitty
 - Text editor: Neovim
 
