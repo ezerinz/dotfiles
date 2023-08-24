@@ -53,7 +53,7 @@ const DateMenu = () =>
   Window({
     name: `datemenu`, // name has to be unique
     popup: true,
-    focusable: false,
+    focusable: true,
     anchor: ["top", "left"],
     child: PopupLayout({
       layout: "top",
