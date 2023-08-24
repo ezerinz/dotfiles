@@ -3,6 +3,7 @@ My personal dotfiles.
 - WM/Compositor: Wayland
 - Terminal: Kitty
 - Text editor: Neovim
+
 ![2023-08-25_00-26-31](https://github.com/ezerinz/dotfiles/assets/100193740/0e1e7765-0921-442f-b31c-50efa122c81d)
 ![2023-08-25_00-28-13](https://github.com/ezerinz/dotfiles/assets/100193740/738bce91-7252-4723-98de-ee0a08d99bb5)
 ![2023-08-25_00-30-18](https://github.com/ezerinz/dotfiles/assets/100193740/48453f10-286a-43ec-a1ac-89088747d3fa)
@@ -12,7 +13,7 @@ My personal dotfiles.
 
 ## Note
 - If you want hyprland config, you only need ags dan hypr folder.
-- Something may not work for you, I used this configuration in my used Thinkpad x270 and didn't think about dual monitor.
+- Something may not work for you, I use this configuration in my used Thinkpad x270 and didn't think about dual monitor.
 
 ### Dependencies
 - hyprland (ofc)
