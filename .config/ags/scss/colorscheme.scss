@@ -1,0 +1,25 @@
+$black: #15161e;
+$red: #f7768e;
+$green: #9ece6a;
+$yellow: #e0af68;
+$blue: #7aa2f7;
+$magenta: #bb9af7;
+$cyan: #7dcfff;
+$white: #a9b1d6;
+$base: #1a1b26;
+$foreground: #c0caf5;
+
+$bg_color: transparentize($base, 0.3);
+$accent: $blue;
+$accent_gradient: linear-gradient(to right, $accent, lighten($accent, 10%));
+
+$fg_color: $foreground;
+$gradient_accent: true;
+
+@mixin accent($accent: $accent) {
+  @if $gradient_accent {
+    background-image: $accent_gradient;
+  } @else {
+    background-color: $accent;
+  }
+}

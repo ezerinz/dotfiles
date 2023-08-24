@@ -1,0 +1,28 @@
+@mixin bar() {
+  background-color: $bg_color;
+  border-radius: 0 0 6px 6px;
+  border-style: none solid solid solid;
+  border-width: 1px;
+  border-color: $fg_color;
+  padding: 0 4px 4px 4px;
+}
+
+.bar {
+  font-size: 14px;
+  color: $fg_color;
+
+  .left {
+    @include bar;
+    margin-left: 10px;
+  }
+
+  .center {
+    @include bar;
+    margin: 0 10px;
+  }
+
+  .right {
+    @include bar;
+    margin-right: 10px;
+  }
+}

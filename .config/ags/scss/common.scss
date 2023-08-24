@@ -1,0 +1,49 @@
+window {
+  background-color: transparent;
+}
+
+image {
+  font-size: 16px;
+}
+
+* {
+  font-size: 14px;
+  font-family: "Ubuntu Nerd Font", sans-serif;
+  // font-weight: 500;
+}
+
+switch {
+  color: $fg_color;
+  &:checked {
+    // background-color: $accent;
+    @include accent();
+  }
+}
+
+button {
+  background-color: transparent;
+  /* margin: 0 4px 4px 4px; */
+  /* padding: 1px 4px 4px 4px; */
+  // padding: 0 4px 2px 4px;
+  // margin: 4px;
+  // margin-top: 0;
+  padding: 1px 4px;
+  font-size: 13px;
+  border-radius: 0 0 4px 4px;
+  color: #c0caf5;
+  &:hover {
+    background-color: transparentize($fg_color, 0.8);
+  }
+}
+
+.panel-button {
+  padding: 0 4px 2px 4px;
+  border-radius: 0 0 4px 4px;
+  color: $fg_color;
+
+  &.active {
+    @include accent();
+    color: $base;
+    border-radius: 0 0 8px 8px;
+  }
+}

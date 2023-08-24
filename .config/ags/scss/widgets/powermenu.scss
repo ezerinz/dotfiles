@@ -1,0 +1,120 @@
+window#powermenu,
+window#verification {
+  .shader {
+    min-width: 4000px;
+    min-height: 4000px;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.powermenu {
+  background-color: $bg_color;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px $fg_color;
+
+  button {
+    all: unset;
+    padding: 25px;
+
+    &:hover {
+      background-color: transparentize($color: $fg_color, $amount: 0.8);
+    }
+  }
+
+  > * {
+    image {
+      font-size: 70px;
+    }
+  }
+
+  .sleep {
+    color: $blue;
+    background-color: transparentize($blue, $amount: 0.8);
+    border-radius: 6px;
+
+    &:focus {
+      background-color: $blue;
+      color: $base;
+    }
+  }
+
+  .logout {
+    color: $yellow;
+    background-color: transparentize($yellow, $amount: 0.8);
+    border-radius: 6px;
+    margin-left: 2px;
+    margin-right: 4px;
+    &:focus {
+      background-color: $yellow;
+      color: $base;
+    }
+  }
+
+  .reboot {
+    color: $green;
+    background-color: transparentize($green, $amount: 0.8);
+    border-radius: 6px;
+    margin-left: 4px;
+    margin-right: 2px;
+    &:focus {
+      background-color: $green;
+      color: $base;
+    }
+  }
+
+  .shutdown {
+    color: $red;
+    background-color: transparentize($red, $amount: 0.8);
+    border-radius: 6px;
+    &:focus {
+      background-color: $red;
+      color: $base;
+    }
+  }
+}
+
+.verification {
+  background-color: $bg_color;
+  padding: 10px;
+  min-width: 250px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px $fg_color;
+  color: $fg_color;
+
+  * {
+    font-weight: 500;
+  }
+
+  .title {
+    font-size: 25px;
+  }
+
+  .desc {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .no {
+    margin-right: 3px;
+    &:hover,
+    &:focus {
+      background-color: $blue;
+      color: $base;
+    }
+  }
+
+  .yes {
+    margin-left: 3px;
+    &:hover,
+    &:focus {
+      background-color: $red;
+      color: $base;
+    }
+  }
+  button {
+    border-radius: 8px;
+    font-size: 20px;
+    background-color: transparentize($fg_color, $amount: 0.9);
+  }
+}
