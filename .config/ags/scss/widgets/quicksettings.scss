@@ -17,7 +17,6 @@
   }
 
   .speaker {
-    // margin-right: 4px;
     margin-left: 4px;
   }
   .network-speed {
@@ -33,130 +32,221 @@
 }
 
 .quicksettings__popup {
-  margin: 10px;
+  margin: 10px 10px 10px 10px;
   padding: 15px;
+  padding-top: 10px;
   border-radius: 8px;
   background-color: $bg_color;
   box-shadow: inset 0 0 0 1px $fg_color;
-  min-width: 330px;
-
-  .sysbutton-box {
-    // background-color: transparentize($fg_color, 0.95);
-    border-radius: 8px;
-    // box-shadow: inset 0 0 0 1px $fg_color;
-    // padding: 0 10px;
-    margin-top: 10px;
-    color: $fg_color;
-
-    .shutdown {
-      color: $red;
-
-      &:hover {
-        background-color: $red;
-        color: $base;
+  min-width: 300px;
+  button {
+    all: unset;
+  }
+  overlay {
+    .toggle-arrow {
+      label {
+        font-weight: 500;
       }
-    }
-    .logout {
-      margin: 0 8px;
-      color: $yellow;
-
-      &:hover {
-        background-color: $yellow;
-        color: $base;
+      all: unset;
+      * {
+        color: $fg_color;
       }
-    }
 
-    .app-mixer {
-      color: $green;
+      box {
+        image {
+          margin: 0 10px;
+          font-size: 25px;
+        }
 
-      &:hover {
-        background-color: $green;
-        color: $base;
+        label {
+          font-size: 15px;
+        }
+
+        box {
+          .secondlabel {
+            font-weight: 400;
+            font-size: 12.5px;
+          }
+
+          .label {
+            font-size: 18px;
+          }
+        }
       }
+      // margin-top: 100px;
+      margin: 5px 0;
+
+      &.active {
+        * {
+          color: $base;
+        }
+        @include accent();
+      }
+      min-height: 55px;
+      border-radius: 8px;
+
+      // margin-top: 10px;
+      background-color: transparentize($color: $fg_color, $amount: 0.9);
     }
-    button {
-      padding: 10px;
-      border-radius: 99px;
-      background-color: transparentize($fg_color, 0.9);
+
+    .arrow {
+      color: $fg_color;
+      background-color: transparentize($color: $fg_color, $amount: 0.9);
+      border-radius: 100%;
+      margin-right: 10px;
+      padding: 6px;
+    }
+
+    &.active {
+      .toggle-arrow {
+        * {
+          color: $base;
+        }
+        @include accent();
+      }
+
+      .arrow {
+        color: $base;
+        background-color: transparentize($color: $base, $amount: 0.9);
+      }
     }
   }
-
+  //
+  // .sysbutton-box {
+  //   // background-color: transparentize($fg_color, 0.95);
+  //   border-radius: 8px;
+  //   // box-shadow: inset 0 0 0 1px $fg_color;
+  //   // padding: 0 10px;
+  //   margin-top: 10px;
+  //   color: $fg_color;
+  //
+  //   .shutdown {
+  //     color: $red;
+  //
+  //     &:hover {
+  //       background-color: $red;
+  //       color: $base;
+  //     }
+  //   }
+  //   .logout {
+  //     margin: 0 8px;
+  //     color: $yellow;
+  //
+  //     &:hover {
+  //       background-color: $yellow;
+  //       color: $base;
+  //     }
+  //   }
+  //
+  //   .app-mixer {
+  //     color: $green;
+  //
+  //     &:hover {
+  //       background-color: $green;
+  //       color: $base;
+  //     }
+  //   }
+  //   button {
+  //     padding: 10px;
+  //     border-radius: 99px;
+  //     background-color: transparentize($fg_color, 0.9);
+  //   }
+  // }
+  //
   trough {
     border-radius: 99px;
     highlight {
       @include accent();
       border-radius: 99px;
-      min-width: 30px;
-      min-height: 30px;
+      min-height: 15px;
+      // min-width: 30px;
+      // min-height: 30px;
     }
     slider {
-      all: unset;
     }
   }
-
-  .submenu {
-    background-color: transparentize($fg_color, 0.95);
+  //
+  // .submenu {
+  //   background-color: transparentize($fg_color, 0.95);
+  //   margin-top: 10px;
+  //   border-radius: 8px;
+  //   border-color: transparent;
+  //   padding: 10px;
+  //
+  //   .title {
+  //     image {
+  //       margin-right: 5px;
+  //       font-size: 24px;
+  //     }
+  //
+  //     label {
+  //       font-size: 24px;
+  //     }
+  //     @include accent();
+  //     color: $base;
+  //     border-radius: 8px;
+  //     padding: 10px;
+  //     font-weight: 600;
+  //     margin-bottom: 8px;
+  //   }
+  //
+  //   button {
+  //     padding: 2px;
+  //
+  //     image {
+  //       margin: 0 4px;
+  //     }
+  //   }
+  //
+  //   button:hover {
+  //     background-color: transparentize($fg_color, 0.9);
+  //     border-radius: 4px;
+  //   }
+  // }
+  //
+  // button {
+  //   all: unset;
+  //   font-size: 14px;
+  //   font-family: "Ubuntu Nerd Font", sans-serif;
+  //   font-weight: 600;
+  //   color: $fg_color;
+  // }
+  //
+  // * {
+  //   font-size: 16px;
+  // }
+  .volume-box {
     margin-top: 10px;
-    border-radius: 8px;
-    border-color: transparent;
-    padding: 10px;
+    font-weight: 500;
 
-    .title {
-      image {
-        margin-right: 5px;
-        font-size: 24px;
-      }
-
-      label {
-        font-size: 24px;
-      }
+    .speakertype {
       @include accent();
       color: $base;
-      border-radius: 8px;
+      border-radius: 4px;
       padding: 10px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
 
-    button {
-      padding: 2px;
-
-      image {
-        margin: 0 4px;
+      &:hover {
+        background-image: linear-gradient(
+          to right,
+          $accent,
+          lighten($accent, 20%)
+        );
       }
     }
-
-    button:hover {
-      background-color: transparentize($fg_color, 0.9);
-      border-radius: 4px;
-    }
-  }
-
-  button {
-    all: unset;
-    font-size: 14px;
-    font-family: "Ubuntu Nerd Font", sans-serif;
-    font-weight: 600;
-    color: $fg_color;
-  }
-
-  * {
-    font-size: 16px;
-  }
-  .volume-box {
     button {
       color: $fg_color;
+      min-height: 0;
 
       &:hover {
         border-radius: 4px;
         background-color: transparentize($fg_color, 0.8);
       }
     }
-    background-color: transparentize($fg_color, 0.95);
+    // background-color: transparentize($fg_color, 0.95);
     border-radius: 8px;
     // box-shadow: inset 0 0 0 1px $fg_color;
-    padding: 10px;
-    padding: 0 10px;
+    // padding: 10px;
+    // padding: 0 10px;
     color: $fg_color;
 
     .menu {
@@ -167,72 +257,85 @@
   }
 
   .brightness {
-    background-color: transparentize($fg_color, 0.95);
+    font-weight: 500;
+    // background-color: transparentize($fg_color, 0.95);
     border-radius: 8px;
     // box-shadow: inset 0 0 0 1px $fg_color;
     padding: 10px;
     padding: 0 10px;
     margin-top: 10px;
     color: $fg_color;
+
+    // trough highlight {
+    // min-width: 30px;
+    // }
   }
-
-  .toggles-box {
-    background-color: transparentize($fg_color, 0.95);
-    border-radius: 8px;
-    // box-shadow: inset 0 0 0 1px $fg_color;
-    padding: 0 0 10px 10px;
-    margin-top: 10px;
-
-    .arrow-toggles {
-      .toggle {
-        margin-top: 10px;
-        margin-right: 10px;
-        background-color: transparentize($fg_color, 0.9);
-        border-radius: 10px;
-        // padding: 10px;
-        min-height: 50px;
-
-        .box-toggle:hover {
-          background-color: transparentize($fg_color, 0.8);
-          border-radius: 8px 0 0 8px;
-        }
-
-        &:hover {
-          background-color: transparentize($fg_color, 0.8);
-        }
-
-        .arrow:hover {
-          background-color: transparentize($fg_color, 0.8);
-          border-radius: 0 8px 8px 0;
-        }
-
-        &.power .arrow:hover {
-          border-radius: 10px;
-        }
-
-        &.active,
-        &.on {
-          @include accent();
-          > * {
-            color: $base;
-          }
-        }
-
-        label {
-          margin: 0 4px;
-        }
-
-        image {
-          margin-left: 8px;
-        }
-
-        .arrow image {
-          margin-right: 8px;
-        }
-        .label.arrow box box image {
-          margin-right: 0px;
-        }
-      }
-    }
-  }
+  //
+  // .toggles-box {
+  //   background-color: transparentize($fg_color, 0.95);
+  //   border-radius: 8px;
+  //   // box-shadow: inset 0 0 0 1px $fg_color;
+  //   padding: 0 0 10px 10px;
+  //   // margin-top: 10px;
+  //
+  //   .arrow-toggles {
+  //     .toggle {
+  //       margin-top: 10px;
+  //       margin-right: 10px;
+  //       background-color: transparentize($fg_color, 0.9);
+  //       border-radius: 10px;
+  //       // padding: 10px;
+  //       min-height: 50px;
+  //
+  //       .box-toggle:hover {
+  //         background-color: transparentize($fg_color, 0.8);
+  //         border-radius: 8px 0 0 8px;
+  //       }
+  //
+  //       &:hover {
+  //         background-color: transparentize($fg_color, 0.8);
+  //       }
+  //
+  //       .arrow {
+  //         image {
+  //           min-height: 0;
+  //           min-width: 0;
+  //         }
+  //         background-color: transparentize($color: $fg_color, $amount: 0.5);
+  //       }
+  //
+  //       .arrow:hover {
+  //         background-color: transparentize($fg_color, 0.8);
+  //         border-radius: 0 8px 8px 0;
+  //       }
+  //
+  //       &.power .arrow:hover {
+  //         border-radius: 10px;
+  //       }
+  //
+  //       &.active,
+  //       &.on {
+  //         @include accent();
+  //         > * {
+  //           color: $base;
+  //         }
+  //       }
+  //
+  //       label {
+  //         margin: 0 4px;
+  //       }
+  //
+  //       image {
+  //         margin-left: 8px;
+  //       }
+  //
+  //       .arrow image {
+  //         margin-right: 8px;
+  //       }
+  //       .label.arrow box box image {
+  //         margin-right: 0px;
+  //       }
+  //     }
+  //   }
+  // }
 }

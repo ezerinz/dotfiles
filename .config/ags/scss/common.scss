@@ -2,6 +2,60 @@ window {
   background-color: transparent;
 }
 
+.wall__popupcontent {
+  // padding: 10px;
+  background-color: $bg_color;
+  border-radius: 8px;
+
+  .wall__headers {
+    @include accent();
+    border-radius: 4px;
+    margin: 10px;
+    padding: 4px;
+
+    label {
+      font-size: 24px;
+      font-weight: 600;
+      color: $base;
+    }
+  }
+
+  button {
+    min-height: 10px;
+    min-width: 10px;
+    all: unset;
+    @include accent();
+    border-radius: 4px;
+    margin: 4px;
+    padding: 4px;
+    color: $base;
+    &:hover,
+    &:active {
+      background-image: linear-gradient(
+        to right,
+        $accent,
+        lighten($accent, 30%)
+      );
+    }
+
+    label {
+      font-size: 14;
+      font-weight: 500;
+    }
+  }
+
+  .scroll__container {
+    min-width: 450px;
+    min-height: 450px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+
+    .list {
+      margin: 10px;
+    }
+  }
+}
+
 image {
   font-size: 16px;
 }

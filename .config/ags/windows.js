@@ -6,8 +6,11 @@ import * as hyprland from "./widgets/hyprland.js";
 import * as quicksettings from "./widgets/quicksettings.js";
 import * as powermenu from "./widgets/powermenu.js";
 import * as screenrecord from "./modules/screenrecord.js";
+import * as wallpaper from "./modules/wallpaperpicker.js";
+import Gtk from "gi://Gtk";
 
-const { Box, Window } = ags.Widget;
+const { Box, Window, Button, Label, Widget } = ags.Widget;
+const { exec } = ags.Utils;
 
 // layout of the bar
 const Left = () =>
@@ -39,7 +42,7 @@ const Right = () =>
 
 const Bar = ({ monitor } = {}) =>
   Window({
-    name: `bar${monitor || ""}`, // name has to be unique
+    name: `bar${monitor || ""}`,
     className: "bar",
     monitor,
     anchor: ["top", "left", "right"],
@@ -51,7 +54,7 @@ const Bar = ({ monitor } = {}) =>
 
 const DateMenu = () =>
   Window({
-    name: `datemenu`, // name has to be unique
+    name: `datemenu`,
     popup: true,
     focusable: true,
     anchor: ["top", "left"],
@@ -90,7 +93,7 @@ const QuickSettings = () =>
   Window({
     name: "quicksettings",
     popup: true,
-    focusable: true,
+    focusable: false,
     anchor: ["top", "right"],
     child: PopupLayout({
       layout: "top",
@@ -116,6 +119,23 @@ const PowermenuPopup = () => Popup("powermenu", powermenu.PopupContent);
 const VerificationPopup = () => Popup("verification", powermenu.Verification);
 const ApplauncherPopup = () => Popup("applauncher", Applauncher);
 
+const WallpaperPickerPopup = () =>
+  Widget({
+    type: Gtk.Window,
+    name: "wallpicker",
+    child: wallpaper.PopupContent(),
+    connections: [
+      [
+        "delete-event",
+        (win) => {
+          win.hide();
+          return true;
+        },
+      ],
+    ],
+    setup: (win) => win.set_default_size(400, 400),
+  });
+
 export default [
   Bar(),
   DateMenu(),
@@ -125,4 +145,5 @@ export default [
   PowermenuPopup(),
   VerificationPopup(),
   ApplauncherPopup(),
+  WallpaperPickerPopup(),
 ];

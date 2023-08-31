@@ -5,11 +5,10 @@ const { exec } = ags.Utils;
 // I'm just copy paste things
 // feel free to fix this if something wrong
 
-let lastTotalDownBytes = 0;
-let lastTotalUpBytes = 0;
-
-const NetworkSpeed = ({ interval = 1000, ...props } = {}) =>
-  Label({
+const NetworkSpeed = ({ interval = 1000, ...props } = {}) => {
+  var lastTotalDownBytes = 0;
+  var lastTotalUpBytes = 0;
+  return Label({
     ...props,
     className: "speed",
     connections: [
@@ -72,10 +71,36 @@ const NetworkSpeed = ({ interval = 1000, ...props } = {}) =>
       ],
     ],
   });
-
+};
 export const NetworkSpeedContainer = () =>
   Box({
     className: "network-speed",
     vertical: true,
     children: [NetworkSpeed(), Label({ label: "MB/s", className: "unit" })],
+    // connections: [
+    //   [
+    //     1000,
+    //     (box) => {
+    //       const speedAndIcon = box.children[0].label.split(" ");
+    //       let speed = parseFloat(speedAndIcon[0]);
+    //       let icon = speedAndIcon[1];
+    //       let label = "0.00";
+    //       let unit = "KB/s";
+    //
+    //       if (speed >= 1000) {
+    //         label = (speed / 1000).toFixed(2) + icon;
+    //         unit = "MB/s";
+    //       } else if (speed >= 100) {
+    //         label = speed.toFixed() + icon;
+    //       } else if (speed >= 10) {
+    //         label = speed.toFixed(1) + icon;
+    //       } else if (speed >= 0) {
+    //         label = speed.toFixed(2) + icon;
+    //       }
+    //
+    //       box.children[0].label = label;
+    //       box.children[1].label = unit;
+    //     },
+    //   ],
+    // ],
   });

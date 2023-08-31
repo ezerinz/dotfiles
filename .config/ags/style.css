@@ -1,6 +1,40 @@
 window {
   background-color: transparent; }
 
+.wall__popupcontent {
+  background-color: rgba(26, 27, 38, 0.7);
+  border-radius: 8px; }
+  .wall__popupcontent .wall__headers {
+    background-image: linear-gradient(to right, #7aa2f7, #aac4fa);
+    border-radius: 4px;
+    margin: 10px;
+    padding: 4px; }
+    .wall__popupcontent .wall__headers label {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1a1b26; }
+  .wall__popupcontent button {
+    min-height: 10px;
+    min-width: 10px;
+    all: unset;
+    background-image: linear-gradient(to right, #7aa2f7, #aac4fa);
+    border-radius: 4px;
+    margin: 4px;
+    padding: 4px;
+    color: #1a1b26; }
+    .wall__popupcontent button:hover, .wall__popupcontent button:active {
+      background-image: linear-gradient(to right, #7aa2f7, white); }
+    .wall__popupcontent button label {
+      font-size: 14;
+      font-weight: 500; }
+  .wall__popupcontent .scroll__container {
+    min-width: 450px;
+    min-height: 450px;
+    margin-bottom: 4px;
+    border-radius: 4px; }
+    .wall__popupcontent .scroll__container .list {
+      margin: 10px; }
+
 image {
   font-size: 16px; }
 
@@ -64,7 +98,7 @@ button {
 #datemenu .datemenu__popup {
   margin: 10px;
   background-color: rgba(26, 27, 38, 0.7);
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
   box-shadow: inset 0 0 0 1px #c0caf5;
   color: #c0caf5; }
@@ -122,12 +156,17 @@ button {
     .workspaces__panel button:hover .indicator {
       border-color: #7aa2f7; }
 
-#notification-popup .notification > * {
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5); }
+#notification-popup {
+  min-width: 0;
+  min-height: 0; }
+  #notification-popup .notification > * {
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5); }
+  #notification-popup * {
+    outline: none;
+    color: #c0caf5; }
 
-#notification-popup * {
-  outline: none;
-  color: #c0caf5; }
+#notification-center .notification > * {
+  background-color: rgba(192, 202, 245, 0.1); }
 
 #notification-center * {
   outline: none;
@@ -144,8 +183,7 @@ button {
   margin: 4px;
   padding: 8px;
   border-radius: 15px;
-  background-color: rgba(26, 27, 38, 0.7);
-  box-shadow: inset 0 0 0 1px #c0caf5; }
+  background-color: rgba(26, 27, 38, 0.7); }
 
 .notification .icon {
   border-radius: 7px;
@@ -159,7 +197,7 @@ button {
   border-radius: 1em; }
 
 .notification .title {
-  font-size: 1.1em;
+  font-size: 1.5em;
   color: #c0caf5; }
 
 .notification .description {
@@ -218,86 +256,73 @@ button {
   margin-right: 3px; }
 
 .quicksettings__popup {
-  margin: 10px;
+  margin: 10px 10px 10px 10px;
   padding: 15px;
+  padding-top: 10px;
   border-radius: 8px;
   background-color: rgba(26, 27, 38, 0.7);
   box-shadow: inset 0 0 0 1px #c0caf5;
-  min-width: 330px; }
-  .quicksettings__popup .sysbutton-box {
+  min-width: 300px; }
+  .quicksettings__popup button {
+    all: unset; }
+  .quicksettings__popup overlay .toggle-arrow {
+    all: unset;
+    margin: 5px 0;
+    min-height: 55px;
     border-radius: 8px;
-    margin-top: 10px;
-    color: #c0caf5; }
-    .quicksettings__popup .sysbutton-box .shutdown {
-      color: #f7768e; }
-      .quicksettings__popup .sysbutton-box .shutdown:hover {
-        background-color: #f7768e;
+    background-color: rgba(192, 202, 245, 0.1); }
+    .quicksettings__popup overlay .toggle-arrow label {
+      font-weight: 500; }
+    .quicksettings__popup overlay .toggle-arrow * {
+      color: #c0caf5; }
+    .quicksettings__popup overlay .toggle-arrow box image {
+      margin: 0 10px;
+      font-size: 25px; }
+    .quicksettings__popup overlay .toggle-arrow box label {
+      font-size: 15px; }
+    .quicksettings__popup overlay .toggle-arrow box box .secondlabel {
+      font-weight: 400;
+      font-size: 12.5px; }
+    .quicksettings__popup overlay .toggle-arrow box box .label {
+      font-size: 18px; }
+    .quicksettings__popup overlay .toggle-arrow.active {
+      background-image: linear-gradient(to right, #7aa2f7, #aac4fa); }
+      .quicksettings__popup overlay .toggle-arrow.active * {
         color: #1a1b26; }
-    .quicksettings__popup .sysbutton-box .logout {
-      margin: 0 8px;
-      color: #e0af68; }
-      .quicksettings__popup .sysbutton-box .logout:hover {
-        background-color: #e0af68;
-        color: #1a1b26; }
-    .quicksettings__popup .sysbutton-box .app-mixer {
-      color: #9ece6a; }
-      .quicksettings__popup .sysbutton-box .app-mixer:hover {
-        background-color: #9ece6a;
-        color: #1a1b26; }
-    .quicksettings__popup .sysbutton-box button {
-      padding: 10px;
-      border-radius: 99px;
-      background-color: rgba(192, 202, 245, 0.1); }
+  .quicksettings__popup overlay .arrow {
+    color: #c0caf5;
+    background-color: rgba(192, 202, 245, 0.1);
+    border-radius: 100%;
+    margin-right: 10px;
+    padding: 6px; }
+  .quicksettings__popup overlay.active .toggle-arrow {
+    background-image: linear-gradient(to right, #7aa2f7, #aac4fa); }
+    .quicksettings__popup overlay.active .toggle-arrow * {
+      color: #1a1b26; }
+  .quicksettings__popup overlay.active .arrow {
+    color: #1a1b26;
+    background-color: rgba(26, 27, 38, 0.1); }
   .quicksettings__popup trough {
     border-radius: 99px; }
     .quicksettings__popup trough highlight {
       background-image: linear-gradient(to right, #7aa2f7, #aac4fa);
       border-radius: 99px;
-      min-width: 30px;
-      min-height: 30px; }
-    .quicksettings__popup trough slider {
-      all: unset; }
-  .quicksettings__popup .submenu {
-    background-color: rgba(192, 202, 245, 0.05);
+      min-height: 15px; }
+  .quicksettings__popup .volume-box {
     margin-top: 10px;
+    font-weight: 500;
     border-radius: 8px;
-    border-color: transparent;
-    padding: 10px; }
-    .quicksettings__popup .submenu .title {
+    color: #c0caf5; }
+    .quicksettings__popup .volume-box .speakertype {
       background-image: linear-gradient(to right, #7aa2f7, #aac4fa);
       color: #1a1b26;
-      border-radius: 8px;
-      padding: 10px;
-      font-weight: 600;
-      margin-bottom: 8px; }
-      .quicksettings__popup .submenu .title image {
-        margin-right: 5px;
-        font-size: 24px; }
-      .quicksettings__popup .submenu .title label {
-        font-size: 24px; }
-    .quicksettings__popup .submenu button {
-      padding: 2px; }
-      .quicksettings__popup .submenu button image {
-        margin: 0 4px; }
-    .quicksettings__popup .submenu button:hover {
-      background-color: rgba(192, 202, 245, 0.1);
-      border-radius: 4px; }
-  .quicksettings__popup button {
-    all: unset;
-    font-size: 14px;
-    font-family: "Ubuntu Nerd Font", sans-serif;
-    font-weight: 600;
-    color: #c0caf5; }
-  .quicksettings__popup * {
-    font-size: 16px; }
-  .quicksettings__popup .volume-box {
-    background-color: rgba(192, 202, 245, 0.05);
-    border-radius: 8px;
-    padding: 10px;
-    padding: 0 10px;
-    color: #c0caf5; }
+      border-radius: 4px;
+      padding: 10px; }
+      .quicksettings__popup .volume-box .speakertype:hover {
+        background-image: linear-gradient(to right, #7aa2f7, #dae5fd); }
     .quicksettings__popup .volume-box button {
-      color: #c0caf5; }
+      color: #c0caf5;
+      min-height: 0; }
       .quicksettings__popup .volume-box button:hover {
         border-radius: 4px;
         background-color: rgba(192, 202, 245, 0.2); }
@@ -306,45 +331,12 @@ button {
       border-radius: 8px;
       border-color: transparent; }
   .quicksettings__popup .brightness {
-    background-color: rgba(192, 202, 245, 0.05);
+    font-weight: 500;
     border-radius: 8px;
     padding: 10px;
     padding: 0 10px;
     margin-top: 10px;
     color: #c0caf5; }
-  .quicksettings__popup .toggles-box {
-    background-color: rgba(192, 202, 245, 0.05);
-    border-radius: 8px;
-    padding: 0 0 10px 10px;
-    margin-top: 10px; }
-    .quicksettings__popup .toggles-box .arrow-toggles .toggle {
-      margin-top: 10px;
-      margin-right: 10px;
-      background-color: rgba(192, 202, 245, 0.1);
-      border-radius: 10px;
-      min-height: 50px; }
-      .quicksettings__popup .toggles-box .arrow-toggles .toggle .box-toggle:hover {
-        background-color: rgba(192, 202, 245, 0.2);
-        border-radius: 8px 0 0 8px; }
-      .quicksettings__popup .toggles-box .arrow-toggles .toggle:hover {
-        background-color: rgba(192, 202, 245, 0.2); }
-      .quicksettings__popup .toggles-box .arrow-toggles .toggle .arrow:hover {
-        background-color: rgba(192, 202, 245, 0.2);
-        border-radius: 0 8px 8px 0; }
-      .quicksettings__popup .toggles-box .arrow-toggles .toggle.power .arrow:hover {
-        border-radius: 10px; }
-      .quicksettings__popup .toggles-box .arrow-toggles .toggle.active, .quicksettings__popup .toggles-box .arrow-toggles .toggle.on {
-        background-image: linear-gradient(to right, #7aa2f7, #aac4fa); }
-        .quicksettings__popup .toggles-box .arrow-toggles .toggle.active > *, .quicksettings__popup .toggles-box .arrow-toggles .toggle.on > * {
-          color: #1a1b26; }
-      .quicksettings__popup .toggles-box .arrow-toggles .toggle label {
-        margin: 0 4px; }
-      .quicksettings__popup .toggles-box .arrow-toggles .toggle image {
-        margin-left: 8px; }
-      .quicksettings__popup .toggles-box .arrow-toggles .toggle .arrow image {
-        margin-right: 8px; }
-      .quicksettings__popup .toggles-box .arrow-toggles .toggle .label.arrow box box image {
-        margin-right: 0px; }
 
 window#powermenu .shader,
 window#verification .shader {

@@ -7,7 +7,7 @@ import * as network from "../modules/network.js";
 import * as bluetooth from "../modules/bluetooth.js";
 import * as notifications from "../modules/notifications.js";
 import * as powerprofile from "../modules/powerprofile.js";
-const { Button, Box, Icon, Label, Revealer } = ags.Widget;
+const { Button, Box, Icon, Label, Revealer, Overlay } = ags.Widget;
 const { Service, App } = ags;
 const { Bluetooth, Battery, Audio, Network, Powerprofile } = Service;
 const { execAsync, timeout } = ags.Utils;
@@ -37,6 +37,8 @@ class QSMenu extends Service {
 const Arrow = (menu, toggleOn) =>
   Button({
     className: "arrow",
+    halign: "end",
+    valign: "center",
     onClicked: () => {
       QSMenu.toggle(menu);
       if (toggleOn) toggleOn();
@@ -50,6 +52,7 @@ const Arrow = (menu, toggleOn) =>
       ],
     ],
     child: Icon({
+      className: "icon",
       icon: "pan-end-symbolic",
       properties: [
         ["deg", 0],
@@ -111,11 +114,12 @@ const VolumeBox = () =>
         className: "volume",
         children: [
           Button({
+            className: "speakertype",
             child: audio.SpeakerTypeIndicator(),
             onClicked: "pactl set-sink-mute @DEFAULT_SINK@ toggle",
           }),
           audio.SpeakerSlider({ hexpand: true }),
-          audio.SpeakerPercentLabel(),
+          // audio.SpeakerPercentLabel(),
           Arrow("stream-selector"),
         ],
       }),
@@ -155,36 +159,40 @@ const BrightnessBox = () =>
         child: brightness.Indicator(),
       }),
       brightness.BrightnessSlider(),
-      brightness.PercentLabel(),
+      // brightness.PercentLabel(),
     ],
   });
 
 const ArrowToggle = ({ icon, label, connection, toggle, name, toggleOn }) =>
-  Box({
+  Overlay({
     connections: [
       [
         connection.service,
         (w) => w.toggleClassName("active", connection.callback()),
       ],
     ],
-    className: `arrow toggle ${name}`,
-    children: [
-      Button({
-        hexpand: true,
-        className: "box-toggle",
-        onClicked: toggle,
-        child: Box({
-          children: [icon, label],
-        }),
+    child: Button({
+      className: `toggle-arrow ${name}`,
+      // hexpand: true,
+      onClicked: toggle,
+      child: Box({
+        children: [icon, label],
       }),
-      Arrow(name, toggleOn),
-    ],
+    }),
+    overlays: [Arrow(name, toggleOn)],
   });
 
 const NetworkToggle = () =>
   ArrowToggle({
     icon: network.WifiIndicator(),
-    label: network.SSIDLabel(),
+    label: Box({
+      vertical: true,
+      valign: "center",
+      children: [
+        Label({ label: "Wi-Fi", className: "label", halign: "start" }),
+        network.SSIDLabel({ className: "secondlabel", halign: "start" }),
+      ],
+    }),
     connection: {
       service: Network,
       callback: () => Network.wifi?.enabled,
@@ -200,7 +208,14 @@ const NetworkToggle = () =>
 const BluetoothToggle = () =>
   ArrowToggle({
     icon: bluetooth.Indicator(),
-    label: bluetooth.ConnectedLabel(),
+    label: Box({
+      vertical: true,
+      valign: "center",
+      children: [
+        Label({ label: "Bluetooth", className: "label", halign: "start" }),
+        bluetooth.ConnectedLabel({ className: "secondlabel", halign: "start" }),
+      ],
+    }),
     connection: {
       service: Bluetooth,
       callback: () => Bluetooth.enabled,
@@ -213,79 +228,52 @@ const BluetoothToggle = () =>
     name: "bluetooth",
   });
 
-const ArrowLabel = ({ menu, label }) =>
-  Button({
-    className: "arrow label",
-    onClicked: () => {
-      QSMenu.toggle(menu);
-    },
-    connections: [
-      [
-        QSMenu,
-        (button) => {
-          button.toggleClassName("opened", QSMenu.opened === menu);
-        },
-      ],
-    ],
-    child: Box({
+const PowerProfileToggle = () =>
+  ArrowToggle({
+    icon: Icon("speedometer-symbolic"),
+    label: Box({
+      vertical: true,
+      valign: "center",
       children: [
-        label,
-        Icon({
-          icon: "pan-end-symbolic",
-          properties: [
-            ["deg", 0],
-            ["opened", false],
-          ],
-          connections: [
-            [
-              QSMenu,
-              (icon) => {
-                if (
-                  (QSMenu.opened === menu && !icon._opened) ||
-                  (QSMenu.opened !== menu && icon._opened)
-                ) {
-                  const step = QSMenu.opened === menu ? 10 : -10;
-                  icon._opened = !icon._opened;
-                  for (let i = 0; i < 9; ++i) {
-                    timeout(5 * i, () => {
-                      icon._deg += step;
-                      icon.setStyle(
-                        `-gtk-icon-transform: rotate(${icon._deg}deg);`
-                      );
-                    });
-                  }
-                }
-              },
-            ],
-          ],
+        Label({ label: "Power Profile", className: "label", halign: "start" }),
+        powerprofile.PowerModeLabel({
+          className: "secondlabel",
+          halign: "start",
         }),
       ],
     }),
+    connection: {
+      service: Powerprofile,
+      callback: () => Powerprofile.powerprofile === "performance",
+    },
+    name: "powerprofile",
   });
 
-const PowerToggle = () =>
-  Box({
-    className: "toggle power",
-    connections: [
-      [
-        Powerprofile,
-        (w) =>
-          w.toggleClassName("on", Powerprofile.powerprofile == "performance"),
-      ],
-    ],
-    children: [
-      ArrowLabel({
-        menu: "powerprofile",
-        label: Box({
-          hexpand: true,
-          children: [
-            Icon("speedometer-symbolic"),
-            powerprofile.PowerModeLabel(),
-          ],
-        }),
-      }),
-    ],
-  });
+// Box({
+//   className: "toggle-arrow",
+//   connections: [
+//     [
+//       Powerprofile,
+//       (w) =>
+//         w.toggleClassName(
+//           "active",
+//           Powerprofile.powerprofile == "performance"
+//         ),
+//     ],
+//   ],
+//   children: [
+//     ArrowLabel({
+//       menu: "powerprofile",
+//       label: Box({
+//         hexpand: true,
+//         children: [
+//           Icon("speedometer-symbolic"),
+//           powerprofile.PowerModeLabel(),
+//         ],
+//       }),
+//     }),
+//   ],
+// });
 
 const SmallToggle = (toggle, indicator) =>
   toggle({
@@ -377,26 +365,29 @@ export const PopupContent = () =>
     vertical: true,
     hexpand: false,
     children: [
+      NetworkToggle(),
+      BluetoothToggle(),
+      PowerProfileToggle(),
+      // Box({
+      //   className: "toggles-box",
+      //   children: [
+      //     Box({
+      //       className: "arrow-toggles",
+      //       children: [
+      //         Box({
+      //           vertical: true,
+      //           children: [NetworkToggle(), BluetoothToggle()],
+      //         }),
+      //         Box({
+      //           vertical: true,
+      //           children: [MuteToggle(), PowerToggle()],
+      //         }),
+      //       ],
+      //     }),
+      //   ],
+      // }),
       VolumeBox(),
       BrightnessBox(),
-      Box({
-        className: "toggles-box",
-        children: [
-          Box({
-            className: "arrow-toggles",
-            children: [
-              Box({
-                vertical: true,
-                children: [NetworkToggle(), BluetoothToggle()],
-              }),
-              Box({
-                vertical: true,
-                children: [MuteToggle(), PowerToggle()],
-              }),
-            ],
-          }),
-        ],
-      }),
       Box({
         className: "sysbutton-box",
         children: [
@@ -423,7 +414,6 @@ export const PopupContent = () =>
           }),
         ],
       }),
-
       Appmixer(),
       NetworkSelection(),
       BluetoothSelection(),
