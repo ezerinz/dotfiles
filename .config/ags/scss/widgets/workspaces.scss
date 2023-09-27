@@ -1,25 +1,28 @@
 .workspaces__panel {
-  .eventbox button {
-    .indicator {
-      border-color: $fg_color;
-      border-width: 2px;
-      border-style: solid;
-      border-radius: 99px;
-    }
-
-    &.active {
+  .eventbox {
+    button {
       .indicator {
-        border-color: $accent;
+        border-color: $fg_color;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 99px;
+      }
+
+      &.active {
+        .indicator {
+          border-color: $accent;
+        }
       }
     }
   }
 
   button {
+    background-color: transparent;
     padding: 0 1px;
 
     &.active {
       .indicator .fill {
-        min-width: 35px;
+        min-width: 40px;
       }
     }
 

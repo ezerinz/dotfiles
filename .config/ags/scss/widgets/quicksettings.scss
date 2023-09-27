@@ -10,7 +10,6 @@
       color: $green;
     }
   }
-
   .network {
     margin-right: 4px;
     margin-left: 8px;
@@ -32,16 +31,36 @@
 }
 
 .quicksettings__popup {
-  margin: 10px 10px 10px 10px;
+  // margin: 10px 10px 10px 10px;
+  @include popupwindow();
   padding: 15px;
   padding-top: 10px;
-  border-radius: 8px;
-  background-color: $bg_color;
-  box-shadow: inset 0 0 0 1px $fg_color;
+  // border-radius: 8px;
+  // background-color: $bg_color;
+  // box-shadow: inset 0 0 0 1px $fg_color;
   min-width: 300px;
+
   button {
     all: unset;
+    padding: 2px;
+    border-radius: 4px;
+
+    label {
+      font-size: 15px;
+    }
+
+    // &:hover {
+    // background-color: transparentize($color: $fg_color, $amount: 0.2);
+    // }
   }
+
+  .separator {
+    min-height: 1px;
+    margin-top: 6px;
+    margin-bottom: 2px;
+    background-color: transparentize($color: $fg_color, $amount: 0.6);
+  }
+
   overlay {
     .toggle-arrow {
       label {
@@ -76,12 +95,6 @@
       // margin-top: 100px;
       margin: 5px 0;
 
-      &.active {
-        * {
-          color: $base;
-        }
-        @include accent();
-      }
       min-height: 55px;
       border-radius: 8px;
 
@@ -111,67 +124,101 @@
       }
     }
   }
-  //
-  // .sysbutton-box {
-  //   // background-color: transparentize($fg_color, 0.95);
-  //   border-radius: 8px;
-  //   // box-shadow: inset 0 0 0 1px $fg_color;
-  //   // padding: 0 10px;
-  //   margin-top: 10px;
-  //   color: $fg_color;
-  //
-  //   .shutdown {
-  //     color: $red;
-  //
-  //     &:hover {
-  //       background-color: $red;
-  //       color: $base;
-  //     }
-  //   }
-  //   .logout {
-  //     margin: 0 8px;
-  //     color: $yellow;
-  //
-  //     &:hover {
-  //       background-color: $yellow;
-  //       color: $base;
-  //     }
-  //   }
-  //
-  //   .app-mixer {
-  //     color: $green;
-  //
-  //     &:hover {
-  //       background-color: $green;
-  //       color: $base;
-  //     }
-  //   }
-  //   button {
-  //     padding: 10px;
-  //     border-radius: 99px;
-  //     background-color: transparentize($fg_color, 0.9);
-  //   }
-  // }
-  //
-  trough {
-    border-radius: 99px;
-    highlight {
-      @include accent();
+
+  scale {
+    margin-left: 6px;
+    trough {
       border-radius: 99px;
-      min-height: 15px;
-      // min-width: 30px;
-      // min-height: 30px;
-    }
-    slider {
+      highlight {
+        @include accent();
+        border-radius: 99px;
+        min-height: 15px;
+      }
+      slider {
+        background-color: $fg_color;
+      }
     }
   }
-  //
-  // .submenu {
-  //   background-color: transparentize($fg_color, 0.95);
-  //   margin-top: 10px;
-  //   border-radius: 8px;
-  //   border-color: transparent;
-  //   padding: 10px;
+
+  .sysbutton-box {
+    margin-top: 10px;
+
+    button {
+      border-radius: 99px;
+      padding: 4px;
+      background-color: transparentize($color: $fg_color, $amount: 0.9);
+
+      &:hover {
+        background-color: transparentize($color: $fg_color, $amount: 0.8);
+      }
+    }
+
+    .power-profile {
+      &.performance {
+        background-color: transparentize($color: $green, $amount: 0.9);
+        color: $green;
+      }
+
+      &.power-saver {
+        background-color: transparentize($color: $red2, $amount: 0.9);
+        color: $red2;
+      }
+
+      &.balanced {
+        background-color: transparentize($color: $magenta, $amount: 0.9);
+        color: $magenta;
+      }
+
+      border-radius: 99px;
+    }
+
+    .app-mixer {
+      // color: $base;
+      // @include accent($orange);
+      background-color: transparentize($color: $orange, $amount: 0.9);
+      color: $orange;
+      // box-shadow: inset 0 0 0 1px $orange;
+    }
+
+    .shutdown {
+      margin: 0 4px;
+      background-color: transparentize($color: $red, $amount: 0.9);
+      color: $red;
+      // color: $base;
+      // @include accent($red);
+    }
+  }
+
+  .submenu {
+    background-color: transparentize($fg_color, 0.95);
+    margin-top: 10px;
+    border-radius: 8px;
+    border-color: transparent;
+    padding: 8px;
+
+    .title {
+      image {
+        margin-right: 5px;
+        font-weight: 600;
+      }
+
+      label {
+        font-weight: 600;
+      }
+    }
+
+    .content {
+      margin-top: 2px;
+
+      image {
+        margin-right: 5px;
+      }
+
+      button:hover {
+        background-color: transparentize($color: $fg_color, $amount: 0.8);
+      }
+    }
+  }
   //
   //   .title {
   //     image {
@@ -216,14 +263,17 @@
   //   font-size: 16px;
   // }
   .volume-box {
-    margin-top: 10px;
     font-weight: 500;
+    min-height: 0;
 
     .speakertype {
       @include accent();
       color: $base;
       border-radius: 4px;
-      padding: 10px;
+      // padding: 4px;
+      min-height: 0;
+      margin: 10px 0;
+      padding: 4px;
 
       &:hover {
         background-image: linear-gradient(
@@ -242,29 +292,57 @@
         background-color: transparentize($fg_color, 0.8);
       }
     }
-    // background-color: transparentize($fg_color, 0.95);
     border-radius: 8px;
-    // box-shadow: inset 0 0 0 1px $fg_color;
-    // padding: 10px;
-    // padding: 0 10px;
     color: $fg_color;
 
     .menu {
       background-color: transparentize($fg_color, 0.95);
       border-radius: 8px;
       border-color: transparent;
+      margin: 0;
+
+      label {
+        font-weight: 500;
+      }
+
+      image {
+        margin-right: 4px;
+      }
     }
   }
 
   .brightness {
-    font-weight: 500;
+    margin: 0;
+    button {
+      @include accent();
+      color: $base;
+      border-radius: 4px;
+      // padding: 4px;
+      min-height: 0;
+      margin: 10px 0;
+      padding: 4px;
+
+      &:hover {
+        background-image: linear-gradient(
+          to right,
+          $accent,
+          lighten($accent, 20%)
+        );
+      }
+    }
+
+    scale {
+      margin-right: 20.5px;
+      margin-left: 4px;
+    }
+    // font-weight: 500;
     // background-color: transparentize($fg_color, 0.95);
-    border-radius: 8px;
+    // border-radius: 8px;
     // box-shadow: inset 0 0 0 1px $fg_color;
-    padding: 10px;
-    padding: 0 10px;
-    margin-top: 10px;
-    color: $fg_color;
+    // padding: 10px;
+    // padding: 0 10px;
+    // margin-top: 10px;
+    // color: $fg_color;
 
     // trough highlight {
     // min-width: 30px;

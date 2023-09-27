@@ -1,57 +1,71 @@
-$color_1: white;
-$color_2: rgba(255, 255, 255, 0.7);
-$background-color_1: transparent;
-$background-color_2: #232323;
-$background-color_3: rgba(255, 255, 255, 0.1);
-$background-color_4: rgba(255, 255, 255, 0.2);
-$background-color_5: rgba(255, 255, 255, 0.3);
-$background-color_6: #141414;
+#notification-center .notification__center {
+  min-height: 350px;
+  // min-width: 250px;
+  padding-bottom: 10px;
+  @include popupwindow();
 
-#notification-popup {
-  min-width: 0;
-  min-height: 0;
-  .notification {
-    > * {
-      box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  .notification > * {
+    margin: 6px;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: $bg_color;
+    box-shadow: inset 0 0 0 1.5px
+      transparentize($color: $fg_color, $amount: 0.8);
+  }
+
+  .list {
+    margin: 8px;
+    min-width: 380px;
+  }
+
+  .header {
+    padding: 8px 15px;
+    border-bottom: 1px solid transparentize($color: $fg_color, $amount: 0.7);
+
+    label {
+      font-weight: 600;
+      margin-right: 8px;
     }
   }
-  * {
-    outline: none;
-    color: $fg_color;
+
+  .placeholder image {
+    font-size: 8em;
+  }
+
+  .placeholder label {
+    font-size: 1.4em;
   }
 }
 
-#notification-center {
-  .notification > * {
-    background-color: transparentize($color: $fg_color, $amount: 0.9);
-  }
-  * {
-    outline: none;
-    color: $fg_color;
-  }
+#notifications-popup .notification > * {
+  padding: 8px;
+  @include popupwindow();
+}
 
-  .notificationcenter__popup {
-    min-height: 400px;
-    margin: 10px;
-    background-color: $bg_color;
-    border-radius: 8px;
-    box-shadow: inset 0 0 0 1px $fg_color;
-  }
+#notifications-popup *,
+#notification-center * {
+  outline: none;
+  color: $fg_color;
 }
 
 .notification {
-  > * {
-    margin: 4px;
-    padding: 8px;
-    border-radius: 15px;
-    // background-color: transparentize($color: $fg_color, $amount: 0.9);
-    background-color: $bg_color;
-    // box-shadow: inset 0 0 0 1px $fg_color;
+  button {
+    border: none;
+    box-shadow: none;
+    border-radius: 7px;
+    background-color: transparentize($color: $fg_color, $amount: 0.9);
+
+    &:hover,
+    &:active {
+      background-color: transparentize($color: $fg_color, $amount: 0.7);
+    }
   }
+
   .icon {
     border-radius: 7px;
     margin-right: 8px;
   }
+
   .close-button {
     padding: 0;
     margin: 0;
@@ -59,50 +73,34 @@ $background-color_6: #141414;
     min-width: 1.4em;
     border-radius: 1em;
   }
+
   .title {
-    font-size: 1.5em;
-    color: $fg_color;
+    font-size: 1.1em;
+    font-weight: 600;
   }
+
   .description {
-    color: transparentize($color: $fg_color, $amount: 0.2);
+    min-width: 250px;
   }
-}
-.list {
-  margin: 8px;
-  min-width: 380px;
-}
-.action-button {
-  border-radius: 4px;
-  margin: 0 4px;
-  &:first-child {
+
+  .time {
+    font-weight: 600;
+    margin: 0 6px;
+  }
+
+  .action-button {
+    margin: 0 4px;
+  }
+
+  .action-button:first-child {
     margin-left: 0;
   }
-  &:last-child {
+
+  .action-button:last-child {
     margin-right: 0;
-    &:first-child {
-      margin: 0;
-    }
-  }
-}
-.header {
-  padding: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  margin: 0 10px;
-  color: $fg_color;
-
-  .label {
-    margin-right: 10px;
   }
 
-  button {
-    border-radius: 4px;
-  }
-}
-.placeholder {
-  image {
-    font-size: 8em;
-  }
-  label {
-    font-size: 1.4em;
+  .action-button:last-child:first-child {
+    margin: 0;
   }
 }

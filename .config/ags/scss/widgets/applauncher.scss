@@ -1,16 +1,29 @@
 .applauncher {
-  background-color: $bg_color;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: inset 0 0 0 1px $fg_color;
+  // background-color: $bg_color;
+  padding: 10px 0;
+  // border-radius: 8px;
+  // box-shadow: inset 0 0 0 1px $fg_color;
+  @include popupwindow();
   scrolledwindow {
     padding-top: 10px;
     min-width: 400px;
     min-height: 300px;
   }
 
+  .separator {
+    min-height: 1px;
+    margin: 4px 0;
+    background-color: transparentize($color: $fg_color, $amount: 0.9);
+  }
+
+  .listbox {
+    margin: 0 10px;
+  }
+
   .search-box {
     // padding: 10px;
+    margin: 0 10px;
+    margin-bottom: 0;
     border-radius: 8px;
     background-color: transparentize($fg_color, 0.95);
     padding: 0 10px;
@@ -36,6 +49,7 @@
   }
 
   .app {
+    background-color: transparent;
     .description {
       color: transparentize($color: $fg_color, $amount: 0.4);
       font-weight: 400;
@@ -51,6 +65,9 @@
       background-color: transparentize($color: $accent, $amount: 0.6);
     }
     &:hover {
+      .title {
+        color: $accent;
+      }
       border-radius: 4px;
     }
   }

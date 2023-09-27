@@ -1,8 +1,8 @@
+import PopupWindow from "../misc/PopupWindow.js";
+import { Separator } from "../misc/misc.js";
 const { App } = ags;
 const { Applications } = ags.Service;
 const { Label, Box, Icon, Button, Scrollable, Entry } = ags.Widget;
-// import { Wallpaper } from "./wallpaper.js";
-// import { Separator } from "./misc.js";
 
 const AppItem = (app, window) =>
   Button({
@@ -46,8 +46,8 @@ const AppItem = (app, window) =>
     }),
   });
 
-export const Applauncher = ({ windowName = "applauncher" } = {}) => {
-  const list = Box({ vertical: true });
+const Applauncher = ({ windowName = "applauncher" } = {}) => {
+  const list = Box({ className: "listbox", vertical: true });
   const entry = Entry({
     hexpand: true,
     placeholderText: "Search",
@@ -60,12 +60,9 @@ export const Applauncher = ({ windowName = "applauncher" } = {}) => {
     },
     onChange: ({ text }) => {
       list.children = Applications.query(text)
-        .map((app) => [
-          // Separator(),
-          AppItem(app, windowName),
-        ])
+        .map((app) => [Separator(), AppItem(app, windowName)])
         .flat();
-      // list.add(Separator());
+      list.add(Separator());
       list.show_all();
     },
   });
@@ -98,3 +95,9 @@ export const Applauncher = ({ windowName = "applauncher" } = {}) => {
     ],
   });
 };
+
+export default () =>
+  PopupWindow({
+    name: "applauncher",
+    content: Applauncher(),
+  });

@@ -1,15 +1,14 @@
-import { NetworkSpeedContainer } from "../modules/networkspeed.js";
-import { FontIcon, HoverRevealer, Separator } from "../modules/misc.js";
-import * as battery from "../modules/battery.js";
-import * as audio from "../modules/audio.js";
-import * as brightness from "../modules/brightness.js";
-import * as network from "../modules/network.js";
-import * as bluetooth from "../modules/bluetooth.js";
-import * as notifications from "../modules/notifications.js";
-import * as powerprofile from "../modules/powerprofile.js";
+import { FontIcon, Separator } from "../misc/misc.js";
+import * as audio from "./audio.js";
+import * as brightness from "./brightness.js";
+import * as network from "./network.js";
+import * as bluetooth from "./bluetooth.js";
+import * as powerprofile from "./powerprofile.js";
+import PowerProfile from "../services/powerProfile.js";
+import PopupWindow from "../misc/PopupWindow.js";
 const { Button, Box, Icon, Label, Revealer, Overlay } = ags.Widget;
 const { Service, App } = ags;
-const { Bluetooth, Battery, Audio, Network, Powerprofile } = Service;
+const { Bluetooth, Network } = Service;
 const { execAsync, timeout } = ags.Utils;
 
 class QSMenu extends Service {
@@ -72,7 +71,7 @@ const Arrow = (menu, toggleOn) =>
                 timeout(5 * i, () => {
                   icon._deg += step;
                   icon.setStyle(
-                    `-gtk-icon-transform: rotate(${icon._deg}deg);`
+                    `-gtk-icon-transform: rotate(${icon._deg}deg);`,
                   );
                 });
               }
@@ -142,7 +141,7 @@ const VolumeBox = () =>
               }),
             }),
           ],
-        })
+        }),
       ),
     ],
   });
@@ -228,27 +227,6 @@ const BluetoothToggle = () =>
     name: "bluetooth",
   });
 
-const PowerProfileToggle = () =>
-  ArrowToggle({
-    icon: Icon("speedometer-symbolic"),
-    label: Box({
-      vertical: true,
-      valign: "center",
-      children: [
-        Label({ label: "Power Profile", className: "label", halign: "start" }),
-        powerprofile.PowerModeLabel({
-          className: "secondlabel",
-          halign: "start",
-        }),
-      ],
-    }),
-    connection: {
-      service: Powerprofile,
-      callback: () => Powerprofile.powerprofile === "performance",
-    },
-    name: "powerprofile",
-  });
-
 // Box({
 //   className: "toggle-arrow",
 //   connections: [
@@ -299,8 +277,47 @@ const MuteToggle = () =>
   SmallToggleLabel(
     audio.MicrophoneMuteToggle,
     audio.MicrophoneMuteIndicator,
-    audio.MicrophoneStatus
+    audio.MicrophoneStatus,
   );
+
+const PowerprofileToggle = () =>
+  Box({
+    className: "power-profile",
+    connections: [
+      [
+        PowerProfile,
+        (box) => {
+          box.toggleClassName(
+            "performance",
+            PowerProfile.powerprofile == "performance",
+          );
+          box.toggleClassName(
+            "power-saver",
+            PowerProfile.powerprofile == "power-saver",
+          );
+          box.toggleClassName(
+            "balanced",
+            PowerProfile.powerprofile == "balanced",
+          );
+        },
+      ],
+    ],
+    children: [
+      Button({
+        className: "toggle",
+        hexpand: true,
+        onClicked: () => QSMenu.toggle("power-profile"),
+        child: powerprofile.PowerprofileIndicator(),
+        tooltipText: "Power Profile",
+        connections: [
+          [
+            QSMenu,
+            (w) => w.toggleClassName("on", QSMenu.opened === "power-profile"),
+          ],
+        ],
+      }),
+    ],
+  });
 
 const AppmixerToggle = () =>
   Button({
@@ -322,10 +339,19 @@ const Submenu = ({ menuName, icon, title, contentType }) =>
       className: `submenu ${menuName}`,
       children: [
         Box({ className: "title", children: [icon, Label(title)] }),
+        Separator(),
         contentType({ className: "content", hexpand: true }),
       ],
-    })
+    }),
   );
+
+const Powerprofilemenu = () =>
+  Submenu({
+    menuName: "power-profile",
+    icon: powerprofile.PowerprofileIndicator(),
+    title: "Power Profile",
+    contentType: powerprofile.PowerProfileSelection,
+  });
 
 const Appmixer = () =>
   Submenu({
@@ -359,7 +385,7 @@ const PowerModeSelection = () =>
     contentType: powerprofile.PowerProfileSelection,
   });
 
-export const PopupContent = () =>
+const PopUpContent = () =>
   Box({
     className: "quicksettings__popup",
     vertical: true,
@@ -367,36 +393,19 @@ export const PopupContent = () =>
     children: [
       NetworkToggle(),
       BluetoothToggle(),
-      PowerProfileToggle(),
-      // Box({
-      //   className: "toggles-box",
-      //   children: [
-      //     Box({
-      //       className: "arrow-toggles",
-      //       children: [
-      //         Box({
-      //           vertical: true,
-      //           children: [NetworkToggle(), BluetoothToggle()],
-      //         }),
-      //         Box({
-      //           vertical: true,
-      //           children: [MuteToggle(), PowerToggle()],
-      //         }),
-      //       ],
-      //     }),
-      //   ],
-      // }),
+      // PowerProfileToggle(),
+      Separator(),
       VolumeBox(),
       BrightnessBox(),
+      Separator(),
       Box({
         className: "sysbutton-box",
         children: [
           AppmixerToggle(),
-          SysButton("system-log-out-symbolic", "Log Out", "logout"),
           Button({
             className: "shutdown",
             onClicked: () => {
-              App.toggleWindow("quicksettings");
+              App.closeWindow("quicksettings");
               App.toggleWindow("powermenu");
             },
             connections: [
@@ -412,8 +421,10 @@ export const PopupContent = () =>
             tooltipText: "Power Menu",
             child: Icon("system-shutdown-symbolic"),
           }),
+          PowerprofileToggle(),
         ],
       }),
+      Powerprofilemenu(),
       Appmixer(),
       NetworkSelection(),
       BluetoothSelection(),
@@ -421,35 +432,10 @@ export const PopupContent = () =>
     ],
   });
 
-export const PanelButton = () =>
-  Button({
-    className: "quicksettings__panel panel-button",
-    onClicked: () => App.toggleWindow("quicksettings"),
-    onScrollUp: () => {
-      Audio.speaker.volume += 0.02;
-      Service.Indicator.speaker();
-    },
-    onScrollDown: () => {
-      Audio.speaker.volume -= 0.02;
-      Service.Indicator.speaker();
-    },
-    connections: [
-      [
-        App,
-        (btn, win, visible) => {
-          btn.toggleClassName("active", win === "quicksettings" && visible);
-        },
-      ],
-    ],
-    child: Box({
-      children: [
-        NetworkSpeedContainer(),
-        audio.SpeakerIndicator(),
-        // audio.SpeakerPercentLabel(),
-        network.Indicator(),
-        network.SSIDLabel(),
-        battery.Indicator(),
-        battery.LevelLabel(),
-      ],
-    }),
+export default ({ anchor = "top right", layout = "top right" } = {}) =>
+  PopupWindow({
+    name: "quicksettings",
+    layout,
+    anchor,
+    content: PopUpContent(),
   });

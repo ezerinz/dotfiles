@@ -1,103 +1,15 @@
 window {
   background-color: transparent;
 }
-
-.wall__popupcontent {
-  // padding: 10px;
-  background-color: $bg_color;
-  border-radius: 8px;
-
-  .wall__headers {
-    @include accent();
-    border-radius: 4px;
-    margin: 10px;
-    padding: 4px;
-
-    label {
-      font-size: 24px;
-      font-weight: 600;
-      color: $base;
-    }
-  }
-
-  button {
-    min-height: 10px;
-    min-width: 10px;
-    all: unset;
-    @include accent();
-    border-radius: 4px;
-    margin: 4px;
-    padding: 4px;
-    color: $base;
-    &:hover,
-    &:active {
-      background-image: linear-gradient(
-        to right,
-        $accent,
-        lighten($accent, 30%)
-      );
-    }
-
-    label {
-      font-size: 14;
-      font-weight: 500;
-    }
-  }
-
-  .scroll__container {
-    min-width: 450px;
-    min-height: 450px;
-    margin-bottom: 4px;
-    border-radius: 4px;
-
-    .list {
-      margin: 10px;
-    }
-  }
-}
-
-image {
-  font-size: 16px;
-}
-
 * {
-  font-size: 14px;
+  font-size: 15px;
   font-family: "Ubuntu Nerd Font", sans-serif;
-  // font-weight: 500;
 }
 
-switch {
+@mixin popupwindow() {
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px 0 $base;
+  background-color: $bg_color;
   color: $fg_color;
-  &:checked {
-    // background-color: $accent;
-    @include accent();
-  }
-}
-
-button {
-  background-color: transparent;
-  /* margin: 0 4px 4px 4px; */
-  /* padding: 1px 4px 4px 4px; */
-  // padding: 0 4px 2px 4px;
-  // margin: 4px;
-  // margin-top: 0;
-  padding: 1px 4px;
-  font-size: 13px;
-  border-radius: 0 0 4px 4px;
-  color: #c0caf5;
-  &:hover {
-    background-color: transparentize($fg_color, 0.8);
-  }
-}
-
-.panel-button {
-  padding: 0 4px 2px 4px;
-  border-radius: 0 0 4px 4px;
-  color: $fg_color;
-
-  &.active {
-    @include accent();
-    color: $base;
-    border-radius: 0 0 8px 8px;
-  }
 }

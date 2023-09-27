@@ -9,6 +9,9 @@ $white: #a9b1d6;
 $base: #1a1b26;
 $foreground: #c0caf5;
 
+$orange: #ff9e64;
+$red2: #db4b4b;
+
 $bg_color: transparentize($base, 0.3);
 $accent: $blue;
 $accent_gradient: linear-gradient(to right, $accent, lighten($accent, 10%));
@@ -18,7 +21,7 @@ $gradient_accent: true;
 
 @mixin accent($accent: $accent) {
   @if $gradient_accent {
-    background-image: $accent_gradient;
+    background-image: linear-gradient(to right, $accent, lighten($accent, 10%));
   } @else {
     background-color: $accent;
   }

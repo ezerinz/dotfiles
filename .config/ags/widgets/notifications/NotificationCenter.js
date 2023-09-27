@@ -1,8 +1,8 @@
-import { DNDIndicator, Notification } from "../modules/notifications.js";
+import Notification from "./notifications.js";
+import PopupWindow from "../misc/PopupWindow.js";
 const { Gtk } = imports.gi;
 const { Notifications } = ags.Service;
 const { Scrollable, Box, Icon, Label, Widget, Button, Stack } = ags.Widget;
-const { App } = ags;
 
 const List = () =>
   Box({
@@ -12,11 +12,11 @@ const List = () =>
       [
         Notifications,
         (box) => {
-          box.children = Array.from(Notifications.notifications.values()).map(
-            (n) => Notification(n)
-          );
+          box.children = Notifications.notifications
+            .reverse()
+            .map((n) => Notification(n));
 
-          box.visible = Notifications.notifications.size > 0;
+          box.visible = Notifications.notifications.length > 0;
         },
       ],
     ],
@@ -36,10 +36,21 @@ const Placeholder = () =>
       [
         Notifications,
         (box) => {
-          box.visible = Notifications.notifications.size === 0;
+          box.visible = Notifications.notifications.length === 0;
         },
       ],
     ],
+  });
+
+const NotificationList = () =>
+  Scrollable({
+    hscroll: "never",
+    vscroll: "automatic",
+    child: Box({
+      className: "list",
+      vertical: true,
+      children: [List(), Placeholder()],
+    }),
   });
 
 const ClearButton = () =>
@@ -49,7 +60,7 @@ const ClearButton = () =>
       [
         Notifications,
         (button) => {
-          button.sensitive = Notifications.notifications.size > 0;
+          button.sensitive = Notifications.notifications.length > 0;
         },
       ],
     ],
@@ -65,7 +76,7 @@ const ClearButton = () =>
             [
               Notifications,
               (stack) => {
-                stack.shown = `${Notifications.notifications.size > 0}`;
+                stack.shown = `${Notifications.notifications.length > 0}`;
               },
             ],
           ],
@@ -88,60 +99,25 @@ const DNDSwitch = () =>
     ],
   });
 
-export const NotificationList = () =>
-  Scrollable({
-    hscroll: "never",
-    vscroll: "automatic",
-    child: Box({
-      className: "list",
-      vertical: true,
-      children: [List(), Placeholder()],
-    }),
-  });
-
-export const PopupList = () =>
-  Box({
-    className: "list",
-    style: "padding: 1px;", // so it shows up
-    vertical: true,
-    connections: [
-      [
-        Notifications,
-        (box) => {
-          box.children = Array.from(Notifications.popups.values()).map((n) =>
-            Notification(n)
-          );
-        },
-      ],
-    ],
-  });
-
-export const Header = () =>
+const Header = () =>
   Box({
     className: "header",
     children: [
-      Label({ label: "Do Not Disturb", className: "label" }),
+      Label("Do Not Disturb"),
       DNDSwitch(),
       Box({ hexpand: true }),
       ClearButton(),
     ],
   });
 
-export const PanelButton = () =>
-  Button({
-    className: "notifications__panel panel-button",
-    connections: [
-      [
-        App,
-        (btn, win, visible) => {
-          btn.toggleClassName(
-            "active",
-            win === "notification-center" && visible
-          );
-        },
-      ],
-    ],
-
-    onClicked: () => App.toggleWindow("notification-center"),
-    child: DNDIndicator(),
+export default ({ anchor = "top left", layout = "top" } = {}) =>
+  PopupWindow({
+    name: "notification-center",
+    layout,
+    anchor,
+    content: Box({
+      className: "notification__center",
+      vertical: true,
+      children: [Header(), NotificationList()],
+    }),
   });

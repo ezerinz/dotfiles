@@ -13,6 +13,10 @@ window#verification {
   border-radius: 8px;
   box-shadow: inset 0 0 0 1px $fg_color;
 
+  label {
+    font-weight: 500;
+  }
+
   button {
     all: unset;
     padding: 25px;

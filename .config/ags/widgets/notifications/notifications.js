@@ -1,6 +1,7 @@
+const { GLib } = imports.gi;
 const { Notifications } = ags.Service;
 const { lookUpIcon, timeout } = ags.Utils;
-const { Box, Icon, Label, EventBox, Button, Stack } = ags.Widget;
+const { Box, Icon, Label, EventBox, Button } = ags.Widget;
 
 const NotificationIcon = ({ appEntry, appIcon, image }) => {
   if (image) {
@@ -45,14 +46,7 @@ const NotificationIcon = ({ appEntry, appIcon, image }) => {
   });
 };
 
-export const Notification = ({
-  id,
-  summary,
-  body,
-  actions,
-  urgency,
-  ...icon
-}) =>
+export default ({ id, summary, body, actions, urgency, time, ...icon }) =>
   EventBox({
     className: `notification ${urgency}`,
     onPrimaryClick: () => Notifications.dismiss(id),
@@ -60,9 +54,6 @@ export const Notification = ({
     onHover: (w) => {
       if (w._hovered) return;
 
-      // if there are action buttons and they are hovered
-      // EventBox onHoverLost will fire off immediately,
-      // so to prevent this we delay it
       timeout(300, () => (w._hovered = true));
     },
     onHoverLost: (w) => {
@@ -94,6 +85,12 @@ export const Notification = ({
                       wrap: true,
                       label: summary,
                       useMarkup: summary.startsWith("<"),
+                    }),
+                    Label({
+                      className: "time",
+                      valign: "start",
+                      label:
+                        GLib.DateTime.new_from_unix_local(time).format("%H:%M"),
                     }),
                     Button({
                       className: "close-button",
@@ -129,23 +126,4 @@ export const Notification = ({
         }),
       ],
     }),
-  });
-
-export const DNDIndicator = ({
-  silent = Icon({ icon: "notifications-disabled-symbolic" }),
-  noisy = Icon("notification-symbolic"),
-} = {}) =>
-  Stack({
-    items: [
-      ["true", silent],
-      ["false", noisy],
-    ],
-    connections: [
-      [
-        Notifications,
-        (stack) => {
-          stack.shown = `${Notifications.dnd}`;
-        },
-      ],
-    ],
   });

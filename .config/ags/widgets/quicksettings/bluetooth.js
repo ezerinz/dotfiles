@@ -1,4 +1,4 @@
-import { Spinner } from "./misc.js";
+import { Spinner } from "../misc/misc.js";
 const { Bluetooth } = ags.Service;
 const { Icon, Label, Box, Button, Stack } = ags.Widget;
 

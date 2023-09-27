@@ -1,4 +1,3 @@
-const { Icon, Label, Box, Button } = ags.Widget;
 const { Service } = ags;
 const { exec, execAsync } = ags.Utils;
 
@@ -28,7 +27,7 @@ class PowerProfileService extends Service {
       "performance",
       "balanced",
       "power-saver",
-      "kontol-gede-mode",
+      "kontol-gede-mode", //maaf
     ];
     const cmd = exec("powerprofilesctl list");
     var filteredList = defaultList.filter((e) => cmd.includes(e));
@@ -53,10 +52,11 @@ class PowerProfileService extends Service {
   }
 }
 
-class PowerProfile {
+export default class PowerProfile {
   static {
-    Service.export(this, "Powerprofile");
+    Service.PowerProfile = this;
   }
+
   static instance = new PowerProfileService();
 
   static get list() {
@@ -71,50 +71,3 @@ class PowerProfile {
     return PowerProfile.instance.powerprofile;
   }
 }
-
-function toTitleCase(str) {
-  const arr = str.replace("-", " ").split(" ");
-  for (var i = 0; i < arr.length; i++) {
-    arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-  }
-  return arr.join(" ");
-}
-
-export const PowerModeLabel = (props) =>
-  Label({
-    ...props,
-    connections: [
-      [
-        PowerProfile,
-        (label) => (label.label = toTitleCase(PowerProfile.powerprofile)),
-      ],
-    ],
-  });
-
-export const PowerProfileSelection = (props) =>
-  Box({
-    ...props,
-    vertical: true,
-    connections: [
-      [
-        PowerProfile,
-        (box) =>
-          (box.children = PowerProfile.list.map((ap) =>
-            Button({
-              onClicked: () => (PowerProfile.powerprofile = ap.mode),
-              child: Box({
-                children: [
-                  Label(toTitleCase(ap.mode)),
-                  ap.active &&
-                    Icon({
-                      icon: "object-select-symbolic",
-                      hexpand: true,
-                      halign: "end",
-                    }),
-                ],
-              }),
-            })
-          )),
-      ],
-    ],
-  });

@@ -1,28 +1,42 @@
 @mixin bar() {
   background-color: $bg_color;
-  border-radius: 0 0 6px 6px;
-  border-style: none solid solid solid;
-  border-width: 1px;
-  border-color: $fg_color;
+  border-radius: 0 0 8px 8px;
   padding: 0 4px 4px 4px;
 }
 
-.bar {
-  font-size: 14px;
-  color: $fg_color;
+.bar .panel__container {
+  margin: 0 10px;
+  margin-bottom: 2px;
 
-  .left {
-    @include bar;
-    margin-left: 10px;
+  .bar__separator {
+    background-color: transparentize($color: $fg_color, $amount: 0.6);
+    min-width: 1px;
+    margin: 8px 4px 6px 4px;
+  }
+
+  .left,
+  .right {
+    @include bar();
   }
 
   .center {
-    @include bar;
+    @include bar();
     margin: 0 10px;
   }
 
-  .right {
-    @include bar;
-    margin-right: 10px;
+  .panel-button {
+    background-color: transparent;
+    color: $fg_color;
+    border-radius: 0 0 8px 8px;
+    padding: 2px 4px;
+
+    &:hover {
+      background-color: transparentize($color: $fg_color, $amount: 0.9);
+    }
+
+    &.active {
+      @include accent();
+      color: $base;
+    }
   }
 }

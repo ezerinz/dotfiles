@@ -1,4 +1,4 @@
-const { EventBox, CenterBox, Box, Revealer } = ags.Widget;
+const { EventBox, CenterBox, Box, Revealer, Window } = ags.Widget;
 const { App } = ags;
 
 const Padding = (windowName) =>
@@ -30,14 +30,29 @@ const PopupRevealer = (windowName, transition, child) =>
   });
 
 const layouts = {
-  center: (windowName, child) =>
+  center: (windowName, child, expand) =>
     CenterBox({
       className: "shader",
+      style: expand ? "min-width: 5000px; min-height: 3000px;" : "",
       children: [
         Padding(windowName),
         CenterBox({
           vertical: true,
           children: [Padding(windowName), child, Padding(windowName)],
+        }),
+        Padding(windowName),
+      ],
+    }),
+  "top left": (windowName, child) =>
+    Box({
+      children: [
+        Box({
+          hexpand: false,
+          vertical: true,
+          children: [
+            PopupRevealer(windowName, "slide_down", child),
+            Padding(windowName),
+          ],
         }),
         Padding(windowName),
       ],
@@ -86,5 +101,11 @@ const layouts = {
     }),
 };
 
-export const PopupLayout = ({ layout, window, child }) =>
-  layouts[layout](window, child);
+export default ({ layout = "center", expand = true, name, content, ...rest }) =>
+  Window({
+    name,
+    child: layouts[layout](name, content, expand),
+    popup: true,
+    focusable: true,
+    ...rest,
+  });

@@ -1,19 +1,21 @@
-import Blur from "./modules/hyprlandblur.js";
-import Windows from "./windows.js";
+import { Windows, BlurWindows } from "./windows.js";
 
 const scss = ags.App.configDir + "/scss/main.scss";
 const css = ags.App.configDir + "/style.css";
 
 ags.Utils.exec(`sassc ${scss} ${css}`);
-Blur();
+ags.Utils.exec("swww init");
+BlurWindows();
 
 export default {
-  style: css,
   closeWindowDelay: {
-    quicksettings: 300,
-    datemenu: 300,
-    "notification-center": 300,
-    "notification-popup": 300,
+    notifications: 500, // milliseconds
+    "notification-center": 500,
+    datemenu: 500,
+    quicksettings: 500,
   },
+  notificationPopupTimeout: 5000, // milliseconds
+  maxStreamVolume: 1.5, // float
+  style: css,
   windows: Windows,
 };
