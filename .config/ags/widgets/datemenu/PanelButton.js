@@ -1,18 +1,13 @@
 import { Clock } from "./datemenu.js";
-const { Button } = ags.Widget;
+import { Widget, App } from "../../imports.js";
 
 export default () =>
-  Button({
+  Widget.Button({
     className: "datemenu__panel panel-button",
-    connections: [
-      [
-        ags.App,
-        (btn, win, visible) => {
-          btn.toggleClassName("active", win === "datemenu" && visible);
-        },
-      ],
-    ],
-
-    onClicked: () => ags.App.toggleWindow("datemenu"),
+    setup: (self) =>
+      self.hook(App, (btn, win, visible) => {
+        btn.toggleClassName("active", win === "datemenu" && visible);
+      }),
+    onClicked: () => App.toggleWindow("datemenu"),
     child: Clock({ format: "%H:%M  %a, %e %b" }),
   });

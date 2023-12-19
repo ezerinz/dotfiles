@@ -1,52 +1,43 @@
-import Notification from "./notifications.js";
+import Notification from "../misc/Notification.js";
 import PopupWindow from "../misc/PopupWindow.js";
-const { Gtk } = imports.gi;
-const { Notifications } = ags.Service;
-const { Scrollable, Box, Icon, Label, Widget, Button, Stack } = ags.Widget;
+import { Notifications, Widget } from "../../imports.js";
 
 const List = () =>
-  Box({
+  Widget.Box({
     vertical: true,
     vexpand: true,
-    connections: [
-      [
-        Notifications,
-        (box) => {
-          box.children = Notifications.notifications
-            .reverse()
-            .map((n) => Notification(n));
+    setup: (self) =>
+      self.hook(Notifications, (self) => {
+        self.children = Notifications.notifications.reverse().map(Notification);
 
-          box.visible = Notifications.notifications.length > 0;
-        },
-      ],
-    ],
+        self.visible = Notifications.notifications.length > 0;
+      }),
   });
 
 const Placeholder = () =>
-  Box({
+  Widget.Box({
     className: "placeholder",
     vertical: true,
     vexpand: true,
-    valign: "center",
+    vpack: "center",
     children: [
-      Icon("notifications-disabled-symbolic"),
-      Label("Your inbox is empty"),
+      Widget.Icon("notifications-disabled-symbolic"),
+      Widget.Label("Your inbox is empty"),
     ],
-    connections: [
-      [
+    setup: (self) =>
+      self.bind(
+        "visible",
         Notifications,
-        (box) => {
-          box.visible = Notifications.notifications.length === 0;
-        },
-      ],
-    ],
+        "notifications",
+        (n) => n.length === 0,
+      ),
   });
 
 const NotificationList = () =>
-  Scrollable({
+  Widget.Scrollable({
     hscroll: "never",
     vscroll: "automatic",
-    child: Box({
+    child: Widget.Box({
       className: "list",
       vertical: true,
       children: [List(), Placeholder()],
@@ -54,68 +45,58 @@ const NotificationList = () =>
   });
 
 const ClearButton = () =>
-  Button({
-    onClicked: Notifications.clear,
-    connections: [
-      [
+  Widget.Button({
+    onClicked: () => Notifications.clear(),
+    setup: (self) =>
+      self.bind(
+        "sensitive",
         Notifications,
-        (button) => {
-          button.sensitive = Notifications.notifications.length > 0;
-        },
-      ],
-    ],
-    child: Box({
+        "notifications",
+        (n) => n.length > 0,
+      ),
+    child: Widget.Box({
       children: [
-        Label("Clear"),
-        Stack({
-          items: [
-            ["true", Icon("user-trash-full-symbolic")],
-            ["false", Icon("user-trash-symbolic")],
-          ],
-          connections: [
-            [
+        Widget.Label("Clear"),
+        Widget.Icon({
+          setup: (self) =>
+            self.bind(
+              "icon",
               Notifications,
-              (stack) => {
-                stack.shown = `${Notifications.notifications.length > 0}`;
-              },
-            ],
-          ],
+              "notifications",
+              (n) => `user-trash-${n.length > 0 ? "full-" : ""}symbolic`,
+            ),
         }),
       ],
     }),
   });
 
 const DNDSwitch = () =>
-  Widget({
-    type: Gtk.Switch,
-    valign: "center",
-    connections: [
-      [
-        "notify::active",
-        ({ active }) => {
-          Notifications.dnd = active;
-        },
-      ],
-    ],
+  Widget.Switch({
+    // type: Gtk.Switch,
+    vpack: "center",
+    setup: (self) =>
+      self.on("notify::active", ({ active }) => {
+        Notifications.dnd = active;
+      }),
   });
 
 const Header = () =>
-  Box({
+  Widget.Box({
     className: "header",
     children: [
-      Label("Do Not Disturb"),
+      Widget.Label("Do Not Disturb"),
       DNDSwitch(),
-      Box({ hexpand: true }),
+      Widget.Box({ hexpand: true }),
       ClearButton(),
     ],
   });
 
-export default ({ anchor = "top left", layout = "top" } = {}) =>
+export default ({ anchor = ["top", "left"], layout = "top" } = {}) =>
   PopupWindow({
     name: "notification-center",
     layout,
     anchor,
-    content: Box({
+    content: Widget.Box({
       className: "notification__center",
       vertical: true,
       children: [Header(), NotificationList()],

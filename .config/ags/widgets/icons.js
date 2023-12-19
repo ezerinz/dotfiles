@@ -20,16 +20,10 @@ export default {
     },
     mixer: "",
   },
-  asusctl: {
-    profile: {
-      Balanced: "power-profile-balanced-symbolic",
-      Quiet: "power-profile-power-saver-symbolic",
-      Performance: "power-profile-performance-symbolic",
-    },
-    mode: {
-      Integrated: "",
-      Hybrid: "󰢮",
-    },
+  powerprofile: {
+    Balanced: "power-profile-balanced-symbolic",
+    Quiet: "power-profile-power-saver-symbolic",
+    Performance: "power-profile-performance-symbolic",
   },
   apps: {
     apps: "view-app-grid-symbolic",

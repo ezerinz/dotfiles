@@ -21,7 +21,7 @@ $gradient_accent: true;
 
 @mixin accent($accent: $accent) {
   @if $gradient_accent {
-    background-image: linear-gradient(to right, $accent, lighten($accent, 10%));
+    background-image: $accent_gradient;
   } @else {
     background-color: $accent;
   }

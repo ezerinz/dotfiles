@@ -1,46 +1,52 @@
-const { Service } = ags;
-const { execAsync, interval, ensureDirectory } = ags.Utils;
-const { GLib } = imports.gi;
+import { Service, Utils, App } from "../../imports.js";
+import GLib from "gi://GLib";
 const now = () => GLib.DateTime.new_now_local().format("%Y-%m-%d_%H-%M-%S");
 
-class RecorderService extends Service {
+class Recorder extends Service {
   static {
-    Service.register(this, { timer: ["int"] });
+    Service.register(
+      this,
+      {},
+      {
+        timer: ["int"],
+        recording: ["boolean"],
+      },
+    );
   }
 
   _path = GLib.get_home_dir() + "/Videos/Screencasting";
-  _timer = 0;
-  _recording = false;
   _screenshotting = false;
+  recording = false;
+  timer = 0;
 
   start() {
-    if (this._recording) return;
+    if (this.recording) return;
 
-    execAsync("slurp")
+    Utils.execAsync("slurp")
       .then((area) => {
-        ensureDirectory(this._path);
+        Utils.ensureDirectory(this._path);
         this._file = `${this._path}/${now()}.mp4`;
-        execAsync(["wf-recorder", "-g", area, "-f", this._file]);
-        this._recording = true;
-        this.emit("changed");
+        Utils.execAsync(["wf-recorder", "-g", area, "-f", this._file]);
+        this.recording = true;
+        this.changed("recording");
 
-        this._timer = 0;
-        this._interval = interval(1000, () => {
-          this.emit("timer", this._timer);
-          this._timer++;
+        this.timer = 0;
+        this._interval = Utils.interval(1000, () => {
+          this.changed("timer");
+          this.timer++;
         });
       })
       .catch(print);
   }
 
   stop() {
-    if (!this._recording) return;
+    if (!this.recording) return;
 
-    execAsync("killall -INT wf-recorder").catch(print);
-    this._recording = false;
-    this.emit("changed");
+    Utils.execAsync("killall -INT wf-recorder").catch(print);
+    this.recording = false;
+    this.changed("recording");
     GLib.source_remove(this._interval);
-    execAsync([
+    Utils.execAsync([
       "notify-send",
       "-A",
       "files=Show in Files",
@@ -52,55 +58,50 @@ class RecorderService extends Service {
       this._file,
     ])
       .then((res) => {
-        if (res === "files") execAsync("xdg-open " + this._path);
+        if (res === "files") Utils.execAsync("xdg-open " + this._path);
 
-        if (res === "view") execAsync("xdg-open " + this._file);
+        if (res === "view") Utils.execAsync("xdg-open " + this._file);
       })
       .catch(print);
   }
 
-  async screenshot() {
+  async screenshot(full = false) {
     try {
-      const area = await execAsync("slurp");
+      const area = full ? null : await Utils.execAsync("slurp");
       const path = GLib.get_home_dir() + "/Pictures/Screenshots";
       const file = `${path}/${now()}.png`;
-      ensureDirectory(path);
+      Utils.ensureDirectory(path);
 
-      await execAsync(["wayshot", "-s", area, "-f", file]);
-      execAsync(["bash", "-c", `wl-copy < ${file}`]);
+      area
+        ? await Utils.execAsync(["wayshot", "-s", area, "-f", file])
+        : await Utils.execAsync(["wayshot", "-f", file]);
 
-      const res = await execAsync([
+      Utils.execAsync(["bash", "-c", `wl-copy < ${file}`]);
+
+      const res = await Utils.execAsync([
         "notify-send",
         "-A",
         "files=Show in Files",
         "-A",
         "view=View",
+        "-A",
+        "edit=Edit",
         "-i",
         file,
         "Screenshot",
         file,
       ]);
-      if (res === "files") execAsync("xdg-open " + path);
+      if (res === "files") Utils.execAsync("xdg-open " + path);
 
-      if (res === "view") execAsync("xdg-open " + file);
+      if (res === "view") Utils.execAsync("xdg-open " + file);
+
+      if (res === "edit") Utils.execAsync(["swappy", "-f", file]);
+
+      App.closeWindow("dashboard");
     } catch (error) {
-      logError(error);
+      console.error(error);
     }
   }
 }
 
-export default class Recorder {
-  static {
-    Service.Recorder = this;
-  }
-  static instance = new RecorderService();
-  static start() {
-    Recorder.instance.start();
-  }
-  static stop() {
-    Recorder.instance.stop();
-  }
-  static screenshot() {
-    Recorder.instance.screenshot();
-  }
-}
+export default new Recorder();

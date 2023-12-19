@@ -1,44 +1,38 @@
 import PopupWindow from "../misc/PopupWindow.js";
 import { Separator } from "../misc/misc.js";
-const { App } = ags;
-const { Applications } = ags.Service;
-const { Label, Box, Icon, Button, Scrollable, Entry } = ags.Widget;
+import { Widget, App, Applications } from "../../imports.js";
 
 const AppItem = (app, window) =>
-  Button({
+  Widget.Button({
     className: "app",
-    connections: [
-      [
-        "clicked",
-        () => {
-          App.closeWindow(window);
-          app.launch();
-        },
-      ],
-    ],
-    child: Box({
+    setup: (self) =>
+      self.on("clicked", () => {
+        App.closeWindow(window);
+        app.launch();
+      }),
+    child: Widget.Box({
       children: [
-        Icon({
+        Widget.Icon({
           icon: app.iconName,
           size: 42,
         }),
-        Box({
+        Widget.Box({
           vertical: true,
           children: [
-            Label({
+            Widget.Label({
               className: "title",
               label: app.name,
               xalign: 0,
-              valign: "center",
+              vpack: "center",
               ellipsize: 3,
             }),
-            Label({
+            Widget.Label({
               className: "description",
               label: app.description || "",
               wrap: true,
               xalign: 0,
               justification: "left",
-              valign: "center",
+              vpack: "center",
             }),
           ],
         }),
@@ -47,8 +41,8 @@ const AppItem = (app, window) =>
   });
 
 const Applauncher = ({ windowName = "applauncher" } = {}) => {
-  const list = Box({ className: "listbox", vertical: true });
-  const entry = Entry({
+  const list = Widget.Box({ className: "listbox", vertical: true });
+  const entry = Widget.Entry({
     hexpand: true,
     placeholderText: "Search",
     onAccept: ({ text }) => {
@@ -67,32 +61,30 @@ const Applauncher = ({ windowName = "applauncher" } = {}) => {
     },
   });
 
-  return Box({
+  return Widget.Box({
     className: "applauncher",
-    properties: [["list", list]],
+    attribute: {
+      list: list,
+    },
     vertical: true,
     children: [
-      Box({
+      Widget.Box({
         className: "search-box",
-        children: [Icon("search-symbolic"), entry],
+        children: [Widget.Icon("search-symbolic"), entry],
       }),
-      Scrollable({
+      Widget.Scrollable({
         hscroll: "never",
         child: list,
       }),
     ],
-    connections: [
-      [
-        App,
-        (_b, name, visible) => {
-          if (name !== windowName) return;
+    setup: (self) =>
+      self.hook(App, (_b, name, visible) => {
+        if (name !== windowName) return;
 
-          entry.set_text("-"); // force onChange
-          entry.set_text("");
-          if (visible) entry.grab_focus();
-        },
-      ],
-    ],
+        entry.set_text("-"); // force onChange
+        entry.set_text("");
+        if (visible) entry.grab_focus();
+      }),
   });
 };
 

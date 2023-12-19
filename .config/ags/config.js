@@ -1,11 +1,11 @@
-import { Windows, BlurWindows } from "./windows.js";
+import Windows from "./windows.js";
+import { App } from "./imports.js";
+import * as setup from "./utils.js";
 
-const scss = ags.App.configDir + "/scss/main.scss";
-const css = ags.App.configDir + "/style.css";
-
-ags.Utils.exec(`sassc ${scss} ${css}`);
-ags.Utils.exec("swww init");
-BlurWindows();
+setup.scssAndWallpaper();
+setup.blurWindows();
+setup.globalServices();
+setup.warnOnLowBattery();
 
 export default {
   closeWindowDelay: {
@@ -16,6 +16,6 @@ export default {
   },
   notificationPopupTimeout: 5000, // milliseconds
   maxStreamVolume: 1.5, // float
-  style: css,
-  windows: Windows,
+  style: App.configDir + "/style.css",
+  windows: Windows.flat(1),
 };

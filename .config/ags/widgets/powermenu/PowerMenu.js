@@ -1,7 +1,6 @@
 import PowerMenu from "../services/powermenu.js";
 import PopupWindow from "../misc/PopupWindow.js";
-
-const { Box, Icon, Label, Button } = ags.Widget;
+import { Widget } from "../../imports.js";
 
 const icons = {
   sleep: "weather-clear-night-symbolic",
@@ -11,12 +10,12 @@ const icons = {
 };
 
 const SysButton = (action, label, className = "") =>
-  Button({
+  Widget.Button({
     className: className,
     onClicked: () => PowerMenu.action(action),
-    child: Box({
+    child: Widget.Box({
       vertical: true,
-      children: [Icon(icons[action]), Label(label)],
+      children: [Widget.Icon(icons[action]), Widget.Label(label)],
     }),
   });
 
@@ -24,7 +23,7 @@ export default () =>
   PopupWindow({
     name: "powermenu",
     expand: true,
-    content: Box({
+    content: Widget.Box({
       className: "powermenu",
       homogeneous: true,
       children: [

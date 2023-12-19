@@ -1,4 +1,5 @@
-const { Icon, Label, Box, Button, Stack } = ags.Widget;
+import { Widget } from "../../imports.js";
+import icons from "../icons.js";
 import PowerProfile from "../services/powerProfile.js";
 
 function toTitleCase(str) {
@@ -10,7 +11,7 @@ function toTitleCase(str) {
 }
 
 export const PowerModeLabel = (props) =>
-  Label({
+  Widget.Label({
     ...props,
     connections: [
       [
@@ -21,7 +22,7 @@ export const PowerModeLabel = (props) =>
   });
 
 export const PowerProfileSelection = (props) =>
-  Box({
+  Widget.Box({
     ...props,
     vertical: true,
     connections: [
@@ -29,16 +30,16 @@ export const PowerProfileSelection = (props) =>
         PowerProfile,
         (box) =>
         (box.children = PowerProfile.list.map((ap) =>
-          Button({
+          Widget.Button({
             onClicked: () => (PowerProfile.powerprofile = ap.mode),
-            child: Box({
+            child: Widget.Box({
               children: [
-                Label(toTitleCase(ap.mode)),
+                Widget.Label(toTitleCase(ap.mode)),
                 ap.active &&
-                Icon({
+                Widget.Icon({
                   icon: "object-select-symbolic",
                   hexpand: true,
-                  halign: "end",
+                  hpack: "end",
                 }),
               ],
             }),
@@ -49,17 +50,17 @@ export const PowerProfileSelection = (props) =>
   });
 
 export const PowerprofileIndicator = ({
-  balanced = Icon({
-    icon: "power-profile-balanced-rtl-symbolic",
+  balanced = Widget.Icon({
+    icon: icons.powerprofile.Balanced,
   }),
-  power_saver = Icon({
-    icon: "power-profile-performance-symbolic-rtl",
+  power_saver = Widget.Icon({
+    icon: icons.powerprofile.Quiet,
   }),
-  performance = Icon({
-    icon: "power-profile-power-saver-rtl-symbolic",
+  performance = Widget.Icon({
+    icon: icons.powerprofile.Performance,
   }),
 } = {}) =>
-  Stack({
+  Widget.Stack({
     items: [
       ["balanced", balanced],
       ["power-saver", power_saver],

@@ -1,21 +1,19 @@
-const { Label, Box } = ags.Widget;
-const { DateTime } = imports.gi.GLib;
-const { execAsync } = ags.Utils;
+import { Widget, Variable } from "../../imports.js";
+import GLib from "gi://GLib";
 
 export const Clock = ({
   format = "%H:%M:%S %B %e. %A",
   interval = 1000,
   ...props
 } = {}) =>
-  Label({
+  Widget.Label({
     className: "clock",
     ...props,
-    connections: [
-      [
+    setup: (self) =>
+      self.poll(
         interval,
-        (label) => (label.label = DateTime.new_now_local().format(format)),
-      ],
-    ],
+        (label) => (label.label = GLib.DateTime.new_now_local().format(format)),
+      ),
   });
 
 const prettyUptime = (str) => {
@@ -26,7 +24,7 @@ const prettyUptime = (str) => {
   if (str.length === 2) return "0:" + str;
 };
 
-const uptime = ags.Variable(0, {
+const uptime = Variable(0, {
   poll: [
     60_000,
     "uptime",
@@ -35,24 +33,16 @@ const uptime = ags.Variable(0, {
 });
 
 export const Uptime = ({ ...props } = {}) =>
-  Label({
+  Widget.Label({
     ...props,
-    connections: [
-      [
-        uptime,
-        (label) => {
-          label.label = uptime.value.toString();
-        },
-      ],
-    ],
+    setup: (self) =>
+      self.hook(uptime, (label) => {
+        label.label = uptime.value.toString();
+      }),
   });
 
 export const Calendar = () =>
-  Box({
+  Widget.Box({
     className: "calendar",
-    children: [
-      ags.Widget({
-        type: imports.gi.Gtk.Calendar,
-      }),
-    ],
+    children: [Widget.Calendar()],
   });

@@ -1,16 +1,19 @@
 import { Spinner } from "../misc/misc.js";
-const { Bluetooth } = ags.Service;
-const { Icon, Label, Box, Button, Stack } = ags.Widget;
+import { Bluetooth, Widget } from "../../imports.js";
+import Gtk from "gi://Gtk";
 
 export const Indicator = ({
-  enabled = Icon({ icon: "bluetooth-active-symbolic", className: "enabled" }),
-  disabled = Icon({
+  enabled = Widget.Icon({
+    icon: "bluetooth-active-symbolic",
+    className: "enabled",
+  }),
+  disabled = Widget.Icon({
     icon: "bluetooth-disabled-symbolic",
     className: "disabled",
   }),
   ...props
 } = {}) =>
-  Stack({
+  Widget.Stack({
     ...props,
     items: [
       ["true", enabled],
@@ -27,7 +30,7 @@ export const Indicator = ({
   });
 
 export const Toggle = (props) =>
-  Button({
+  Widget.Button({
     ...props,
     onClicked: () => (Bluetooth.enabled = !Bluetooth.enabled),
     connections: [
@@ -36,7 +39,7 @@ export const Toggle = (props) =>
   });
 
 export const ConnectedLabel = (props) =>
-  Label({
+  Widget.Label({
     ...props,
     connections: [
       [
@@ -59,7 +62,7 @@ export const ConnectedLabel = (props) =>
   });
 
 export const Devices = (props) =>
-  Box({
+  Widget.Box({
     ...props,
     vertical: true,
     connections: [
@@ -67,28 +70,28 @@ export const Devices = (props) =>
         Bluetooth,
         (box) => {
           box.children = Array.from(Bluetooth.devices.values()).map((device) =>
-            Box({
+            Widget.Box({
               hexpand: false,
               children: [
-                Icon(device.iconName + "-symbolic"),
-                Label(device.name),
-                Box({ hexpand: true }),
+                Widget.Icon(device.iconName + "-symbolic"),
+                Widget.Label(device.name),
+                Widget.Box({ hexpand: true }),
                 device._connecting
                   ? Spinner()
-                  : ags.Widget({
-                      type: imports.gi.Gtk.Switch,
-                      active: device.connected,
-                      connections: [
-                        [
-                          "activate",
-                          ({ active }) => {
-                            device.setConnection(active);
-                          },
-                        ],
+                  : Widget({
+                    type: Gtk.Switch,
+                    active: device.connected,
+                    connections: [
+                      [
+                        "activate",
+                        ({ active }) => {
+                          device.setConnection(active);
+                        },
                       ],
-                    }),
+                    ],
+                  }),
               ],
-            })
+            }),
           );
         },
       ],

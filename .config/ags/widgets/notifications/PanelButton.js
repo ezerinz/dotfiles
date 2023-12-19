@@ -1,41 +1,27 @@
-const { Button, Stack, Icon } = ags.Widget;
-const { App } = ags;
-const { Notifications } = ags.Service;
+import { App, Notifications, Widget } from "../../imports.js";
 
 const DNDIndicator = ({
-  silent = Icon({ icon: "notifications-disabled-symbolic" }),
-  noisy = Icon("notification-symbolic"),
+  silent = Widget.Icon({ icon: "notifications-disabled-symbolic" }),
+  noisy = Widget.Icon("notification-symbolic"),
 } = {}) =>
-  Stack({
+  Widget.Stack({
     items: [
       ["true", silent],
       ["false", noisy],
     ],
-    connections: [
-      [
-        Notifications,
-        (stack) => {
-          stack.shown = `${Notifications.dnd}`;
-        },
-      ],
-    ],
+    setup: (self) =>
+      self.hook(Notifications, (stack) => {
+        stack.shown = `${Notifications.dnd}`;
+      }),
   });
 
 export default () =>
-  Button({
+  Widget.Button({
     className: "notifications__panel panel-button",
-    connections: [
-      [
-        App,
-        (btn, win, visible) => {
-          btn.toggleClassName(
-            "active",
-            win === "notification-center" && visible
-          );
-        },
-      ],
-    ],
-
+    setup: (self) =>
+      self.hook(App, (btn, win, visible) => {
+        btn.toggleClassName("active", win === "notification-center" && visible);
+      }),
     onClicked: () => App.toggleWindow("notification-center"),
     child: DNDIndicator(),
   });

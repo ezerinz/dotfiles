@@ -1,39 +1,34 @@
-const { lookUpIcon } = ags.Utils;
-const { Box, Revealer, Stack, Icon, Window } = ags.Widget;
-import { FontIcon, Progress } from "../misc/misc.js";
+import { Progress } from "../misc/misc.js";
+import FontIcon from "../misc/FontIcon.js";
 import Indicator from "../services/onScreenIndicator.js";
+import { Utils, Widget } from "../../imports.js";
 
 export const OnScreenIndicator = ({ height = 300, width = 48 } = {}) =>
-  Box({
+  Widget.Box({
     className: "indicator",
-    style: "padding: 1px;",
+    css: "padding: 1px;",
     children: [
-      Revealer({
+      Widget.Revealer({
         transition: "slide_left",
-        connections: [
-          [
-            Indicator,
-            (revealer, value) => {
-              revealer.revealChild = value > -1;
-            },
-          ],
-        ],
+        setup: (self) =>
+          self.hook(Indicator, (revealer, value) => {
+            revealer.revealChild = value > -1;
+          }),
         child: Progress({
           width,
           height,
           vertical: true,
-          connections: [
-            [Indicator, (progress, value) => progress.setValue(value)],
-          ],
-          child: Stack({
-            valign: "start",
-            halign: "center",
+          setup: (self) =>
+            self.hook(Indicator, (progress, value) => progress.setValue(value)),
+          child: Widget.Stack({
+            vpack: "start",
+            hpack: "center",
             hexpand: false,
             items: [
               [
                 "true",
-                Icon({
-                  halign: "center",
+                Widget.Icon({
+                  hpack: "center",
                   size: width,
                   connections: [
                     [Indicator, (icon, _v, name) => (icon.icon = name || "")],
@@ -43,9 +38,9 @@ export const OnScreenIndicator = ({ height = 300, width = 48 } = {}) =>
               [
                 "false",
                 FontIcon({
-                  halign: "center",
+                  hpack: "center",
                   hexpand: true,
-                  style: `font-size: ${width}px;`,
+                  css: `font-size: ${width}px;`,
                   connections: [
                     [Indicator, (icon, _v, name) => (icon.icon = name || "")],
                   ],
@@ -56,7 +51,7 @@ export const OnScreenIndicator = ({ height = 300, width = 48 } = {}) =>
               [
                 Indicator,
                 (stack, _v, name) => {
-                  stack.shown = `${!!lookUpIcon(name)}`;
+                  stack.shown = `${!!Utils.lookUpIcon(name)}`;
                 },
               ],
             ],
@@ -67,7 +62,7 @@ export const OnScreenIndicator = ({ height = 300, width = 48 } = {}) =>
   });
 
 export default (monitor) =>
-  Window({
+  Widget.Window({
     name: `indicator${monitor}`,
     monitor,
     className: "indicator",

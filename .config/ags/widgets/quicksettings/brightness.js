@@ -1,8 +1,8 @@
-const { Icon, Label, Slider } = ags.Widget;
+import { Widget } from "../../imports.js";
 import Brightness from "../services/brightness.js";
 
 export const BrightnessSlider = (props) =>
-  Slider({
+  Widget.Slider({
     ...props,
     drawValue: false,
     hexpand: true,
@@ -19,13 +19,13 @@ export const BrightnessSlider = (props) =>
   });
 
 export const Indicator = (props) =>
-  Icon({
+  Widget.Icon({
     ...props,
     icon: "display-brightness-symbolic",
   });
 
 export const PercentLabel = (props) =>
-  Label({
+  Widget.Label({
     ...props,
     connections: [
       [

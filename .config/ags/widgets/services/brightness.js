@@ -1,60 +1,56 @@
-const { Service } = ags;
-const { exec, execAsync } = ags.Utils;
+import { Service, Utils } from "../../imports.js";
 
 // Change this to whatever keyboard you have
 // you can check with brightnessctl --list
-const KBD = 'asus::kbd_backlight';
+const KBD = "asus::kbd_backlight";
 
-class BrightnessService extends Service {
-    static { Service.register(this); }
+class Brightness extends Service {
+  static {
+    Service.register(this);
+  }
 
-    _kbd = 0;
-    _screen = 0;
+  _kbd = 0;
+  _screen = 0;
 
-    get kbd() { return this._kbd; }
-    get screen() { return this._screen; }
+  get kbd() {
+    return this._kbd;
+  }
+  get screen() {
+    return this._screen;
+  }
 
-    set kbd(value) {
-        if (value < 0 || value > this._kbdMax)
-            return;
+  set kbd(value) {
+    if (value < 0 || value > this._kbdMax) return;
 
-        execAsync(`brightnessctl -d ${KBD} s ${value} -q`)
-            .then(() => {
-                this._kbd = value;
-                this.emit('changed');
-            })
-            .catch(print);
-    }
+    Utils.execAsync(`brightnessctl -d ${KBD} s ${value} -q`)
+      .then(() => {
+        this._kbd = value;
+        this.emit("changed");
+      })
+      .catch(print);
+  }
 
-    set screen(percent) {
-        if (percent < 0)
-            percent = 0;
+  set screen(percent) {
+    if (percent < 0) percent = 0;
 
-        if (percent > 1)
-            percent = 1;
+    if (percent > 1) percent = 1;
 
-        execAsync(`brightnessctl s ${percent * 100}% -q`)
-            .then(() => {
-                this._screen = percent;
-                this.emit('changed');
-            })
-            .catch(print);
-    }
+    Utils.execAsync(`brightnessctl s ${percent * 100}% -q`)
+      .then(() => {
+        this._screen = percent;
+        this.emit("changed");
+      })
+      .catch(print);
+  }
 
-    constructor() {
-        super();
-        this._kbd = Number(exec(`brightnessctl -d ${KBD} g`));
-        this._kbdMax = Number(exec(`brightnessctl -d ${KBD} m`));
-        this._screen = Number(exec('brightnessctl g')) / Number(exec('brightnessctl m'));
-    }
+  constructor() {
+    super();
+    this._kbd = Number(Utils.exec(`brightnessctl -d ${KBD} g`));
+    this._kbdMax = Number(Utils.exec(`brightnessctl -d ${KBD} m`));
+    this._screen =
+      Number(Utils.exec("brightnessctl g")) /
+      Number(Utils.exec("brightnessctl m"));
+  }
 }
 
-export default class Brightness {
-    static { Service.Brightness = this; }
-    static instance = new BrightnessService();
-
-    static get kbd() { return Brightness.instance.kbd; }
-    static get screen() { return Brightness.instance.screen; }
-    static set kbd(value) { Brightness.instance.kbd = value; }
-    static set screen(value) { Brightness.instance.screen = value; }
-}
+export default new Brightness();

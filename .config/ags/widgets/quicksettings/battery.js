@@ -1,17 +1,16 @@
-const { Battery } = ags.Service;
-const { Label, Icon, Stack, ProgressBar, Overlay, Box } = ags.Widget;
+import { Battery, Widget } from "../../imports.js";
 
 const icons = (charging) => [
   ...Array.from({ length: 9 }, (_, i) => i * 10).map((i) => [
     `${i}`,
-    Icon({
+    Widget.Icon({
       className: `${i} ${charging ? "charging" : "discharging"}`,
       icon: `battery-level-${i}${charging ? "-charging" : ""}-symbolic`,
     }),
   ]),
   [
     "100",
-    Icon({
+    Widget.Icon({
       className: `100 ${charging ? "charging" : "discharging"}`,
       icon: `battery-level-100${charging ? "-charged" : ""}-symbolic`,
     }),
@@ -19,7 +18,7 @@ const icons = (charging) => [
 ];
 
 const Indicators = (charging) =>
-  Stack({
+  Widget.Stack({
     items: icons(charging),
     connections: [
       [
@@ -36,7 +35,7 @@ export const Indicator = ({
   discharging = Indicators(false),
   ...props
 } = {}) =>
-  Stack({
+  Widget.Stack({
     ...props,
     className: "battery",
     items: [
@@ -58,7 +57,7 @@ export const Indicator = ({
   });
 
 export const LevelLabel = (props) =>
-  Label({
+  Widget.Label({
     ...props,
     connections: [
       [Battery, (label) => (label.label = `${Math.round(Battery.percent)}%`)],
@@ -66,7 +65,7 @@ export const LevelLabel = (props) =>
   });
 
 export const Progress = (props) =>
-  Box({
+  Widget.Box({
     ...props,
     className: "battery-progress",
     connections: [
@@ -81,8 +80,8 @@ export const Progress = (props) =>
       ],
     ],
     children: [
-      Overlay({
-        child: ProgressBar({
+      Widget.Overlay({
+        child: Widget.ProgressBar({
           hexpand: true,
           connections: [
             [
@@ -94,7 +93,7 @@ export const Progress = (props) =>
           ],
         }),
         overlays: [
-          Label({
+          Widget.Label({
             connections: [
               [
                 Battery,

@@ -1,67 +1,47 @@
-const { EventBox, CenterBox, Box, Revealer, Window } = ags.Widget;
-const { App } = ags;
+import { App, Widget } from "../../imports.js";
 
 const Padding = (windowName) =>
-  EventBox({
+  Widget.EventBox({
     className: "padding",
     hexpand: true,
     vexpand: true,
-    connections: [["button-press-event", () => App.toggleWindow(windowName)]],
+    setup: (self) =>
+      self.on("button-press-event", () => App.toggleWindow(windowName)),
   });
 
 const PopupRevealer = (windowName, transition, child) =>
-  Box({
-    style: "padding: 1px;",
-    children: [
-      Revealer({
-        transition,
-        child,
-        transitionDuration: 350,
-        connections: [
-          [
-            App,
-            (revealer, name, visible) => {
-              if (name === windowName) revealer.reveal_child = visible;
-            },
-          ],
-        ],
-      }),
-    ],
+  Widget.Box({
+    css: "padding: 1px;",
+    child: Widget.Revealer({
+      transition,
+      child,
+      transitionDuration: 350,
+      setup: (self) =>
+        self.hook(App, (revealer, name, visible) => {
+          if (name === windowName) revealer.reveal_child = visible;
+        }),
+    }),
   });
 
 const layouts = {
   center: (windowName, child, expand) =>
-    CenterBox({
+    Widget.CenterBox({
       className: "shader",
-      style: expand ? "min-width: 5000px; min-height: 3000px;" : "",
+      css: expand ? "min-width: 5000px; min-height: 3000px;" : "",
       children: [
         Padding(windowName),
-        CenterBox({
+        Widget.CenterBox({
           vertical: true,
           children: [Padding(windowName), child, Padding(windowName)],
         }),
         Padding(windowName),
       ],
     }),
-  "top left": (windowName, child) =>
-    Box({
-      children: [
-        Box({
-          hexpand: false,
-          vertical: true,
-          children: [
-            PopupRevealer(windowName, "slide_down", child),
-            Padding(windowName),
-          ],
-        }),
-        Padding(windowName),
-      ],
-    }),
   top: (windowName, child) =>
-    CenterBox({
+    Widget.CenterBox({
       children: [
         Padding(windowName),
-        Box({
+        Widget.Box({
           vertical: true,
           children: [
             PopupRevealer(windowName, "slide_down", child),
@@ -72,10 +52,10 @@ const layouts = {
       ],
     }),
   "top right": (windowName, child) =>
-    Box({
+    Widget.Box({
       children: [
         Padding(windowName),
-        Box({
+        Widget.Box({
           hexpand: false,
           vertical: true,
           children: [
@@ -86,10 +66,10 @@ const layouts = {
       ],
     }),
   "bottom right": (windowName, child) =>
-    Box({
+    Widget.Box({
       children: [
         Padding(windowName),
-        Box({
+        Widget.Box({
           hexpand: false,
           vertical: true,
           children: [
@@ -102,10 +82,11 @@ const layouts = {
 };
 
 export default ({ layout = "center", expand = true, name, content, ...rest }) =>
-  Window({
+  Widget.Window({
     name,
     child: layouts[layout](name, content, expand),
     popup: true,
+    visible: false,
     focusable: true,
     ...rest,
   });

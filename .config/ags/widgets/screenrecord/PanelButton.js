@@ -1,35 +1,41 @@
 import Recorder from "../services/screenRecord.js";
-const { Button, Box, Icon, Label } = ags.Widget;
+import { Widget } from "../../imports.js";
 
-export default (props) =>
-  Button({
+export const PemisahRecorder = () =>
+  Widget.Box({
+    className: "bar__separator",
+    connections: [
+      [
+        Recorder,
+        (box) => {
+          box.visible = Recorder.recording;
+        },
+      ],
+    ],
+  });
+export const RecordPanelButton = (props) =>
+  Widget.Button({
     ...props,
     className: "recorder panel-button",
-    onClicked: Recorder.stop,
-    child: Box({
+    binds: [["visible", Recorder, "recording"]],
+    onClicked: () => Recorder.stop(),
+    child: Widget.Box({
       children: [
-        Icon("media-record-symbolic"),
-        Label({
-          connections: [
+        Widget.Icon("media-record-symbolic"),
+        Widget.Label({
+          binds: [
             [
+              "label",
               Recorder,
-              (label, time) => {
+              "timer",
+              (time) => {
                 const sec = time % 60;
                 const min = Math.floor(time / 60);
-                label.label = `${min}:${sec < 10 ? "0" + sec : sec}`;
+                return `${min}:${sec < 10 ? "0" + sec : sec}`;
               },
-              "timer",
             ],
           ],
         }),
       ],
     }),
-    connections: [
-      [
-        Recorder,
-        (button) => {
-          button.visible = Recorder.instance._recording;
-        },
-      ],
-    ],
   });

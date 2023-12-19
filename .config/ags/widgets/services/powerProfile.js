@@ -1,7 +1,6 @@
-const { Service } = ags;
-const { exec, execAsync } = ags.Utils;
+import { Service, Utils } from "../../imports.js";
 
-class PowerProfileService extends Service {
+class PowerProfile extends Service {
   static {
     Service.register(this);
   }
@@ -14,7 +13,7 @@ class PowerProfileService extends Service {
   }
 
   _activePowerProfile() {
-    execAsync(["powerprofilesctl", "get"])
+    Utils.execAsync(["powerprofilesctl", "get"])
       .then((out) => {
         this._powerprofile = out.trim();
         this.emit("changed");
@@ -23,13 +22,13 @@ class PowerProfileService extends Service {
   }
 
   get list() {
-    var defaultList = [
+    const defaultList = [
       "performance",
       "balanced",
       "power-saver",
-      "kontol-gede-mode", //maaf
+      "kontol-gede-mode", //maaf teman2 indo, cuma ngetest
     ];
-    const cmd = exec("powerprofilesctl list");
+    const cmd = Utils.exec("powerprofilesctl list");
     var filteredList = defaultList.filter((e) => cmd.includes(e));
 
     return filteredList.map((e) => ({
@@ -39,7 +38,7 @@ class PowerProfileService extends Service {
   }
 
   set powerprofile(mode) {
-    execAsync(`powerprofilesctl set ${mode}`)
+    Utils.execAsync(`powerprofilesctl set ${mode}`)
       .then(() => {
         this._powerprofile = mode;
         this.emit("changed");
@@ -52,22 +51,4 @@ class PowerProfileService extends Service {
   }
 }
 
-export default class PowerProfile {
-  static {
-    Service.PowerProfile = this;
-  }
-
-  static instance = new PowerProfileService();
-
-  static get list() {
-    return PowerProfile.instance.list;
-  }
-
-  static set powerprofile(value) {
-    return (PowerProfile.instance.powerprofile = value);
-  }
-
-  static get powerprofile() {
-    return PowerProfile.instance.powerprofile;
-  }
-}
+export default new PowerProfile();

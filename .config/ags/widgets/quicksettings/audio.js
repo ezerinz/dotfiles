@@ -1,11 +1,11 @@
-const { Audio } = ags.Service;
-const { Label, Box, Icon, Stack, Button, Slider } = ags.Widget;
+import { Audio, Widget } from "../../imports.js";
 
 const iconSubstitute = (item) => {
   const substitues = [
     { from: "audio-headset-bluetooth", to: "audio-headphones-symbolic" },
     { from: "audio-card-analog-usb", to: "audio-speakers-symbolic" },
     { from: "audio-card-analog-pci", to: "audio-card-symbolic" },
+    { from: "audio-card-analog", to: "audio-speakers-symbolic" },
   ];
 
   for (const { from, to } of substitues) {
@@ -16,20 +16,20 @@ const iconSubstitute = (item) => {
 
 export const SpeakerIndicator = ({
   items = [
-    ["101", Icon("audio-volume-overamplified-symbolic")],
-    ["67", Icon("audio-volume-high-symbolic")],
-    ["34", Icon("audio-volume-medium-symbolic")],
-    ["1", Icon("audio-volume-low-symbolic")],
-    ["0", Icon("audio-volume-muted-symbolic")],
+    ["101", Widget.Icon("audio-volume-overamplified-symbolic")],
+    ["67", Widget.Icon("audio-volume-high-symbolic")],
+    ["34", Widget.Icon("audio-volume-medium-symbolic")],
+    ["1", Widget.Icon("audio-volume-low-symbolic")],
+    ["0", Widget.Icon("audio-volume-muted-symbolic")],
   ],
   ...props
 } = {}) =>
-  Stack({
+  Widget.Stack({
     ...props,
     className: "speaker",
     items,
-    connections: [
-      [
+    setup: (self) =>
+      self.hook(
         Audio,
         (stack) => {
           if (!Audio.speaker) return;
@@ -42,28 +42,23 @@ export const SpeakerIndicator = ({
           }
         },
         "speaker-changed",
-      ],
-    ],
+      ),
   });
 
 export const SpeakerTypeIndicator = (props) =>
-  Icon({
+  Widget.Icon({
     ...props,
-    connections: [
-      [
-        Audio,
-        (icon) => {
-          if (Audio.speaker) icon.icon = iconSubstitute(Audio.speaker.iconName);
-        },
-      ],
-    ],
+    setup: (self) =>
+      self.hook(Audio, (icon) => {
+        if (Audio.speaker) icon.icon = iconSubstitute(Audio.speaker.iconName);
+      }),
   });
 
 export const SpeakerPercentLabel = (props) =>
-  Label({
+  Widget.Label({
     ...props,
-    connections: [
-      [
+    setup: (self) =>
+      self.hook(
         Audio,
         (label) => {
           if (!Audio.speaker) return;
@@ -71,17 +66,16 @@ export const SpeakerPercentLabel = (props) =>
           label.label = `${Math.floor(Audio.speaker.volume * 100)}%`;
         },
         "speaker-changed",
-      ],
-    ],
+      ),
   });
 
 export const SpeakerSlider = (props) =>
-  Slider({
+  Widget.Slider({
     ...props,
     drawValue: false,
     onChange: ({ value }) => (Audio.speaker.volume = value),
-    connections: [
-      [
+    setup: (self) =>
+      self.hook(
         Audio,
         (slider) => {
           if (!Audio.speaker) return;
@@ -90,38 +84,38 @@ export const SpeakerSlider = (props) =>
           slider.value = Audio.speaker.volume;
         },
         "speaker-changed",
-      ],
-    ],
+      ),
   });
 
 export const MicrophoneMuteIndicator = ({
-  muted = Icon("microphone-disabled-symbolic"),
-  unmuted = Icon("microphone-sensitivity-high-symbolic"),
+  muted = Widget.Icon("microphone-disabled-symbolic"),
+  unmuted = Widget.Icon("microphone-sensitivity-high-symbolic"),
   ...props
 } = {}) =>
-  Stack({
+  Widget.Stack({
     ...props,
     items: [
       ["true", muted],
       ["false", unmuted],
     ],
-    connections: [
-      [
+    setup: (self) =>
+      self.hook(
         Audio,
         (stack) => {
           stack.shown = `${Audio.microphone?.isMuted}`;
         },
         "microphone-changed",
-      ],
-    ],
+      ),
   });
 
 export const MicrophoneMuteToggle = (props) =>
-  Button({
+  Widget.Button({
     ...props,
-    onClicked: "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-    connections: [
-      [
+    onClicked: () => {
+      Utils.execAsync("pactl set-source-mute @DEFAULT_SOURCE@ toggle");
+    },
+    setup: (self) =>
+      self.hook(
         Audio,
         (button) => {
           if (!Audio.microphone) return;
@@ -129,12 +123,11 @@ export const MicrophoneMuteToggle = (props) =>
           button.toggleClassName("on", !Audio.microphone.isMuted);
         },
         "microphone-changed",
-      ],
-    ],
+      ),
   });
 
 export const MicrophoneStatus = (props) =>
-  Label({
+  Widget.Label({
     ...props,
     connections: [
       [
@@ -151,15 +144,15 @@ export const MicrophoneStatus = (props) =>
 
 export const AppMixer = (props) => {
   const AppItem = (stream) => {
-    const icon = Icon();
-    const label = Label({
+    const icon = Widget.Icon();
+    const label = Widget.Label({
       xalign: 0,
       justify: "left",
       wrap: true,
       ellipsize: 3,
     });
-    const percent = Label({ xalign: 1 });
-    const slider = Slider({
+    const percent = Widget.Label({ xalign: 1 });
+    const slider = Widget.Slider({
       hexpand: true,
       drawValue: false,
       onChange: ({ value }) => {
@@ -174,13 +167,13 @@ export const AppMixer = (props) => {
       label.label = stream.description || "";
     };
     const id = stream.connect("changed", sync);
-    return Box({
+    return Widget.Box({
       hexpand: true,
       children: [
         icon,
-        Box({
+        Widget.Box({
           children: [
-            Box({
+            Widget.Box({
               vertical: true,
               children: [label, slider],
             }),
@@ -193,7 +186,7 @@ export const AppMixer = (props) => {
     });
   };
 
-  return Box({
+  return Widget.Box({
     ...props,
     vertical: true,
     connections: [
@@ -201,7 +194,7 @@ export const AppMixer = (props) => {
         Audio,
         (box) => {
           box.children = Array.from(Audio.apps.values()).map((stream) =>
-            AppItem(stream)
+            AppItem(stream),
           );
         },
       ],
@@ -210,7 +203,7 @@ export const AppMixer = (props) => {
 };
 
 export const StreamSelector = ({ streams = "speakers", ...props } = {}) =>
-  Box({
+  Widget.Box({
     ...props,
     vertical: true,
     connections: [
@@ -218,18 +211,20 @@ export const StreamSelector = ({ streams = "speakers", ...props } = {}) =>
         Audio,
         (box) => {
           box.children = Array.from(Audio[streams].values()).map((stream) =>
-            Button({
-              child: Box({
+            Widget.Button({
+              child: Widget.Box({
                 children: [
-                  Icon({
+                  Widget.Icon({
                     icon: iconSubstitute(stream.iconName),
                     tooltipText: stream.iconName,
                   }),
-                  Label(stream.description.split(" ").slice(0, 4).join(" ")),
-                  Icon({
+                  Widget.Label(
+                    stream.description.split(" ").slice(0, 4).join(" "),
+                  ),
+                  Widget.Icon({
                     icon: "object-select-symbolic",
                     hexpand: true,
-                    halign: "end",
+                    hpack: "end",
                     connections: [
                       [
                         "draw",
@@ -246,7 +241,7 @@ export const StreamSelector = ({ streams = "speakers", ...props } = {}) =>
 
                 if (streams === "microphones") Audio.microphone = stream;
               },
-            })
+            }),
           );
         },
       ],

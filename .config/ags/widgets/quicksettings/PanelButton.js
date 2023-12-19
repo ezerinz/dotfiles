@@ -1,32 +1,28 @@
 // import * as qs from "./quicksettings.js";
 import * as battery from "./battery.js";
 import * as network from "./network.js";
-const { Button, Box } = ags.Widget;
-const { App } = ags;
-const { Service } = ags.Service;
-const { Audio } = ags.Service;
+import Indicator from "../services/onScreenIndicator.js";
+import { Widget, App, Service, Audio } from "../../imports.js";
 
 export default () =>
-  Button({
+  Widget.Button({
     className: "quicksettings__panel panel-button",
-    onClicked: () => App.toggleWindow("quicksettings"),
+    onClicked: () => {
+      App.toggleWindow("quicksettings");
+    },
     onScrollUp: () => {
       Audio.speaker.volume += 0.02;
-      Service.Indicator.speaker();
+      Indicator.speaker();
     },
     onScrollDown: () => {
       Audio.speaker.volume -= 0.02;
-      Service.Indicator.speaker();
+      Indicator.speaker();
     },
-    connections: [
-      [
-        App,
-        (btn, win, visible) => {
-          btn.toggleClassName("active", win === "quicksettings" && visible);
-        },
-      ],
-    ],
-    child: Box({
+    setup: (self) =>
+      self.hook(App, (btn, win, visible) => {
+        btn.toggleClassName("active", win === "quicksettings" && visible);
+      }),
+    child: Widget.Box({
       children: [
         network.SpeedIndicator(),
         network.Indicator(),

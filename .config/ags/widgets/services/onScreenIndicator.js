@@ -1,8 +1,22 @@
 import icons from "../icons.js";
-const { Service } = ags;
-const { timeout, connect } = ags.Utils;
+import { Service, Utils, Audio } from "../../imports.js";
+import Brightness from "./brightness.js";
 
-class IndicatorService extends Service {
+function getAudioTypeIcon(icon) {
+  const substitues = [
+    ["audio-headset-bluetooth", icons.audio.type.headset],
+    ["audio-card-analog-usb", icons.audio.type.speaker],
+    ["audio-card-analog-pci", icons.audio.type.card],
+  ];
+
+  for (const [from, to] of substitues) {
+    if (from === icon) return to;
+  }
+
+  return icon;
+}
+
+class Indicator extends Service {
   static {
     Service.register(this, {
       popup: ["double", "string"],
@@ -15,7 +29,7 @@ class IndicatorService extends Service {
   popup(value, icon) {
     this.emit("popup", value, icon);
     this._count++;
-    timeout(this._delay, () => {
+    Utils.timeout(this._delay, () => {
       this._count--;
 
       if (this._count === 0) this.emit("popup", -1, icon);
@@ -23,23 +37,13 @@ class IndicatorService extends Service {
   }
 
   speaker() {
-    const value = ags.Service.Audio.speaker.volume;
-    const { muted, low, medium, high, overamplified } = icons.audio.volume;
-    const icon = [
-      [101, overamplified],
-      [67, high],
-      [34, medium],
-      [1, low],
-      [0, muted],
-    ].find(([threshold]) => threshold <= value * 100)[1];
-
-    this.popup(value, icon);
+    this.popup(Audio.speaker.volume, getAudioTypeIcon(Audio.speaker.iconName));
   }
 
   display() {
     // brightness is async, so lets wait a bit
-    timeout(10, () => {
-      const value = ags.Service.Brightness.screen;
+    Utils.timeout(10, () => {
+      const value = Service.Brightness.screen;
       const icon = icons.brightness.screen[Math.ceil(value * 10)];
       this.popup(value, icon);
     });
@@ -47,32 +51,15 @@ class IndicatorService extends Service {
 
   kbd() {
     // brightness is async, so lets wait a bit
-    timeout(10, () => {
-      const value = ags.Service.Brightness.kbd;
+    Utils.timeout(10, () => {
+      const value = Brightness.kbd;
       this.popup((value * 33 + 1) / 100, icons.brightness.keyboard);
     });
   }
 
-  connectWidget(widget, callback) {
-    connect(this, widget, callback, "popup");
+  connect(event = "popup", callback) {
+    return super.connect(event, callback);
   }
 }
 
-export default class Indicator {
-  static {
-    Service.Indicator = this;
-  }
-  static instance = new IndicatorService();
-  static popup(value, icon) {
-    Indicator.instance.popup(value, icon);
-  }
-  static speaker() {
-    Indicator.instance.speaker();
-  }
-  static display() {
-    Indicator.instance.display();
-  }
-  static kbd() {
-    Indicator.instance.kbd();
-  }
-}
+export default new Indicator();
