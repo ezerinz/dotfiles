@@ -1,12 +1,13 @@
 import PowerMenu from "../services/powermenu.js";
 import PopupWindow from "../misc/PopupWindow.js";
 import { Widget, App, Utils } from "../../imports.js";
+import ShadedPopup from "./ShadedPopup.js";
 
 export default () =>
-  PopupWindow({
+  ShadedPopup({
     name: "verification",
     expand: true,
-    content: Widget.Box({
+    child: Widget.Box({
       className: "verification",
       vertical: true,
       children: [

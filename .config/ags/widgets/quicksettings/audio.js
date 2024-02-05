@@ -15,19 +15,19 @@ const iconSubstitute = (item) => {
 };
 
 export const SpeakerIndicator = ({
-  items = [
-    ["101", Widget.Icon("audio-volume-overamplified-symbolic")],
-    ["67", Widget.Icon("audio-volume-high-symbolic")],
-    ["34", Widget.Icon("audio-volume-medium-symbolic")],
-    ["1", Widget.Icon("audio-volume-low-symbolic")],
-    ["0", Widget.Icon("audio-volume-muted-symbolic")],
-  ],
+  children = {
+    101: Widget.Icon("audio-volume-overamplified-symbolic"),
+    67: Widget.Icon("audio-volume-high-symbolic"),
+    34: Widget.Icon("audio-volume-medium-symbolic"),
+    1: Widget.Icon("audio-volume-low-symbolic"),
+    0: Widget.Icon("audio-volume-muted-symbolic"),
+  },
   ...props
 } = {}) =>
   Widget.Stack({
     ...props,
     className: "speaker",
-    items,
+    children,
     setup: (self) =>
       self.hook(
         Audio,
@@ -94,10 +94,10 @@ export const MicrophoneMuteIndicator = ({
 } = {}) =>
   Widget.Stack({
     ...props,
-    items: [
-      ["true", muted],
-      ["false", unmuted],
-    ],
+    children: {
+      true: muted,
+      false: unmuted,
+    },
     setup: (self) =>
       self.hook(
         Audio,
@@ -129,8 +129,8 @@ export const MicrophoneMuteToggle = (props) =>
 export const MicrophoneStatus = (props) =>
   Widget.Label({
     ...props,
-    connections: [
-      [
+    setup: (self) =>
+      self.hook(
         Audio,
         (label) => {
           if (!Audio.microphone) return;
@@ -138,8 +138,7 @@ export const MicrophoneStatus = (props) =>
           label.label = Audio.microphone.isMuted ? "Off" : "On";
         },
         "microphone-changed",
-      ],
-    ],
+      ),
   });
 
 export const AppMixer = (props) => {
@@ -181,7 +180,7 @@ export const AppMixer = (props) => {
           ],
         }),
       ],
-      connections: [["destroy", () => stream.disconnect(id)]],
+      setup: (self) => self.on("destroy", () => stream.disconnect(id)),
       setup: sync,
     });
   };
@@ -189,16 +188,12 @@ export const AppMixer = (props) => {
   return Widget.Box({
     ...props,
     vertical: true,
-    connections: [
-      [
-        Audio,
-        (box) => {
-          box.children = Array.from(Audio.apps.values()).map((stream) =>
-            AppItem(stream),
-          );
-        },
-      ],
-    ],
+    setup: (self) =>
+      self.hook(Audio, (box) => {
+        box.children = Array.from(Audio.apps.values()).map((stream) =>
+          AppItem(stream),
+        );
+      }),
   });
 };
 
@@ -206,44 +201,36 @@ export const StreamSelector = ({ streams = "speakers", ...props } = {}) =>
   Widget.Box({
     ...props,
     vertical: true,
-    connections: [
-      [
-        Audio,
-        (box) => {
-          box.children = Array.from(Audio[streams].values()).map((stream) =>
-            Widget.Button({
-              child: Widget.Box({
-                children: [
-                  Widget.Icon({
-                    icon: iconSubstitute(stream.iconName),
-                    tooltipText: stream.iconName,
-                  }),
-                  Widget.Label(
-                    stream.description.split(" ").slice(0, 4).join(" "),
-                  ),
-                  Widget.Icon({
-                    icon: "object-select-symbolic",
-                    hexpand: true,
-                    hpack: "end",
-                    connections: [
-                      [
-                        "draw",
-                        (icon) => {
-                          icon.visible = Audio.speaker === stream;
-                        },
-                      ],
-                    ],
-                  }),
-                ],
-              }),
-              onClicked: () => {
-                if (streams === "speakers") Audio.speaker = stream;
-
-                if (streams === "microphones") Audio.microphone = stream;
-              },
+    setup: (self) =>
+      self.hook(Audio, (box) => {
+        box.children = Array.from(Audio[streams].values()).map((stream) =>
+          Widget.Button({
+            child: Widget.Box({
+              children: [
+                Widget.Icon({
+                  icon: iconSubstitute(stream.iconName),
+                  tooltipText: stream.iconName,
+                }),
+                Widget.Label(
+                  stream.description.split(" ").slice(0, 4).join(" "),
+                ),
+                Widget.Icon({
+                  icon: "object-select-symbolic",
+                  hexpand: true,
+                  hpack: "end",
+                  setup: (self) =>
+                    self.on("draw", (icon) => {
+                      icon.visible = Audio.speaker === stream;
+                    }),
+                }),
+              ],
             }),
-          );
-        },
-      ],
-    ],
+            onClicked: () => {
+              if (streams === "speakers") Audio.speaker = stream;
+
+              if (streams === "microphones") Audio.microphone = stream;
+            },
+          }),
+        );
+      }),
   });

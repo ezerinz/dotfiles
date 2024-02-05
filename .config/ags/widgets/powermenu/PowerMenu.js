@@ -1,6 +1,7 @@
 import PowerMenu from "../services/powermenu.js";
 import PopupWindow from "../misc/PopupWindow.js";
 import { Widget } from "../../imports.js";
+import ShadedPopup from "./ShadedPopup.js";
 
 const icons = {
   sleep: "weather-clear-night-symbolic",
@@ -20,10 +21,10 @@ const SysButton = (action, label, className = "") =>
   });
 
 export default () =>
-  PopupWindow({
+  ShadedPopup({
     name: "powermenu",
-    expand: true,
-    content: Widget.Box({
+    // expand: true,
+    child: Widget.Box({
       className: "powermenu",
       homogeneous: true,
       children: [

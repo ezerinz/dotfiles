@@ -20,7 +20,6 @@ const PopUpContent = () =>
 export default ({ anchor = ["top", "left"], layout = "top" } = {}) =>
   PopupWindow({
     name: "datemenu",
-    layout,
     anchor,
-    content: PopUpContent(),
+    child: PopUpContent(),
   });

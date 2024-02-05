@@ -1,5 +1,6 @@
 import NotificationPanelButton from "../notifications/PanelButton.js";
 import DatemenuPanelButton from "../datemenu/PanelButton.js";
+import CapsLockStatePanelButton from "../caps-lock/PanelButton.js";
 import {
   PemisahRecorder,
   RecordPanelButton,
@@ -20,6 +21,8 @@ const Left = () =>
       DatemenuPanelButton(),
       Pemisah(),
       NotificationPanelButton(),
+      Pemisah(),
+      CapsLockStatePanelButton(),
       PemisahRecorder(),
       RecordPanelButton(),
     ],

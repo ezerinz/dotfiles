@@ -1,7 +1,17 @@
-import { Battery, App, Utils, Variable } from "./imports.js";
+import { Battery, App, Utils, Variable, Audio, Hyprland } from "./imports.js";
 import Gdk from "gi://Gdk";
 import icons from "./widgets/icons.js";
 import Powerprofile from "./widgets/services/powerProfile.js";
+import { capsLockState } from "./vars.js";
+
+function sendBatch(batch) {
+  const cmd = batch
+    .filter((x) => !!x)
+    .map((x) => `keyword ${x}`)
+    .join("; ");
+
+  Hyprland.sendMessage(`[[BATCH]]/${cmd}`);
+}
 
 export function scssAndWallpaper() {
   const scss = App.configDir + "/scss/main.scss";
@@ -43,55 +53,16 @@ export function warnOnLowBattery() {
 }
 
 export function blurWindows() {
-  try {
-    App.connect("config-parsed", () => {
-      for (const [name] of App.windows) {
-        if (
-          !name.includes("desktop") &&
-          name !== "verification" &&
-          name !== "powermenu"
-        ) {
-          Utils.execAsync([
-            "hyprctl",
-            "keyword",
-            "layerrule",
-            `unset, ${name}`,
-          ]).then(() => {
-            Utils.execAsync([
-              "hyprctl",
-              "keyword",
-              "layerrule",
-              `blur, ${name}`,
-            ]);
-            if (name.includes("bar")) {
-              Utils.execAsync([
-                "hyprctl",
-                "keyword",
-                "layerrule",
-                `ignorealpha 0.2, ${name}`,
-              ]);
-            } else {
-              Utils.execAsync([
-                "hyprctl",
-                "keyword",
-                "layerrule",
-                `ignorealpha 0.6, ${name}`,
-              ]);
-            }
-          });
-        }
-      }
+  const noIgnorealpha = ["verification", "powermenu", "lockscreen"];
 
-      for (const name of ["verification", "powermenu"])
-        Utils.execAsync(["hyprctl", "keyword", "layerrule", `blur, ${name}`]);
-    });
-
-    JSON.parse(Utils.exec("hyprctl -j monitors")).forEach(({ name }) => {
-      Utils.execAsync(`hyprctl keyword monitor ${name},addreserved,0,0,0,0`);
-    });
-  } catch (error) {
-    logError(error);
-  }
+  sendBatch(
+    App.windows.flatMap(({ name }) => [
+      `layerrule blur, ${name}`,
+      noIgnorealpha.some((skip) => name?.includes(skip))
+        ? ""
+        : `layerrule ignorealpha 0.6, ${name}`,
+    ]),
+  );
 }
 
 export async function globalServices() {
@@ -99,6 +70,16 @@ export async function globalServices() {
   globalThis.recorder = (
     await import("./widgets/services/screenRecord.js")
   ).default;
+  globalThis.indicator = (
+    await import("./widgets/services/onScreenIndicator.js")
+  ).default;
+  globalThis.audio = Audio;
+  globalThis.brightness = (
+    await import("./widgets/services/brightness.js")
+  ).default;
+  globalThis.capsLock = () => {
+    capsLockState.value = Utils.exec("brightnessctl -d input3::capslock g");
+  };
 }
 
 export function range(length, start = 1) {

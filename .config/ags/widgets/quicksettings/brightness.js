@@ -7,14 +7,10 @@ export const BrightnessSlider = (props) =>
     drawValue: false,
     hexpand: true,
     min: 0.1,
-    connections: [
-      [
-        Brightness,
-        (slider) => {
-          slider.value = Brightness.screen;
-        },
-      ],
-    ],
+    setup: (self) =>
+      self.hook(Brightness, (slider) => {
+        slider.value = Brightness.screen;
+      }),
     onChange: ({ value }) => (Brightness.screen = value),
   });
 
@@ -27,10 +23,11 @@ export const Indicator = (props) =>
 export const PercentLabel = (props) =>
   Widget.Label({
     ...props,
-    connections: [
-      [
+    setup: (self) =>
+      self.bind(
+        "label",
         Brightness,
-        (label) => (label.label = `${Math.floor(Brightness.screen * 100)}%`),
-      ],
-    ],
+        "screen",
+        (v) => `${Math.floor(v * 100)}%`,
+      ),
   });

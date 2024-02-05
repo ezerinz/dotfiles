@@ -56,7 +56,6 @@ class Indicator extends Service {
       this.popup((value * 33 + 1) / 100, icons.brightness.keyboard);
     });
   }
-
   connect(event = "popup", callback) {
     return super.connect(event, callback);
   }

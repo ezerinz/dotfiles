@@ -30,6 +30,13 @@
     border-radius: 0 0 8px 8px;
     padding: 2px 4px;
 
+    &.lockkeys.active {
+      background-color: transparent;
+      color: $fg_color;
+      font-size: 24px;
+      background-image: none;
+    }
+
     &:hover {
       background-color: transparentize($color: $fg_color, $amount: 0.9);
     }

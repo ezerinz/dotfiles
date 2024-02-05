@@ -5,14 +5,11 @@ const DNDIndicator = ({
   noisy = Widget.Icon("notification-symbolic"),
 } = {}) =>
   Widget.Stack({
-    items: [
-      ["true", silent],
-      ["false", noisy],
-    ],
-    setup: (self) =>
-      self.hook(Notifications, (stack) => {
-        stack.shown = `${Notifications.dnd}`;
-      }),
+    children: {
+      true: silent,
+      false: noisy,
+    },
+    setup: (self) => self.bind("shown", Notifications, "dnd", (v) => `${v}`),
   });
 
 export default () =>

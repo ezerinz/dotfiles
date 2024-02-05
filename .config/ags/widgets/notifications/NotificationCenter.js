@@ -94,9 +94,9 @@ const Header = () =>
 export default ({ anchor = ["top", "left"], layout = "top" } = {}) =>
   PopupWindow({
     name: "notification-center",
-    layout,
+    // layout,
     anchor,
-    content: Widget.Box({
+    child: Widget.Box({
       className: "notification__center",
       vertical: true,
       children: [Header(), NotificationList()],

@@ -91,5 +91,6 @@ const Applauncher = ({ windowName = "applauncher" } = {}) => {
 export default () =>
   PopupWindow({
     name: "applauncher",
-    content: Applauncher(),
+    transition: "none",
+    child: Applauncher(),
   });

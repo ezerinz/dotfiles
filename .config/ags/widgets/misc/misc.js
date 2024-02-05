@@ -109,7 +109,7 @@ export const HoverRevealer = ({
   child,
   direction = "left",
   duration = 300,
-  connections,
+  setup,
   ...rest
 }) =>
   Widget.Box({
@@ -138,7 +138,7 @@ export const HoverRevealer = ({
             direction === "down" || direction === "right" ? indicator : null,
             Widget.Revealer({
               transition: `slide_${direction}`,
-              connections,
+              setup,
               transitionDuration: duration,
               child,
             }),

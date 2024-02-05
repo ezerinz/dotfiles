@@ -33,7 +33,7 @@ const Arrow = (menu, toggleOn) =>
     child: Widget.Icon({
       className: "icon",
       icon: "pan-end-symbolic",
-      properties: [
+      attribute: [
         ["deg", 0],
         ["opened", false],
       ],
@@ -211,32 +211,6 @@ const BluetoothToggle = () =>
     },
     name: "bluetooth",
   });
-
-// Box({
-//   className: "toggle-arrow",
-//   connections: [
-//     [
-//       Powerprofile,
-//       (w) =>
-//         w.toggleClassName(
-//           "active",
-//           Powerprofile.powerprofile == "performance"
-//         ),
-//     ],
-//   ],
-//   children: [
-//     ArrowLabel({
-//       menu: "powerprofile",
-//       label: Box({
-//         hexpand: true,
-//         children: [
-//           Icon("speedometer-symbolic"),
-//           powerprofile.PowerModeLabel(),
-//         ],
-//       }),
-//     }),
-//   ],
-// });
 
 const SmallToggle = (toggle, indicator) =>
   toggle({
@@ -419,7 +393,7 @@ const PopUpContent = () =>
 export default ({ anchor = ["top", "right"], layout = "top right" } = {}) =>
   PopupWindow({
     name: "quicksettings",
-    layout,
+    // layout,
     anchor,
-    content: PopUpContent(),
+    child: PopUpContent(),
   });

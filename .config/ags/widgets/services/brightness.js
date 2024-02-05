@@ -3,6 +3,7 @@ import { Service, Utils } from "../../imports.js";
 // Change this to whatever keyboard you have
 // you can check with brightnessctl --list
 const KBD = "asus::kbd_backlight";
+const CAPSLOCK = "input3::capslock";
 
 class Brightness extends Service {
   static {
@@ -11,10 +12,18 @@ class Brightness extends Service {
 
   _kbd = 0;
   _screen = 0;
+  _capsLock = 0;
 
   get kbd() {
     return this._kbd;
   }
+
+  get capsLock() {
+    this._capsLock = Number(Utils.exec(`brightnessctl -d ${CAPSLOCK} g`));
+    this.emit("caps-lock-updated");
+    return this.capsLock;
+  }
+
   get screen() {
     return this._screen;
   }
@@ -46,6 +55,7 @@ class Brightness extends Service {
   constructor() {
     super();
     this._kbd = Number(Utils.exec(`brightnessctl -d ${KBD} g`));
+    // this._capsLock = Number(Utils.exec(`brightnessctl -d ${CAPSLOCK} g`));
     this._kbdMax = Number(Utils.exec(`brightnessctl -d ${KBD} m`));
     this._screen =
       Number(Utils.exec("brightnessctl g")) /

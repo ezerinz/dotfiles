@@ -18,45 +18,39 @@ export const OnScreenIndicator = ({ height = 300, width = 48 } = {}) =>
           width,
           height,
           vertical: true,
-          setup: (self) =>
-            self.hook(Indicator, (progress, value) => progress.setValue(value)),
           child: Widget.Stack({
             vpack: "start",
             hpack: "center",
             hexpand: false,
-            items: [
-              [
-                "true",
-                Widget.Icon({
-                  hpack: "center",
-                  size: width,
-                  connections: [
-                    [Indicator, (icon, _v, name) => (icon.icon = name || "")],
-                  ],
-                }),
-              ],
-              [
-                "false",
-                FontIcon({
-                  hpack: "center",
-                  hexpand: true,
-                  css: `font-size: ${width}px;`,
-                  connections: [
-                    [Indicator, (icon, _v, name) => (icon.icon = name || "")],
-                  ],
-                }),
-              ],
-            ],
-            connections: [
-              [
-                Indicator,
-                (stack, _v, name) => {
-                  stack.shown = `${!!Utils.lookUpIcon(name)}`;
-                },
-              ],
-            ],
+            children: {
+              true: Widget.Icon({
+                hpack: "center",
+                size: width,
+                setup: (self) =>
+                  self.hook(
+                    Indicator,
+                    (icon, _v, name) => (icon.icon = name || ""),
+                  ),
+              }),
+
+              false: FontIcon({
+                hpack: "center",
+                hexpand: true,
+                css: `font-size: ${width}px;`,
+                setup: (self) =>
+                  self.hook(
+                    Indicator,
+                    (icon, _v, name) => (icon.icon = name || ""),
+                  ),
+              }),
+            },
+            setup: (self) => {
+              self.hook(Indicator, (stack, _v, name) => {
+                stack.shown = `${!!Utils.lookUpIcon(name)}`;
+              });
+            },
           }),
-        }),
+        }).hook(Indicator, (progress, value) => progress.setValue(value)),
       }),
     ],
   });

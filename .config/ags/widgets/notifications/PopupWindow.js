@@ -7,9 +7,9 @@ const Popups = () => {
   const onDismissed = (box, id, force = false) => {
     if (!id || !map.has(id)) return;
 
-    if (map.get(id)._hovered.value && !force) return;
+    if (map.get(id).isHovered() && !force) return;
 
-    if (map.size - 1 === 0) box.get_parent().revealChild = false;
+    if (map.size - 1 === 0) box.get_parent().reveal_child = false;
 
     Utils.timeout(200, () => {
       map.get(id)?.destroy();
@@ -24,17 +24,23 @@ const Popups = () => {
     map.set(id, Notification(Notifications.getNotification(id)));
     box.children = Array.from(map.values()).reverse();
     Utils.timeout(10, () => {
-      box.get_parent().revealChild = true;
+      box.get_parent().reveal_child = true;
     });
   };
 
   return Widget.Box({
     vertical: true,
-    setup: (self) =>
-      self
-        .hook(Notifications, onNotified, "notified")
-        .hook(Notifications, onDismissed, "dismissed")
-        .hook(Notifications, (box, id) => onDismissed(box, id, true), "closed"),
+    setup: (self) => {
+      self.hook(Notifications, onNotified, "notified");
+
+      self.hook(Notifications, onDismissed, "dismissed");
+
+      self.hook(
+        Notifications,
+        (box, id) => onDismissed(box, id, true),
+        "closed",
+      );
+    },
   });
 };
 

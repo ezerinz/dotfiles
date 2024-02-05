@@ -3,23 +3,21 @@ import { Widget, Network, Variable, Utils } from "../../imports.js";
 export const SSIDLabel = (props) =>
   Widget.Label({
     ...props,
-    connections: [
-      [
-        Network,
-        (label) => {
-          label.label = Network.wifi?.ssid || "";
-          label.visible = Network.wifi.enabled;
-        },
-      ],
-    ],
+    setup: (self) =>
+      self.hook(Network, (label) => {
+        label.label = Network.wifi?.ssid || "";
+        label.visible = Network.wifi.enabled;
+      }),
   });
 
 export const WifiStrengthLabel = (props) =>
   Widget.Label({
     ...props,
-    connections: [
-      [Network, (label) => (label.label = `${Network.wifi?.strength || -1}`)],
-    ],
+    setup: (self) =>
+      self.hook(
+        Network,
+        (label) => (label.label = `${Network.wifi?.strength || -1}`),
+      ),
   });
 
 export const WiredIndicator = ({
@@ -30,72 +28,64 @@ export const WiredIndicator = ({
   unknown = Widget.Icon("content-loading-symbolic"),
 } = {}) =>
   Widget.Stack({
-    items: [
-      ["unknown", unknown],
-      ["disconnected", disconnected],
-      ["disabled", disabled],
-      ["connected", connected],
-      ["connecting", connecting],
-    ],
-    connections: [
-      [
-        Network,
-        (stack) => {
-          if (!Network.wired) return;
+    children: {
+      unknown: unknown,
+      disconnected: disconnected,
+      disabled: disabled,
+      connected: connected,
+      connecting: connecting,
+    },
+    setup: (self) =>
+      self.hook(Network, (stack) => {
+        if (!Network.wired) return;
 
-          const { internet } = Network.wired;
-          if (internet === "connected" || internet === "connecting")
-            return (stack.shown = internet);
+        const { internet } = Network.wired;
+        if (internet === "connected" || internet === "connecting")
+          return (stack.shown = internet);
 
-          if (Network.connectivity !== "full")
-            return (stack.shown = "disconnected");
+        if (Network.connectivity !== "full")
+          return (stack.shown = "disconnected");
 
-          return (stack.shown = "disabled");
-        },
-      ],
-    ],
+        return (stack.shown = "disabled");
+      }),
   });
 
 export const WifiIndicator = ({
   disabled = Widget.Icon("network-wireless-disabled-symbolic"),
   disconnected = Widget.Icon("network-wireless-offline-symbolic"),
   connecting = Widget.Icon("network-wireless-acquiring-symbolic"),
-  connected = [
-    ["80", Widget.Icon("network-wireless-signal-excellent-symbolic")],
-    ["60", Widget.Icon("network-wireless-signal-good-symbolic")],
-    ["40", Widget.Icon("network-wireless-signal-ok-symbolic")],
-    ["20", Widget.Icon("network-wireless-signal-weak-symbolic")],
-    ["0", Widget.Icon("network-wireless-signal-none-symbolic")],
-  ],
+  connected = {
+    80: Widget.Icon("network-wireless-signal-excellent-symbolic"),
+    60: Widget.Icon("network-wireless-signal-good-symbolic"),
+    40: Widget.Icon("network-wireless-signal-ok-symbolic"),
+    20: Widget.Icon("network-wireless-signal-weak-symbolic"),
+    0: Widget.Icon("network-wireless-signal-none-symbolic"),
+  },
 } = {}) =>
   Widget.Stack({
-    items: [
-      ["disabled", disabled],
-      ["disconnected", disconnected],
-      ["connecting", connecting],
+    children: {
+      disabled: disabled,
+      disconnected: disconnected,
+      connecting: connecting,
       ...connected,
-    ],
-    connections: [
-      [
-        Network,
-        (stack) => {
-          if (!Network.wifi) return;
+    },
+    setup: (self) =>
+      self.hook(Network, (stack) => {
+        if (!Network.wifi) return;
 
-          const { internet, enabled, strength } = Network.wifi;
-          if (internet === "connected") {
-            for (const threshold of [80, 60, 40, 20, 0]) {
-              if (strength >= threshold) return (stack.shown = `${threshold}`);
-            }
+        const { internet, enabled, strength } = Network.wifi;
+        if (internet === "connected") {
+          for (const threshold of [80, 60, 40, 20, 0]) {
+            if (strength >= threshold) return (stack.shown = `${threshold}`);
           }
+        }
 
-          if (internet === "connecting") return (stack.shown = "connecting");
+        if (internet === "connecting") return (stack.shown = "connecting");
 
-          if (enabled) return (stack.shown = "disconnected");
+        if (enabled) return (stack.shown = "disconnected");
 
-          return (stack.shown = "disabled");
-        },
-      ],
-    ],
+        return (stack.shown = "disabled");
+      }),
   });
 
 export const Indicator = ({
@@ -104,11 +94,11 @@ export const Indicator = ({
 } = {}) =>
   Widget.Stack({
     className: "network",
-    items: [
-      ["wired", wired],
-      ["wifi", wifi],
-    ],
-    binds: [["shown", Network, "primary"]],
+    children: {
+      wired: wired,
+      wifi: wifi,
+    },
+    setup: (self) => self.bind("shown", Network, "primary", (v) => v),
   });
 
 const icons = [
@@ -123,33 +113,32 @@ export const WifiSelection = (props) =>
   Widget.Box({
     ...props,
     vertical: true,
-    connections: [
-      [
+    setup: (self) =>
+      self.hook(
         Network,
         (box) =>
-        (box.children = Network.wifi?.accessPoints.map((ap) =>
-          Widget.Button({
-            onClicked: () => {
-              Utils.execAsync(`nmcli device wifi connect ${ap.bssid}`);
-            },
-            child: Widget.Box({
-              children: [
-                Widget.Icon(
-                  icons.find(({ value }) => value <= ap.strength).icon,
-                ),
-                Widget.Label(ap.ssid),
-                ap.active &&
-                Widget.Icon({
-                  icon: "object-select-symbolic",
-                  hexpand: true,
-                  hpack: "end",
-                }),
-              ],
+          (box.children = Network.wifi?.accessPoints.map((ap) =>
+            Widget.Button({
+              onClicked: () => {
+                Utils.execAsync(`nmcli device wifi connect ${ap.bssid}`);
+              },
+              child: Widget.Box({
+                children: [
+                  Widget.Icon(
+                    icons.find(({ value }) => value <= ap.strength).icon,
+                  ),
+                  Widget.Label(ap.ssid),
+                  ap.active &&
+                    Widget.Icon({
+                      icon: "object-select-symbolic",
+                      hexpand: true,
+                      hpack: "end",
+                    }),
+                ],
+              }),
             }),
-          }),
-        )),
-      ],
-    ],
+          )),
+      ),
   });
 
 // bro I don't even know what I'm doing
@@ -223,14 +212,8 @@ const NetworkSpeed = ({ interval = 1000, ...props } = {}) => {
   return Widget.Label({
     ...props,
     className: "speed",
-    connections: [
-      [
-        NetworkSpeedVariables,
-        (label) => {
-          label.label = NetworkSpeedVariables.value.toString();
-        },
-      ],
-    ],
+    setup: (self) =>
+      self.bind("label", NetworkSpeedVariables, "value", (v) => v.toString()),
   });
 };
 
