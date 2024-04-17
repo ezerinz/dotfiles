@@ -1,10 +1,10 @@
 {
   "wallpaper": {
     "folder": "{{home}}/wallpapers",
-    "current": "pawel-czerwinski-unsplash.jpg"
+    "current": "astronaut-sitting.png"
   },
   "theme": {
-    "dark_mode": false,
+    "dark_mode": true,
     "window_margin": "6, 12, 12, 12",
     "hyprland_window_margin": "6, 12, 12, 12",
     "border_radius": "8",
