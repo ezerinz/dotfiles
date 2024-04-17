@@ -1,15 +1,13 @@
 # Dotfiles
 My personal dotfiles. 
-- WM/Compositor: Hyprland
-- Terminal: Kitty
+- Compositor: Hyprland
+- Terminal: Alacritty
 - Text editor: Neovim
 
-![2023-08-25_00-26-31](https://github.com/ezerinz/dotfiles/assets/100193740/0e1e7765-0921-442f-b31c-50efa122c81d)
-![2023-08-25_00-28-13](https://github.com/ezerinz/dotfiles/assets/100193740/738bce91-7252-4723-98de-ee0a08d99bb5)
-![2023-08-25_00-30-18](https://github.com/ezerinz/dotfiles/assets/100193740/48453f10-286a-43ec-a1ac-89088747d3fa)
-![2023-08-24_18-03-02](https://github.com/ezerinz/dotfiles/assets/100193740/50fede85-63aa-4c88-88ab-3ed23aebb5ad)
-![2023-08-24_18-02-49](https://github.com/ezerinz/dotfiles/assets/100193740/76292a53-2392-4d9f-a4c8-14acad13d6b4)
-![2023-08-25_00-44-42](https://github.com/ezerinz/dotfiles/assets/100193740/65083e02-b3a1-495f-a5ce-dd8052e331cd)
+![2024-04-18_04-14-11](https://github.com/ezerinz/dotfiles/assets/100193740/0d1795f7-9afa-4c34-828f-8a1b2da1de53)
+![2024-04-18_04-13-29](https://github.com/ezerinz/dotfiles/assets/100193740/ee3346b1-efc9-457b-9f9c-b0c56312192c)
+![2024-04-18_04-14-22](https://github.com/ezerinz/dotfiles/assets/100193740/eabd0415-fd0b-4b6a-9470-1c81826d37d8)
+![2024-04-18_04-26-06](https://github.com/ezerinz/dotfiles/assets/100193740/06f2c22a-bd02-405c-9482-b53cc6198ba1)
 
 ## Note
 - If you want hyprland config, you only need ags dan hypr folder.
@@ -21,5 +19,9 @@ My personal dotfiles.
 - wf-recorder
 - slurp
 - wayshot
-- powerprofilesctl
 - sassc
+- matugen
+
+### Optional
+- hyprpicker
+- libadwaita-without-adwaita
