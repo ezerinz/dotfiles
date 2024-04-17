@@ -1,0 +1,18 @@
+{
+  "wallpaper": {
+    "folder": "{{home}}/wallpapers",
+    "current": "pawel-czerwinski-unsplash.jpg"
+  },
+  "theme": {
+    "dark_mode": false,
+    "window_margin": "6, 12, 12, 12",
+    "hyprland_window_margin": "6, 12, 12, 12",
+    "border_radius": "8",
+    "bar": {
+      "margin": "12, 12, 6, 12",
+      "border_radius": "6",
+      "launcher_icon": "",
+      "workspace_active_width": "30"
+    }
+  }
+}

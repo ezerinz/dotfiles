@@ -1,0 +1,114 @@
+.panel-button {
+  &.active {
+    .panel-control-center.empty {
+      color: $background;
+    }
+  }
+
+  .panel-control-center {
+    &.empty {
+      color: transparentize($color: $on_background, $amount: 0.6);
+    }
+  }
+}
+
+.control-center__container {
+  @include window;
+
+  .brightness-box {
+    padding: 10px;
+    padding-bottom: 0px;
+  }
+
+  .qs-buttons {
+    padding: 0px 10px;
+  }
+
+  .notifications__container {
+    padding-bottom: 10px;
+
+    .placeholder {
+      image {
+        font-size: 24px;
+      }
+
+      label {
+        margin-top: 6px;
+        font-size: 14px;
+      }
+    }
+
+    .header {
+      padding: 0px 10px;
+      padding-right: 13px;
+      margin-bottom: 5px;
+
+      label {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      button {
+        border-radius: $border_radius/2;
+        background-color: transparentize($color: $on_secondary, $amount: 0.3);
+        padding: 10px;
+
+        &:hover {
+          background-color: $primary_container;
+        }
+      }
+    }
+
+    .notification {
+      margin: 5px 10px;
+      margin-right: 13px;
+      background-color: transparentize($color: $on_secondary, $amount: 0.3);
+
+      .actions button {
+        background-color: transparentize($color: $on_background, $amount: 0.9);
+
+        &:hover {
+          background-color: $primary_container;
+        }
+      }
+
+      .content {
+        .description {
+          min-width: 235px;
+        }
+      }
+    }
+  }
+
+  separator {
+    background-color: transparentize($color: $on_background, $amount: 0.8);
+    min-height: 2px;
+    margin: 10px 0px;
+  }
+
+  .qs-button {
+    background-color: transparentize($color: $on_secondary, $amount: 0.3);
+    color: $on_background;
+    padding: 6px 4px;
+    // border: solid 0.5px $primary;
+
+    &:active {
+      background-color: $primary;
+      color: $on_background;
+    }
+
+    &:hover {
+      background-color: $primary_container;
+    }
+
+    .label {
+      font-weight: 500;
+      font-size: 12px;
+    }
+
+    &.active {
+      background-color: $primary;
+      color: $background;
+    }
+  }
+}

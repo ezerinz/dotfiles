@@ -1,25 +1,35 @@
-import NotificationPopup from "./widgets/notifications/PopupWindow.js";
-import NotificationCenter from "./widgets/notifications/NotificationCenter.js";
-import DatemenuPopup from "./widgets/datemenu/PopupWindow.js";
-import QSPopup from "./widgets/quicksettings/PoupWindow.js";
-import Bar from "./widgets/bar/BarWindow.js";
-import PowerMenu from "./widgets/powermenu/PowerMenu.js";
-import Verification from "./widgets/powermenu/Verification.js";
-import Osd from "./widgets/osd/OSD.js";
-import AppLauncher from "./widgets/applauncher/Applauncher.js";
-import { forMonitors } from "./utils.js";
+import BarWindow from "./widget/bar/Window.js";
+import {
+  FolderChooserWindow,
+  WallpaperPickerWindow,
+} from "./widget/wallpaper_picker/Window.js";
+import DatemenuWindow from "./widget/datemenu/Window.js";
+import AppLauncherWindow from "./widget/applauncher/Window.js";
+import HyprsplashWindow from "./widget/hyprsplash/Window.js";
+import BatteryWindow from "./widget/battery/Window.js";
+import ControlCenterWindow from "./widget/control_center/Window.js";
+import NotificationPopupWindow from "./widget/notifications/PopupWindow.js";
+import NetworkWindow from "./widget/network/Window.js";
+import VerificationWindow from "./widget/powermenu/VerificationWindow.js";
+import PowerMenuWindow from "./widget/powermenu/PowerMenuWindow.js";
+import AudioWindow from "./widget/audio/Window.js";
+import SystemMonitorWindow from "./widget/system_monitor/Window.js";
+
+App.addIcons(`${App.configDir}/assets`);
 
 export default [
-  // forMonitors(Bar),
-  // forMonitors(Osd),
-  // forMonitors(NotificationPopup),
-  Bar(),
-  Osd(),
-  NotificationPopup(),
-  AppLauncher(),
-  PowerMenu(),
-  Verification(),
-  NotificationCenter(),
-  DatemenuPopup(),
-  QSPopup(),
+  BarWindow(),
+  WallpaperPickerWindow(),
+  FolderChooserWindow(),
+  DatemenuWindow(),
+  AppLauncherWindow(),
+  BatteryWindow(),
+  NetworkWindow(),
+  ControlCenterWindow(),
+  AudioWindow(),
+  NotificationPopupWindow(),
+  PowerMenuWindow(),
+  VerificationWindow(),
+  HyprsplashWindow(),
+  SystemMonitorWindow(),
 ];

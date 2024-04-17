@@ -1,0 +1,67 @@
+@mixin window {
+  margin: $margin;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+  border-radius: $border-radius;
+
+  background-color: transparentize($color: $background, $amount: 0.3);
+  color: $on_background;
+}
+
+@mixin button1 {
+  // background-color: transparentize($color: $background, $amount: 0.5);
+  background-color: transparentize($color: $on_secondary, $amount: 0.3);
+  padding: 4px;
+  color: $inverse_surface;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  image {
+    padding-right: 6px;
+  }
+
+  &:last-child {
+    margin-bottom: 10px;
+  }
+
+  .checkmark {
+    color: $primary;
+  }
+
+  &:hover {
+    background-color: $primary_container;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+
+  &:focus {
+    background-color: $primary;
+    color: $background;
+
+    label {
+      color: $background;
+    }
+  }
+}
+
+@mixin entry {
+  border-radius: $border_radius;
+  padding: 0px 8px;
+  min-height: 35px;
+  background-color: transparentize($color: $primary, $amount: 0.1);
+  color: $background;
+  margin-left: 10px;
+  margin-top: 12px;
+  font-weight: 600;
+
+  image {
+    color: $background;
+    font-size: 16px;
+  }
+
+  entry {
+    padding-left: 10px;
+  }
+}

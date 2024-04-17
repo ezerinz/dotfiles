@@ -1,0 +1,47 @@
+.wallpaper-picker__container {
+  @include window;
+
+  label {
+    color: $inverse_surface;
+  }
+
+  .top {
+    margin: 10px;
+    margin-bottom: 0px;
+  }
+
+  .path {
+    margin: 0px 10px;
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  .entry-box {
+    @include entry;
+  }
+
+  .folder-button {
+    margin-top: 12px;
+    margin-right: 10px;
+    padding: 0px 8px;
+    background-color: $background;
+
+    image {
+      color: $inverse_surface;
+      font-size: 16px;
+    }
+
+    &:hover {
+      background-color: $primary_container;
+    }
+  }
+
+  viewport box button:last-child {
+    margin-bottom: 10px;
+  }
+
+  .item {
+    @include button1;
+    padding: 10px;
+  }
+}

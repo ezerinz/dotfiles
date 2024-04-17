@@ -1,0 +1,46 @@
+.audio__container {
+  @include window;
+  padding-bottom: 4px;
+
+  .separator {
+    margin: unset;
+    min-height: 0px;
+    background-color: transparentize($color: $on_background, $amount: 0.7);
+  }
+
+  .volume {
+    margin: 10px;
+    margin-bottom: 6px;
+
+    button {
+      padding: 2px;
+      border-radius: $border_radius / 2;
+      background-color: transparentize($color: $on_secondary, $amount: 0.3);
+
+      &:hover {
+        background-color: $primary_container;
+      }
+    }
+  }
+
+  box.slider {
+    margin: 10px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+
+  .menu {
+    min-width: 280px;
+    margin-top: 4px;
+    margin-bottom: 6px;
+    border-radius: $border_radius;
+
+    scale {
+      margin-top: 4px;
+
+      trough {
+        min-height: 10px;
+      }
+    }
+  }
+}

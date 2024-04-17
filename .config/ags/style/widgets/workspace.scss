@@ -1,0 +1,46 @@
+.workspace__container {
+  background-color: $background;
+  padding: 8px 6px;
+
+  .workspace-button {
+    border: solid 2px $on_background;
+    border-radius: $border_radius / 1.5;
+    padding: 2px;
+
+    .fill {
+      border-radius: $border_radius / 3.5;
+    }
+
+    &:hover {
+      border-color: $primary;
+    }
+
+    &.active {
+      border-color: $primary;
+
+      .fill {
+        min-width: $workspace_active_width;
+      }
+    }
+
+    &.occupied {
+      &:hover {
+        .fill {
+          background-color: $primary;
+        }
+      }
+
+      .fill {
+        background-color: $on_background;
+      }
+
+      &.active {
+        .fill {
+          background-color: $primary;
+        }
+      }
+    }
+
+    min-width: 8px;
+  }
+}

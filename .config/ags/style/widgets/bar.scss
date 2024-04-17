@@ -1,0 +1,30 @@
+$radius: $bar_border_radius;
+
+$topLeft: nth($radius, 1);
+$topRight: if(length($radius) < 2, $topLeft, nth($radius, 2));
+$bottomRight: if(length($radius) < 3, $topLeft, nth($radius, 3));
+$bottomLeft: if(length($radius) < 4, $topRight, nth($radius, 4));
+
+.bar__container {
+  @include window;
+  border-radius: $bar_border_radius;
+  margin: $bar_margin;
+
+  .panel-button {
+    border-radius: 0px;
+  }
+
+  .start {
+    .panel-button:first-child {
+      border-top-left-radius: $topLeft;
+      border-bottom-left-radius: $bottomLeft;
+    }
+  }
+
+  .end {
+    .panel-button:last-child {
+      border-top-right-radius: $topRight;
+      border-bottom-right-radius: $bottomRight;
+    }
+  }
+}

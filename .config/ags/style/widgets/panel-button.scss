@@ -1,0 +1,16 @@
+.panel-button {
+  background-color: $background;
+
+  color: $inverse_surface;
+  padding: 4px 6px;
+  font-weight: 600;
+
+  &:hover {
+    background-color: $primary_container;
+  }
+
+  &.active {
+    background-color: $primary;
+    color: $background;
+  }
+}

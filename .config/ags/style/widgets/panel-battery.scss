@@ -1,0 +1,13 @@
+.panel-button {
+  .panel-battery.charging {
+    color: $primary;
+  }
+
+  &.active {
+    .panel-battery {
+      color: $background;
+    }
+  }
+
+  //
+}

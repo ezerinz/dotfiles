@@ -1,0 +1,36 @@
+.toggle-button {
+  background-color: transparentize($color: $on_secondary, $amount: 0.3);
+
+  button {
+    box-shadow: unset;
+    border-radius: 0;
+    border-top-left-radius: $border_radius / 1.5;
+    border-bottom-left-radius: $border_radius / 1.5;
+    padding: 10px;
+  }
+
+  .label {
+    margin-left: 10px;
+  }
+
+  .arrow {
+    border-radius: 0;
+    border-top-right-radius: $border_radius / 1.5;
+    border-bottom-right-radius: $border_radius / 1.5;
+  }
+
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  border-radius: $border_radius / 1.5;
+
+  &.active {
+    background-color: $primary;
+    color: $on_primary;
+
+    button {
+      &:hover {
+        background-color: $primary;
+        color: $on_primary;
+      }
+    }
+  }
+}

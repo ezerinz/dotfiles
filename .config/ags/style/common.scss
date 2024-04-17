@@ -1,0 +1,210 @@
+* {
+  all: unset;
+  font-size: 14px;
+  font-family: "Ubuntu Nerd Font", sans-serif;
+}
+
+scale {
+  border-radius: $border_radius;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+
+  trough {
+    background-color: transparentize($color: $on_secondary, $amount: 0.3);
+
+    border-radius: $border_radius;
+    min-height: 20px;
+
+    highlight {
+      background-color: $primary;
+      border-radius: $border_radius;
+    }
+  }
+}
+
+menuitem {
+  background-color: transparentize($color: $on_secondary, $amount: 0.3);
+  border-radius: $border_radius / 1.6;
+  margin: 4px 6px;
+  padding: 4px 15px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    background-color: $primary_container;
+  }
+
+  &:first-child {
+    margin-top: 6px;
+  }
+
+  &:last-child {
+    margin-bottom: 6px;
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+menu {
+  background-color: $background;
+  border-radius: $border_radius / 1.5;
+  color: $on_background;
+  // padding: 6px;
+}
+
+separator {
+  margin: 6px 0px;
+  min-height: 1px;
+  background-color: transparentize($color: $on_background, $amount: 0.7);
+}
+
+.splash-text {
+  font-size: 14px;
+  color: $on_background;
+  font-weight: 600;
+  background-color: transparentize($color: $background, $amount: 0.4);
+}
+
+tooltip {
+  background-color: transparentize($color: $background, $amount: 0.5);
+  color: $inverse_surface;
+}
+
+scrollbar {
+  background-color: transparentize($color: $primary, $amount: 0.9);
+
+  slider {
+    min-width: 6px;
+    border-radius: $border_radius / 2;
+    background-color: $primary;
+  }
+}
+
+popover {
+  background-color: $background;
+  color: $inverse_surface;
+
+  >*>* {
+    padding: 6px;
+  }
+}
+
+dialog {
+  background-color: transparentize($color: $background, $amount: 0.3);
+  color: $inverse_surface;
+
+  .dialog-action-box {
+    background-color: transparentize($color: $background, $amount: 0.3);
+
+    button {
+      padding: 10px;
+      margin-right: 5px;
+      margin-left: 5px;
+      border: 1px solid $primary;
+    }
+  }
+
+  scrolledwindow {
+    treeview {
+      padding: 6px;
+      color: $inverse_surface;
+
+      &:disabled {
+        color: transparentize($color: $inverse_surface, $amount: 0.5);
+      }
+
+      &:selected {
+        background-color: $primary;
+        color: $background;
+      }
+
+      button {
+        // padding: 10px;
+        padding: 10px;
+      }
+    }
+  }
+
+  #pathbarbox {
+    stack {
+      .popup.toggle {
+        padding: 10px;
+      }
+
+      .linked.path-bar {
+        button {
+          background-color: transparentize($color: $background, $amount: 0.2);
+          border-left: 0.25px solid transparentize($color: $inverse_surface, $amount: 0.8);
+          border-right: 0.25px solid transparentize($color: $inverse_surface, $amount: 0.4);
+          color: $inverse_surface;
+          padding: 10px;
+
+          &:checked {
+            background-color: transparentize($color: $primary, $amount: 0.2);
+            color: $background;
+          }
+
+          &:hover {
+            background-color: transparentize($color: $primary_container,
+                $amount: 0.3);
+            color: $inverse_surface;
+          }
+        }
+      }
+    }
+  }
+
+  placessidebar {
+    background-color: transparentize($color: $background, $amount: 0.3);
+
+    row {
+      padding: 10px;
+
+      &:selected {
+        background-color: $primary;
+        color: $background;
+
+        &:hover {
+          color: $inverse_surface;
+        }
+      }
+
+      &:hover {
+        background-color: transparentize($color: $primary_container,
+            $amount: 0.3);
+      }
+
+      image {
+        padding-right: 10px;
+      }
+    }
+  }
+}
+
+window {
+  background-color: transparent;
+}
+
+switch {
+  background-color: transparentize($color: $on_surface, $amount: 0.7);
+  border-radius: $border_radius / 1.3;
+  color: transparent;
+
+  slider {
+    background-color: $primary;
+    border-radius: $border_radius / 1.3;
+    min-width: 12px;
+  }
+}
+
+button {
+  font-weight: 600;
+  border-radius: $border_radius;
+
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+
+  &:hover {
+    background-color: $primary_container;
+  }
+}

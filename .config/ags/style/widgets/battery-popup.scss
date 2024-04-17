@@ -1,0 +1,76 @@
+.battery-popup__container {
+  padding: 10px;
+  min-width: 300px;
+  @include window;
+
+  .battery-info__container {
+    .percent {
+      font-size: 30px;
+      color: $on_primary;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+
+    .levelbar {
+      trough {
+        min-height: 50px;
+        box-shadow: 1px 1px 2px transparentize($color: rgb(0, 0, 0), $amount: 0.7);
+        border-radius: $border_radius;
+
+        block {
+          &:first-child {
+            border-top-left-radius: $border_radius;
+            border-bottom-left-radius: $border_radius;
+          }
+
+          &:last-child {
+            border-bottom-right-radius: $border_radius;
+            border-top-right-radius: $border_radius;
+          }
+
+          &.empty {
+            background-color: transparentize($color: $on_secondary,
+                $amount: 0.3);
+          }
+
+          &.filled {
+            background-color: $primary;
+          }
+        }
+      }
+    }
+
+    .time-remaining {
+      color: $inverse_surface;
+      font-size: 13px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+  }
+
+  .power-profile__container {
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .item {
+      box-shadow: 1px 1px 2px transparentize($color: rgb(0, 0, 0), $amount: 0.7);
+      border-radius: $border_radius / 1.5;
+      color: $inverse_surface;
+      background-color: transparentize($color: $on_secondary, $amount: 0.3);
+      min-height: 24px;
+
+      &:hover {
+        background-color: $primary_container;
+      }
+
+      &.active {
+        background-color: $primary;
+        color: $background;
+      }
+    }
+  }
+}

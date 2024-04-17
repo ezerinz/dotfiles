@@ -1,0 +1,13 @@
+.applauncher__container {
+  @include window;
+
+  .item {
+    @include button1;
+  }
+
+  .entry-box {
+    @include entry;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
