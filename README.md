@@ -12,6 +12,7 @@ My personal dotfiles.
 ## Note
 - If you want hyprland config, you only need ags dan hypr folder.
 - Something may not work for you, I use this configuration in my used Thinkpad x270 and didn't think about dual monitor.
+- Please forgive my poorly written scss/css & js
 
 ### Dependencies
 - hyprland (ofc)
