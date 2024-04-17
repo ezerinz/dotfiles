@@ -1,0 +1,17 @@
+import = ['~/.config/alacritty/generated-colors.toml']
+
+[window]
+decorations = "None"
+dynamic_padding = true
+opacity = 0.7
+
+[window.dimensions]
+columns = 55
+lines = 12
+
+[font.normal]
+family = "JetBrainsMono NFM"
+style = "Medium"
+
+[font]
+size = 11
