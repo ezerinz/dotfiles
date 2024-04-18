@@ -24,8 +24,10 @@ export default () =>
     onScrollUp: () => Utils.exec("hyprnome"),
     onScrollDown: () => Utils.exec("hyprnome --previous -n"),
     child: Widget.Box({
-      class_name: "workspace__container",
+      class_names: ["workspace__container", "panel-button"],
       spacing: 4,
+      hexpand: false,
+      vexpand: false,
       children: hyprland.bind("workspaces").as((ws) => {
         ws.push({
           id: ws[ws.length - 1].id + 1,

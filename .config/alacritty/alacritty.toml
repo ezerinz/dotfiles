@@ -4,10 +4,8 @@ import = ['~/.config/alacritty/generated-colors.toml']
 decorations = "None"
 dynamic_padding = true
 opacity = 0.7
-
-[window.dimensions]
-columns = 55
-lines = 12
+dimensions = { columns = 55, lines = 12 }
+padding = { x = 10, y = 10 }
 
 [font.normal]
 family = "JetBrainsMono NFM"

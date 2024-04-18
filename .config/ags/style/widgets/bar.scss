@@ -7,24 +7,25 @@ $bottomLeft: if(length($radius) < 4, $topRight, nth($radius, 4));
 
 .bar__container {
   @include window;
+  // padding: 4px;
   border-radius: $bar_border_radius;
   margin: $bar_margin;
 
-  .panel-button {
-    border-radius: 0px;
-  }
+  // .panel-button {
+  //   border-radius: 0px;
+  // }
 
-  .start {
-    .panel-button:first-child {
-      border-top-left-radius: $topLeft;
-      border-bottom-left-radius: $bottomLeft;
-    }
-  }
-
-  .end {
-    .panel-button:last-child {
-      border-top-right-radius: $topRight;
-      border-bottom-right-radius: $bottomRight;
-    }
-  }
+  // .start {
+  //   .panel-button:first-child {
+  //     border-top-left-radius: $topLeft;
+  //     border-bottom-left-radius: $bottomLeft;
+  //   }
+  // }
+  //
+  // .end {
+  //   .panel-button:last-child {
+  //     border-top-right-radius: $topRight;
+  //     border-bottom-right-radius: $bottomRight;
+  //   }
+  // }
 }

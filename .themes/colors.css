@@ -1,5 +1,5 @@
-@define-color accent_bg_color #ffb59e;
-@define-color view_bg_color alpha(#1a110f, 0.7);
-@define-color sidebar_bg_color alpha(#1a110f, 0.7);
-@define-color headerbar_bg_color #1a110f;
-@define-color popover_bg_color alpha(#1a110f, 0.7);
+@define-color accent_bg_color #ffb4a9;
+@define-color view_bg_color alpha(#1a1110, 0.7);
+@define-color sidebar_bg_color alpha(#1a1110, 0.7);
+@define-color headerbar_bg_color #1a1110;
+@define-color popover_bg_color alpha(#1a1110, 0.7);

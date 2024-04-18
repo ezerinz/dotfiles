@@ -63,7 +63,7 @@ separator {
   font-size: 14px;
   color: $on_background;
   font-weight: 600;
-  background-color: transparentize($color: $background, $amount: 0.4);
+  // background-color: transparentize($color: $background, $amount: 0.4);
 }
 
 tooltip {

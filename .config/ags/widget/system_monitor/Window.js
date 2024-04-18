@@ -103,11 +103,11 @@ const DayDots = () =>
     class_name: "day-dots",
     spacing: 8,
     hpack: "center",
-    setup: (self) => {
-      const t = GLib.DateTime.new_now_local();
+    //I guess this is not efficient?
+    children: clock.bind().as((t) => {
       const format = Number(t.format("%u"));
       const last = 7 - format;
-      self.children = [
+      return [
         ...Array(format)
           .fill()
           .map(() => Widget.Box({ class_name: "fill" })),
@@ -115,7 +115,20 @@ const DayDots = () =>
           .fill()
           .map(() => Widget.Box({ class_name: "empty" })),
       ];
-    },
+    }),
+    // setup: (self) => {
+    //   const t = GLib.DateTime.new_now_local();
+    //   const format = Number(t.format("%u"));
+    //   const last = 7 - format;
+    //   self.children = [
+    //     ...Array(format)
+    //       .fill()
+    //       .map(() => Widget.Box({ class_name: "fill" })),
+    //     ...Array(last)
+    //       .fill()
+    //       .map(() => Widget.Box({ class_name: "empty" })),
+    //   ];
+    // },
   });
 
 const Container = () =>

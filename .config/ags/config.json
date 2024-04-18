@@ -1,7 +1,7 @@
 {
   "wallpaper": {
     "folder": "{{home}}/wallpapers",
-    "current": "astronaut-sitting.png"
+    "current": "pink-light-spin.jpg"
   },
   "theme": {
     "dark_mode": true,
@@ -11,7 +11,7 @@
     "bar": {
       "margin": "12, 12, 6, 12",
       "border_radius": "6",
-      "launcher_icon": "",
+      "launcher_icon": "",
       "workspace_active_width": "30"
     }
   }

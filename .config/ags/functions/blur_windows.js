@@ -4,7 +4,7 @@ export default function blurWindows() {
   const noIgnorealpha = [
     "verification__window",
     "powermenu__window",
-    "hyprsplash__window",
+    // "hyprsplash__window",
   ];
 
   sendBatch(
