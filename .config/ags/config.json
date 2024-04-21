@@ -4,7 +4,7 @@
     "current": "team-avatar.png"
   },
   "theme": {
-    "dark_mode": true,
+    "dark_mode": false,
     "window_margin": "0, 12, 12, 12",
     "hyprland_window_margin": "0, 12, 12, 12",
     "border_radius": "10, 10",

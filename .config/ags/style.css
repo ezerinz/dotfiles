@@ -8,20 +8,20 @@
   margin: 0px 12px 12px 12px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: 10px 10px 10px 10px;
-  background-color: rgba(26, 17, 15, 0.7);
-  color: #f1dfda;
+  background-color: rgba(255, 248, 246, 0.7);
+  color: #231917;
 }
 
 .entry-box {
   border-radius: 10px 10px 10px 10px;
   padding: 0px 8px;
   min-height: 35px;
-  background-color: #ffb5a0;
-  color: #1a110f;
+  background-color: #8f4c38;
+  color: #fff8f6;
   font-weight: 600;
 }
 .entry-box image {
-  color: #1a110f;
+  color: #fff8f6;
   font-size: 16px;
 }
 .entry-box entry {
@@ -29,9 +29,9 @@
 }
 
 scrolledwindow .item {
-  background-color: #442a22;
+  background-color: #ffffff;
   padding: 4px;
-  color: #f1dfda;
+  color: #392e2b;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -42,20 +42,20 @@ scrolledwindow .item:last-child {
   margin-bottom: 10px;
 }
 scrolledwindow .item .checkmark {
-  color: #ffb5a0;
+  color: #8f4c38;
 }
 scrolledwindow .item:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 scrolledwindow .item:active {
   background-color: transparent;
 }
 scrolledwindow .item:focus {
-  background-color: #ffb5a0;
-  color: #1a110f;
+  background-color: #8f4c38;
+  color: #fff8f6;
 }
 scrolledwindow .item:focus label {
-  color: #1a110f;
+  color: #fff8f6;
 }
 
 button {
@@ -64,46 +64,46 @@ button {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 
 .panel-button {
-  background-color: #1a110f;
-  color: #ffb5a0;
+  background-color: #ffffff;
+  color: #231917;
   padding: 4px 6px;
   font-weight: 600;
   border-radius: 4px 4px 4px 4px;
   margin: 3px 0px 3px 0px;
-  box-shadow: none;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 .panel-button .panel-control-center.empty {
-  color: rgba(241, 223, 218, 0.4);
+  color: rgba(35, 25, 23, 0.4);
 }
 .panel-button .panel-battery.charging {
-  color: #ffb5a0;
+  color: #8f4c38;
 }
 .panel-button.active .panel-battery {
-  color: #1a110f;
+  color: #fff8f6;
 }
 .panel-button.active .panel-control-center.empty {
-  color: #1a110f;
+  color: #fff8f6;
 }
 .panel-button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .panel-button.active {
-  background-color: #ffb5a0;
-  color: #1a110f;
+  background-color: #8f4c38;
+  color: #fff8f6;
 }
 
 .toggle-button {
-  background-color: #442a22;
-  color: #f1dfda;
+  background-color: #ffffff;
+  color: #231917;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
 }
 .toggle-button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .toggle-button .icon {
   margin-right: 8px;
@@ -122,18 +122,18 @@ button:hover {
   border-bottom-left-radius: 0px;
 }
 .toggle-button button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .toggle-button.active {
-  background-color: #ffb5a0;
-  color: #1a110f;
+  background-color: #8f4c38;
+  color: #fff8f6;
 }
 .toggle-button.active button:hover {
   background-color: transparent;
 }
 
 .menu {
-  background-color: #442a22;
+  background-color: #ffffff;
   margin: 0px 10px;
   min-width: 280px;
   border-radius: 10px 10px 10px 10px;
@@ -156,7 +156,7 @@ button:hover {
 }
 .menu .content.vertical > *:first-child > * {
   margin: 3px 10px;
-  border: 1px solid rgba(241, 223, 218, 0.2);
+  border: 1px solid rgba(35, 25, 23, 0.2);
   box-shadow: unset;
   padding: 6px;
   border-radius: 5px 5px 5px 5px;
@@ -173,7 +173,7 @@ button:hover {
 
 separator {
   min-height: 1px;
-  background-color: rgba(241, 223, 218, 0.2);
+  background-color: rgba(35, 25, 23, 0.2);
 }
 
 scale {
@@ -181,23 +181,23 @@ scale {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 scale trough {
-  background-color: rgba(68, 42, 34, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px 10px 10px 10px;
   min-height: 20px;
 }
 scale trough highlight {
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
   border-radius: 10px 10px 10px 10px;
 }
 
 scrollbar {
-  background-color: #442a22;
+  background-color: #ffffff;
   border-radius: 5px 5px 5px 5px;
 }
 scrollbar slider {
   min-width: 6px;
   border-radius: 5px 5px 5px 5px;
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
 }
 
 levelbar trough {
@@ -215,21 +215,21 @@ levelbar trough block:last-child {
   border-bottom-left-radius: 0px;
 }
 levelbar trough block.empty {
-  background-color: #442a22;
+  background-color: #ffffff;
 }
 levelbar trough block.filled {
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
 }
 
 menuitem {
-  background-color: #442a22;
+  background-color: #ffffff;
   border-radius: 6.25px 6.25px 6.25px 6.25px;
   margin: 4px 6px;
   padding: 4px 15px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 menuitem:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 menuitem:first-child {
   margin-top: 6px;
@@ -243,30 +243,30 @@ menuitem label {
 }
 
 menu {
-  background-color: #1a110f;
+  background-color: #fff8f6;
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
-  color: #f1dfda;
+  color: #231917;
 }
 
 .splash-text {
   font-size: 14px;
-  color: #f1dfda;
+  color: #231917;
   font-weight: 600;
 }
 
 tooltip {
-  background-color: #1a110f;
-  color: #f1dfda;
+  background-color: #fff8f6;
+  color: #231917;
   border-radius: 5px 5px 5px 5px;
 }
 
 switch {
-  background-color: rgba(241, 223, 218, 0.2);
+  background-color: rgba(35, 25, 23, 0.2);
   border-radius: 10px 10px 10px 10px;
   color: transparent;
 }
 switch slider {
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
   border-radius: 10px 10px 10px 10px;
   min-width: 12px;
 }
@@ -301,7 +301,7 @@ switch slider {
 .audio__container .menu .content.vertical > button {
   margin: 8px 10px;
   margin-bottom: 0px;
-  border: 1px solid rgba(241, 223, 218, 0.2);
+  border: 1px solid rgba(35, 25, 23, 0.2);
   box-shadow: unset;
   padding: 6px;
   border-radius: 5px 5px 5px 5px;
@@ -312,10 +312,10 @@ switch slider {
 .audio__container .arrow {
   padding: 3px;
   border-radius: 5px 5px 5px 5px;
-  background-color: #442a22;
+  background-color: #ffffff;
 }
 .audio__container .arrow:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 
 .bar__container {
@@ -335,7 +335,7 @@ switch slider {
 }
 .battery-popup__container .battery-info__container .percent {
   font-size: 30px;
-  color: #561f0f;
+  color: #ffffff;
   font-weight: 600;
   margin-left: 10px;
 }
@@ -343,7 +343,7 @@ switch slider {
   min-height: 50px;
 }
 .battery-popup__container .battery-info__container .time-remaining {
-  color: #f1dfda;
+  color: #392e2b;
   font-size: 13px;
   margin-top: 4px;
   margin-bottom: 10px;
@@ -357,16 +357,16 @@ switch slider {
 .battery-popup__container .power-profile__container .item {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
-  color: #f1dfda;
-  background-color: #442a22;
+  color: #392e2b;
+  background-color: #ffffff;
   min-height: 24px;
 }
 .battery-popup__container .power-profile__container .item:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .battery-popup__container .power-profile__container .item.active {
-  background-color: #ffb5a0;
-  color: #1a110f;
+  background-color: #8f4c38;
+  color: #fff8f6;
 }
 
 .control-center__container .brightness-box {
@@ -393,22 +393,22 @@ switch slider {
 }
 .control-center__container .notifications__container .header button {
   border-radius: 5px 5px 5px 5px;
-  background-color: #442a22;
+  background-color: #ffffff;
   padding: 10px;
 }
 .control-center__container .notifications__container .header button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .control-center__container .notifications__container .notification {
   margin: 5px 10px;
   margin-right: 13px;
-  background-color: #442a22;
+  background-color: #ffffff;
 }
 .control-center__container .notifications__container .notification .actions button {
-  background-color: rgba(241, 223, 218, 0.1);
+  background-color: rgba(35, 25, 23, 0.1);
 }
 .control-center__container .notifications__container .notification .actions button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .control-center__container .notifications__container .notification .content .description {
   min-width: 235px;
@@ -417,24 +417,24 @@ switch slider {
   padding: 10px;
 }
 .control-center__container .qs-buttons .qs-button {
-  background-color: #442a22;
-  color: #f1dfda;
+  background-color: #ffffff;
+  color: #231917;
   padding: 6px 4px;
 }
 .control-center__container .qs-buttons .qs-button:active {
-  background-color: #ffb5a0;
-  color: #f1dfda;
+  background-color: #8f4c38;
+  color: #231917;
 }
 .control-center__container .qs-buttons .qs-button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .control-center__container .qs-buttons .qs-button .label {
   font-weight: 500;
   font-size: 12px;
 }
 .control-center__container .qs-buttons .qs-button.active {
-  background-color: #ffb5a0;
-  color: #1a110f;
+  background-color: #8f4c38;
+  color: #fff8f6;
 }
 
 .datemenu__container {
@@ -455,9 +455,9 @@ switch slider {
   border-radius: unset;
 }
 .datemenu__container calendar:selected {
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
   border-radius: 0;
-  color: #1a110f;
+  color: #fff8f6;
   border-radius: 6px;
 }
 
@@ -520,14 +520,14 @@ switch slider {
   margin: 0px 12px 12px 12px;
   margin-bottom: 6px;
   border-radius: 10px 10px 10px 10px;
-  background-color: rgba(26, 17, 15, 0.7);
-  color: #f1dfda;
+  background-color: rgba(255, 248, 246, 0.7);
+  color: #231917;
 }
 .notification:hover button.close-button {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .notification.critical {
-  box-shadow: 0.9em 0.9em #ffb4ab;
+  box-shadow: 0.9em 0.9em #ba1a1a;
 }
 .notification button.close-button {
   box-shadow: unset;
@@ -540,7 +540,7 @@ switch slider {
   font-size: 16px;
 }
 .notification button.close-button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .notification .content {
   margin: 0.7em;
@@ -552,14 +552,14 @@ switch slider {
 .notification .content .time {
   font-size: 15px;
   font-weight: 600;
-  color: rgba(241, 223, 218, 0.8);
+  color: rgba(35, 25, 23, 0.8);
 }
 .notification .content .description {
   min-width: 300px;
   margin-top: 0.5em;
   font-size: 0.9em;
   font-style: italic;
-  color: rgba(241, 223, 218, 0.8);
+  color: rgba(35, 25, 23, 0.8);
 }
 .notification .content .icon {
   margin-right: 10px;
@@ -574,11 +574,11 @@ switch slider {
   border-radius: 5.8823529412px 5.8823529412px 5.8823529412px 5.8823529412px;
   padding: 4px;
   margin: 0px 6px;
-  background-color: #1a110f;
+  background-color: #fff8f6;
   font-size: 1.2em;
 }
 .actions button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .actions button:first-child {
   margin-left: 0;
@@ -588,13 +588,14 @@ switch slider {
 }
 
 .osd {
-  background-color: rgba(26, 17, 15, 0.7);
+  background-color: rgba(255, 248, 246, 0.7);
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
 }
 .osd.regular {
   margin: 12px 12px 70px 12px;
   min-width: 90px;
   padding: 8px;
+  color: #231917;
 }
 .osd.regular label {
   font-weight: 600;
@@ -611,14 +612,14 @@ switch slider {
   border-bottom-left-radius: 0px;
 }
 .osd.progress .vertical scale trough highlight {
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
 }
 .osd.progress .vertical .icon {
-  color: #1a110f;
-  background-color: #ffb5a0;
+  color: #fff8f6;
+  background-color: #8f4c38;
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
@@ -631,24 +632,24 @@ switch slider {
   border-bottom-left-radius: 0px;
 }
 .osd.progress .horizontal scale trough highlight {
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
 .osd.progress .horizontal .icon {
-  color: #1a110f;
-  background-color: #ffb5a0;
+  color: #fff8f6;
+  background-color: #8f4c38;
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
 .osd.progress .fill {
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
 }
 .osd.progress .progress {
-  background-color: rgba(68, 42, 34, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
 }
 
@@ -656,18 +657,18 @@ switch slider {
   padding: 10px;
 }
 .powermenu__container button {
-  background-color: #442a22;
+  background-color: #ffffff;
 }
 .powermenu__container button:focus {
-  background-color: #ffb5a0;
-  color: #561f0f;
+  background-color: #8f4c38;
+  color: #ffffff;
 }
 .powermenu__container button:focus:hover {
-  background-color: #ffb5a0;
-  color: #723523;
+  background-color: #8f4c38;
+  color: #ffdbd1;
 }
 .powermenu__container button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 .powermenu__container button .system-button {
   border-radius: 10px 10px 10px 10px;
@@ -696,19 +697,19 @@ switch slider {
   margin-top: 10px;
 }
 .verification__container .buttons button {
-  background-color: #442a22;
+  background-color: #ffffff;
   padding: 10px 40px;
 }
 .verification__container .buttons button:focus {
-  background-color: #ffb5a0;
-  color: #561f0f;
+  background-color: #8f4c38;
+  color: #ffffff;
 }
 .verification__container .buttons button:focus:hover {
-  background-color: #ffb5a0;
-  color: #723523;
+  background-color: #8f4c38;
+  color: #ffdbd1;
 }
 .verification__container .buttons button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 
 .system-monitor__container {
@@ -722,61 +723,61 @@ switch slider {
   min-height: 15px;
   min-width: 15px;
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
-  background-color: #ffb5a0;
-  border: solid 1px #ffb5a0;
+  background-color: #8f4c38;
+  border: solid 1px #8f4c38;
 }
 .system-monitor__container .day-dots .empty {
   min-width: 15px;
   min-height: 15px;
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
-  border: solid 1px #ffb5a0;
+  border: solid 1px #8f4c38;
 }
 .system-monitor__container .day {
   font-size: 50px;
   font-family: "Roboto Condensed";
   font-weight: 600;
-  color: #ffb5a0;
+  color: #8f4c38;
   margin-bottom: 8px;
 }
 .system-monitor__container .day-number {
   font-size: 30px;
   font-family: "Roboto Condensed";
   font-weight: 600;
-  color: rgba(241, 223, 218, 0.8);
+  color: rgba(35, 25, 23, 0.8);
 }
 .system-monitor__container .month {
   font-size: 28px;
   font-family: "Dancing Script";
-  color: rgba(241, 223, 218, 0.8);
+  color: rgba(35, 25, 23, 0.8);
 }
 .system-monitor__container .cpu-box {
   min-width: 120px;
 }
 .system-monitor__container .label {
   font-size: 14px;
-  color: #f1dfda;
+  color: #231917;
 }
 .system-monitor__container separator {
   min-height: 2px;
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
 }
 .system-monitor__container .value {
   font-weight: 600;
   font-size: 16px;
-  color: #f1dfda;
+  color: #231917;
 }
 .system-monitor__container .progress {
   min-width: 55px;
   min-height: 55px;
   font-size: 8px;
   margin: 4px;
-  background-color: #442a22;
-  color: #ffb5a0;
+  background-color: #ffffff;
+  color: #8f4c38;
 }
 .system-monitor__container .progress box {
   min-height: 55px;
   min-width: 55px;
-  background-color: #442a22;
+  background-color: #ffffff;
   margin: 14px;
   border-radius: 99px;
 }
@@ -799,46 +800,46 @@ switch slider {
   font-style: italic;
 }
 .wallpaper-picker__container .folder-button {
-  background-color: #442a22;
+  background-color: #ffffff;
   padding: 0px 10px;
   margin: 10px 0px;
   margin-right: 10px;
 }
 .wallpaper-picker__container .folder-button:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 
 popover {
-  background-color: #1a110f;
-  color: #f1dfda;
+  background-color: #fff8f6;
+  color: #231917;
 }
 popover > * > * {
   padding: 6px;
 }
 
 dialog {
-  background-color: rgba(26, 17, 15, 0.7);
-  color: #f1dfda;
+  background-color: rgba(255, 248, 246, 0.7);
+  color: #231917;
 }
 dialog .dialog-action-box {
-  background-color: rgba(26, 17, 15, 0.7);
+  background-color: rgba(255, 248, 246, 0.7);
 }
 dialog .dialog-action-box button {
   padding: 10px;
   margin-right: 5px;
   margin-left: 5px;
-  border: 1px solid #ffb5a0;
+  border: 1px solid #8f4c38;
 }
 dialog scrolledwindow treeview {
   padding: 6px;
-  color: #f1dfda;
+  color: #231917;
 }
 dialog scrolledwindow treeview:disabled {
-  color: rgba(241, 223, 218, 0.5);
+  color: rgba(35, 25, 23, 0.5);
 }
 dialog scrolledwindow treeview:selected {
-  background-color: #ffb5a0;
-  color: #1a110f;
+  background-color: #8f4c38;
+  color: #fff8f6;
 }
 dialog scrolledwindow treeview button {
   padding: 10px;
@@ -847,55 +848,55 @@ dialog #pathbarbox stack .popup.toggle {
   padding: 10px;
 }
 dialog #pathbarbox stack .linked.path-bar button {
-  background-color: rgba(26, 17, 15, 0.8);
-  border-left: 0.25px solid rgba(241, 223, 218, 0.2);
-  border-right: 0.25px solid rgba(241, 223, 218, 0.6);
-  color: #f1dfda;
+  background-color: rgba(255, 248, 246, 0.8);
+  border-left: 0.25px solid rgba(35, 25, 23, 0.2);
+  border-right: 0.25px solid rgba(35, 25, 23, 0.6);
+  color: #231917;
   padding: 10px;
 }
 dialog #pathbarbox stack .linked.path-bar button:checked {
-  background-color: rgba(255, 181, 160, 0.8);
-  color: #1a110f;
+  background-color: rgba(143, 76, 56, 0.8);
+  color: #fff8f6;
 }
 dialog #pathbarbox stack .linked.path-bar button:hover {
-  background-color: rgba(114, 53, 35, 0.7);
-  color: #f1dfda;
+  background-color: rgba(255, 219, 209, 0.7);
+  color: #231917;
 }
 dialog placessidebar {
-  background-color: rgba(26, 17, 15, 0.7);
+  background-color: rgba(255, 248, 246, 0.7);
 }
 dialog placessidebar row {
   padding: 10px;
 }
 dialog placessidebar row:selected {
-  background-color: #ffb5a0;
-  color: #1a110f;
+  background-color: #8f4c38;
+  color: #fff8f6;
 }
 dialog placessidebar row:selected:hover {
-  color: #f1dfda;
+  color: #231917;
 }
 dialog placessidebar row:hover {
-  background-color: #723523;
+  background-color: #ffdbd1;
 }
 dialog placessidebar row image {
   padding-right: 10px;
 }
 
 .workspace__container {
-  background-color: #1a110f;
-  color: #f1dfda;
+  background-color: #ffffff;
+  color: #231917;
   margin-top: 3px;
   margin-bottom: 3px;
   margin-right: 3px;
   border-radius: 4px 4px 4px 4px;
   padding-left: 6px;
   padding-right: 6px;
-  box-shadow: none;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 .workspace__container .workspace-button {
   min-height: 10px;
   min-width: 10px;
-  border: solid 2px rgba(255, 181, 160, 0.4);
+  border: solid 2px #231917;
   border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
   padding: 2px;
 }
@@ -903,22 +904,22 @@ dialog placessidebar row image {
   border-radius: 2.8571428571px 2.8571428571px 2.8571428571px 2.8571428571px;
 }
 .workspace__container .workspace-button:hover {
-  border-color: #ffb5a0;
+  border-color: #8f4c38;
 }
 .workspace__container .workspace-button.active {
-  border-color: #ffb5a0;
+  border-color: #8f4c38;
 }
 .workspace__container .workspace-button.active .fill {
   min-width: 30px;
 }
 .workspace__container .workspace-button.occupied:hover .fill {
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
 }
 .workspace__container .workspace-button.occupied .fill {
-  background-color: rgba(255, 181, 160, 0.4);
+  background-color: #231917;
 }
 .workspace__container .workspace-button.occupied.active .fill {
-  background-color: #ffb5a0;
+  background-color: #8f4c38;
 }
 
 /*# sourceMappingURL=style.css.map */
