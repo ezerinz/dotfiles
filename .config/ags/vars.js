@@ -78,7 +78,7 @@ export const configs = {
       workspace_active_width: Conf(
         "theme.bar.workspace_active_width",
         (self) => {
-          setScssVariable("workspace_active_width", self.value);
+          setScssVariable("workspace_active_width", self.value, false);
         },
       ),
     },

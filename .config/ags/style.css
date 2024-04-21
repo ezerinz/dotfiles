@@ -7,21 +7,21 @@
 .window-content {
   margin: 0px 12px 12px 12px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  border-radius: 10px 10px 10px 10px;
-  background-color: rgba(255, 248, 246, 0.7);
-  color: #231917;
+  border-radius: 0px 0px 0px 0px;
+  background-color: rgba(249, 249, 255, 0.7);
+  color: #191c20;
 }
 
 .entry-box {
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   padding: 0px 8px;
   min-height: 35px;
-  background-color: #8f4c38;
-  color: #fff8f6;
+  background-color: #3d5f90;
+  color: #f9f9ff;
   font-weight: 600;
 }
 .entry-box image {
-  color: #fff8f6;
+  color: #f9f9ff;
   font-size: 16px;
 }
 .entry-box entry {
@@ -31,7 +31,7 @@
 scrolledwindow .item {
   background-color: #ffffff;
   padding: 4px;
-  color: #392e2b;
+  color: #2e3035;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -42,75 +42,75 @@ scrolledwindow .item:last-child {
   margin-bottom: 10px;
 }
 scrolledwindow .item .checkmark {
-  color: #8f4c38;
+  color: #3d5f90;
 }
 scrolledwindow .item:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 scrolledwindow .item:active {
   background-color: transparent;
 }
 scrolledwindow .item:focus {
-  background-color: #8f4c38;
-  color: #fff8f6;
+  background-color: #3d5f90;
+  color: #f9f9ff;
 }
 scrolledwindow .item:focus label {
-  color: #fff8f6;
+  color: #f9f9ff;
 }
 
 button {
   font-weight: 600;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 
 .panel-button {
   background-color: #ffffff;
-  color: #231917;
+  color: #191c20;
   padding: 4px 6px;
   font-weight: 600;
-  border-radius: 4px 4px 4px 4px;
+  border-radius: 0px 0px 0px 0px;
   margin: 3px 0px 3px 0px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 .panel-button .panel-control-center.empty {
-  color: rgba(35, 25, 23, 0.4);
+  color: rgba(25, 28, 32, 0.4);
 }
 .panel-button .panel-battery.charging {
-  color: #8f4c38;
+  color: #3d5f90;
 }
 .panel-button.active .panel-battery {
-  color: #fff8f6;
+  color: #f9f9ff;
 }
 .panel-button.active .panel-control-center.empty {
-  color: #fff8f6;
+  color: #f9f9ff;
 }
 .panel-button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .panel-button.active {
-  background-color: #8f4c38;
-  color: #fff8f6;
+  background-color: #3d5f90;
+  color: #f9f9ff;
 }
 
 .toggle-button {
   background-color: #ffffff;
-  color: #231917;
+  color: #191c20;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  border-radius: 0px 0px 0px 0px;
 }
 .toggle-button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .toggle-button .icon {
   margin-right: 8px;
 }
 .toggle-button button {
   box-shadow: unset;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  border-radius: 0px 0px 0px 0px;
   padding: 10px;
 }
 .toggle-button button:first-child {
@@ -122,11 +122,11 @@ button:hover {
   border-bottom-left-radius: 0px;
 }
 .toggle-button button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .toggle-button.active {
-  background-color: #8f4c38;
-  color: #fff8f6;
+  background-color: #3d5f90;
+  color: #f9f9ff;
 }
 .toggle-button.active button:hover {
   background-color: transparent;
@@ -136,7 +136,7 @@ button:hover {
   background-color: #ffffff;
   margin: 0px 10px;
   min-width: 280px;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 }
@@ -156,10 +156,10 @@ button:hover {
 }
 .menu .content.vertical > *:first-child > * {
   margin: 3px 10px;
-  border: 1px solid rgba(35, 25, 23, 0.2);
+  border: 1px solid rgba(25, 28, 32, 0.2);
   box-shadow: unset;
   padding: 6px;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 0px 0px 0px 0px;
 }
 .menu .content.vertical > *:first-child > * image {
   margin-right: 6px;
@@ -173,44 +173,44 @@ button:hover {
 
 separator {
   min-height: 1px;
-  background-color: rgba(35, 25, 23, 0.2);
+  background-color: rgba(25, 28, 32, 0.2);
 }
 
 scale {
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
 }
 scale trough {
   background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   min-height: 20px;
 }
 scale trough highlight {
-  background-color: #8f4c38;
-  border-radius: 10px 10px 10px 10px;
+  background-color: #3d5f90;
+  border-radius: 0px 0px 0px 0px;
 }
 
 scrollbar {
   background-color: #ffffff;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 0px 0px 0px 0px;
 }
 scrollbar slider {
   min-width: 6px;
-  border-radius: 5px 5px 5px 5px;
-  background-color: #8f4c38;
+  border-radius: 0px 0px 0px 0px;
+  background-color: #3d5f90;
 }
 
 levelbar trough {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
 }
 levelbar trough block:first-child {
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
 levelbar trough block:last-child {
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
@@ -218,18 +218,18 @@ levelbar trough block.empty {
   background-color: #ffffff;
 }
 levelbar trough block.filled {
-  background-color: #8f4c38;
+  background-color: #3d5f90;
 }
 
 menuitem {
   background-color: #ffffff;
-  border-radius: 6.25px 6.25px 6.25px 6.25px;
+  border-radius: 0px 0px 0px 0px;
   margin: 4px 6px;
   padding: 4px 15px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 menuitem:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 menuitem:first-child {
   margin-top: 6px;
@@ -243,31 +243,31 @@ menuitem label {
 }
 
 menu {
-  background-color: #fff8f6;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
-  color: #231917;
+  background-color: #f9f9ff;
+  border-radius: 0px 0px 0px 0px;
+  color: #191c20;
 }
 
 .splash-text {
   font-size: 14px;
-  color: #231917;
+  color: #191c20;
   font-weight: 600;
 }
 
 tooltip {
-  background-color: #fff8f6;
-  color: #231917;
-  border-radius: 5px 5px 5px 5px;
+  background-color: #f9f9ff;
+  color: #191c20;
+  border-radius: 0px 0px 0px 0px;
 }
 
 switch {
-  background-color: rgba(35, 25, 23, 0.2);
-  border-radius: 10px 10px 10px 10px;
+  background-color: rgba(25, 28, 32, 0.2);
+  border-radius: 0px 0px 0px 0px;
   color: transparent;
 }
 switch slider {
-  background-color: #8f4c38;
-  border-radius: 10px 10px 10px 10px;
+  background-color: #3d5f90;
+  border-radius: 0px 0px 0px 0px;
   min-width: 12px;
 }
 
@@ -292,7 +292,7 @@ switch slider {
 }
 .audio__container .menu {
   min-width: 300px;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   margin: 5px;
 }
 .audio__container .menu .content.vertical > *:first-child > *:last-child {
@@ -301,26 +301,26 @@ switch slider {
 .audio__container .menu .content.vertical > button {
   margin: 8px 10px;
   margin-bottom: 0px;
-  border: 1px solid rgba(35, 25, 23, 0.2);
+  border: 1px solid rgba(25, 28, 32, 0.2);
   box-shadow: unset;
   padding: 6px;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 0px 0px 0px 0px;
 }
 .audio__container .menu .content.vertical > button image {
   margin-right: 6px;
 }
 .audio__container .arrow {
   padding: 3px;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 0px 0px 0px 0px;
   background-color: #ffffff;
 }
 .audio__container .arrow:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 
 .bar__container {
   margin: 12px 12px 12px 12px;
-  border-radius: 6px 6px 6px 6px;
+  border-radius: 0px 0px 0px 0px;
 }
 .bar__container .start .panel-button:first-child {
   margin-left: 3px;
@@ -343,7 +343,7 @@ switch slider {
   min-height: 50px;
 }
 .battery-popup__container .battery-info__container .time-remaining {
-  color: #392e2b;
+  color: #2e3035;
   font-size: 13px;
   margin-top: 4px;
   margin-bottom: 10px;
@@ -356,17 +356,17 @@ switch slider {
 }
 .battery-popup__container .power-profile__container .item {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
-  color: #392e2b;
+  border-radius: 0px 0px 0px 0px;
+  color: #2e3035;
   background-color: #ffffff;
   min-height: 24px;
 }
 .battery-popup__container .power-profile__container .item:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .battery-popup__container .power-profile__container .item.active {
-  background-color: #8f4c38;
-  color: #fff8f6;
+  background-color: #3d5f90;
+  color: #f9f9ff;
 }
 
 .control-center__container .brightness-box {
@@ -392,12 +392,12 @@ switch slider {
   font-weight: 600;
 }
 .control-center__container .notifications__container .header button {
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 0px 0px 0px 0px;
   background-color: #ffffff;
   padding: 10px;
 }
 .control-center__container .notifications__container .header button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .control-center__container .notifications__container .notification {
   margin: 5px 10px;
@@ -405,10 +405,10 @@ switch slider {
   background-color: #ffffff;
 }
 .control-center__container .notifications__container .notification .actions button {
-  background-color: rgba(35, 25, 23, 0.1);
+  background-color: rgba(25, 28, 32, 0.1);
 }
 .control-center__container .notifications__container .notification .actions button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .control-center__container .notifications__container .notification .content .description {
   min-width: 235px;
@@ -418,23 +418,23 @@ switch slider {
 }
 .control-center__container .qs-buttons .qs-button {
   background-color: #ffffff;
-  color: #231917;
+  color: #191c20;
   padding: 6px 4px;
 }
 .control-center__container .qs-buttons .qs-button:active {
-  background-color: #8f4c38;
-  color: #231917;
+  background-color: #3d5f90;
+  color: #191c20;
 }
 .control-center__container .qs-buttons .qs-button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .control-center__container .qs-buttons .qs-button .label {
   font-weight: 500;
   font-size: 12px;
 }
 .control-center__container .qs-buttons .qs-button.active {
-  background-color: #8f4c38;
-  color: #fff8f6;
+  background-color: #3d5f90;
+  color: #f9f9ff;
 }
 
 .datemenu__container {
@@ -455,9 +455,9 @@ switch slider {
   border-radius: unset;
 }
 .datemenu__container calendar:selected {
-  background-color: #8f4c38;
+  background-color: #3d5f90;
   border-radius: 0;
-  color: #fff8f6;
+  color: #f9f9ff;
   border-radius: 6px;
 }
 
@@ -483,7 +483,7 @@ switch slider {
   min-height: 100px;
   background-size: cover;
   background-position: center;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   margin-right: 1em;
 }
 .media__container .player .position {
@@ -495,7 +495,7 @@ switch slider {
 .media__container .player button {
   padding: 4px;
   box-shadow: none;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 0px 0px 0px 0px;
 }
 
 .network-info__container {
@@ -519,12 +519,12 @@ switch slider {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   margin: 0px 12px 12px 12px;
   margin-bottom: 6px;
-  border-radius: 10px 10px 10px 10px;
-  background-color: rgba(255, 248, 246, 0.7);
-  color: #231917;
+  border-radius: 0px 0px 0px 0px;
+  background-color: rgba(249, 249, 255, 0.7);
+  color: #191c20;
 }
 .notification:hover button.close-button {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .notification.critical {
   box-shadow: 0.9em 0.9em #ba1a1a;
@@ -540,7 +540,7 @@ switch slider {
   font-size: 16px;
 }
 .notification button.close-button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .notification .content {
   margin: 0.7em;
@@ -552,14 +552,14 @@ switch slider {
 .notification .content .time {
   font-size: 15px;
   font-weight: 600;
-  color: rgba(35, 25, 23, 0.8);
+  color: rgba(25, 28, 32, 0.8);
 }
 .notification .content .description {
   min-width: 300px;
   margin-top: 0.5em;
   font-size: 0.9em;
   font-style: italic;
-  color: rgba(35, 25, 23, 0.8);
+  color: rgba(25, 28, 32, 0.8);
 }
 .notification .content .icon {
   margin-right: 10px;
@@ -571,14 +571,14 @@ switch slider {
   margin-top: 5px;
 }
 .actions button {
-  border-radius: 5.8823529412px 5.8823529412px 5.8823529412px 5.8823529412px;
+  border-radius: 0px 0px 0px 0px;
   padding: 4px;
   margin: 0px 6px;
-  background-color: #fff8f6;
+  background-color: #f9f9ff;
   font-size: 1.2em;
 }
 .actions button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .actions button:first-child {
   margin-left: 0;
@@ -588,14 +588,14 @@ switch slider {
 }
 
 .osd {
-  background-color: rgba(255, 248, 246, 0.7);
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  background-color: rgba(249, 249, 255, 0.7);
+  border-radius: 0px 0px 0px 0px;
 }
 .osd.regular {
-  margin: 12px 12px 70px 12px;
+  margin: 12px 12px 75px 12px;
   min-width: 90px;
   padding: 8px;
-  color: #231917;
+  color: #191c20;
 }
 .osd.regular label {
   font-weight: 600;
@@ -607,50 +607,50 @@ switch slider {
 .osd.progress .vertical scale trough {
   min-height: 230px;
   min-width: 40px;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  border-radius: 0px 0px 0px 0px;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
 }
 .osd.progress .vertical scale trough highlight {
-  background-color: #8f4c38;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  background-color: #3d5f90;
+  border-radius: 0px 0px 0px 0px;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
 }
 .osd.progress .vertical .icon {
-  color: #fff8f6;
-  background-color: #8f4c38;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  color: #f9f9ff;
+  background-color: #3d5f90;
+  border-radius: 0px 0px 0px 0px;
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
 }
 .osd.progress .horizontal scale trough {
   min-height: 40px;
-  min-width: 200px;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  min-width: 230px;
+  border-radius: 0px 0px 0px 0px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
 .osd.progress .horizontal scale trough highlight {
-  background-color: #8f4c38;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  background-color: #3d5f90;
+  border-radius: 0px 0px 0px 0px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
 .osd.progress .horizontal .icon {
-  color: #fff8f6;
-  background-color: #8f4c38;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  color: #f9f9ff;
+  background-color: #3d5f90;
+  border-radius: 0px 0px 0px 0px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
 .osd.progress .fill {
-  background-color: #8f4c38;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  background-color: #3d5f90;
+  border-radius: 0px 0px 0px 0px;
 }
 .osd.progress .progress {
   background-color: rgba(255, 255, 255, 0.7);
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  border-radius: 0px 0px 0px 0px;
 }
 
 .powermenu__container {
@@ -660,18 +660,18 @@ switch slider {
   background-color: #ffffff;
 }
 .powermenu__container button:focus {
-  background-color: #8f4c38;
+  background-color: #3d5f90;
   color: #ffffff;
 }
 .powermenu__container button:focus:hover {
-  background-color: #8f4c38;
-  color: #ffdbd1;
+  background-color: #3d5f90;
+  color: #d4e3ff;
 }
 .powermenu__container button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 .powermenu__container button .system-button {
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   padding: 25px;
 }
 .powermenu__container button .system-button image {
@@ -701,70 +701,70 @@ switch slider {
   padding: 10px 40px;
 }
 .verification__container .buttons button:focus {
-  background-color: #8f4c38;
+  background-color: #3d5f90;
   color: #ffffff;
 }
 .verification__container .buttons button:focus:hover {
-  background-color: #8f4c38;
-  color: #ffdbd1;
+  background-color: #3d5f90;
+  color: #d4e3ff;
 }
 .verification__container .buttons button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 
 .system-monitor__container {
   padding: 10px;
   padding-top: 0px;
-  border-radius: 10px 10px 10px 10px;
+  border-radius: 0px 0px 0px 0px;
   margin: 0px 12px 12px 12px;
   margin-bottom: 80px;
 }
 .system-monitor__container .day-dots .fill {
   min-height: 15px;
   min-width: 15px;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
-  background-color: #8f4c38;
-  border: solid 1px #8f4c38;
+  border-radius: 0px 0px 0px 0px;
+  background-color: #3d5f90;
+  border: solid 1px #3d5f90;
 }
 .system-monitor__container .day-dots .empty {
   min-width: 15px;
   min-height: 15px;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
-  border: solid 1px #8f4c38;
+  border-radius: 0px 0px 0px 0px;
+  border: solid 1px #3d5f90;
 }
 .system-monitor__container .day {
   font-size: 50px;
   font-family: "Roboto Condensed";
   font-weight: 600;
-  color: #8f4c38;
+  color: #3d5f90;
   margin-bottom: 8px;
 }
 .system-monitor__container .day-number {
   font-size: 30px;
   font-family: "Roboto Condensed";
   font-weight: 600;
-  color: rgba(35, 25, 23, 0.8);
+  color: rgba(25, 28, 32, 0.8);
 }
 .system-monitor__container .month {
   font-size: 28px;
   font-family: "Dancing Script";
-  color: rgba(35, 25, 23, 0.8);
+  color: rgba(25, 28, 32, 0.8);
 }
 .system-monitor__container .cpu-box {
   min-width: 120px;
 }
 .system-monitor__container .label {
   font-size: 14px;
-  color: #231917;
+  color: #191c20;
 }
 .system-monitor__container separator {
   min-height: 2px;
-  background-color: #8f4c38;
+  background-color: #3d5f90;
 }
 .system-monitor__container .value {
   font-weight: 600;
   font-size: 16px;
-  color: #231917;
+  color: #191c20;
 }
 .system-monitor__container .progress {
   min-width: 55px;
@@ -772,7 +772,7 @@ switch slider {
   font-size: 8px;
   margin: 4px;
   background-color: #ffffff;
-  color: #8f4c38;
+  color: #3d5f90;
 }
 .system-monitor__container .progress box {
   min-height: 55px;
@@ -806,40 +806,40 @@ switch slider {
   margin-right: 10px;
 }
 .wallpaper-picker__container .folder-button:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 
 popover {
-  background-color: #fff8f6;
-  color: #231917;
+  background-color: #f9f9ff;
+  color: #191c20;
 }
 popover > * > * {
   padding: 6px;
 }
 
 dialog {
-  background-color: rgba(255, 248, 246, 0.7);
-  color: #231917;
+  background-color: rgba(249, 249, 255, 0.7);
+  color: #191c20;
 }
 dialog .dialog-action-box {
-  background-color: rgba(255, 248, 246, 0.7);
+  background-color: rgba(249, 249, 255, 0.7);
 }
 dialog .dialog-action-box button {
   padding: 10px;
   margin-right: 5px;
   margin-left: 5px;
-  border: 1px solid #8f4c38;
+  border: 1px solid #3d5f90;
 }
 dialog scrolledwindow treeview {
   padding: 6px;
-  color: #231917;
+  color: #191c20;
 }
 dialog scrolledwindow treeview:disabled {
-  color: rgba(35, 25, 23, 0.5);
+  color: rgba(25, 28, 32, 0.5);
 }
 dialog scrolledwindow treeview:selected {
-  background-color: #8f4c38;
-  color: #fff8f6;
+  background-color: #3d5f90;
+  color: #f9f9ff;
 }
 dialog scrolledwindow treeview button {
   padding: 10px;
@@ -848,35 +848,35 @@ dialog #pathbarbox stack .popup.toggle {
   padding: 10px;
 }
 dialog #pathbarbox stack .linked.path-bar button {
-  background-color: rgba(255, 248, 246, 0.8);
-  border-left: 0.25px solid rgba(35, 25, 23, 0.2);
-  border-right: 0.25px solid rgba(35, 25, 23, 0.6);
-  color: #231917;
+  background-color: rgba(249, 249, 255, 0.8);
+  border-left: 0.25px solid rgba(25, 28, 32, 0.2);
+  border-right: 0.25px solid rgba(25, 28, 32, 0.6);
+  color: #191c20;
   padding: 10px;
 }
 dialog #pathbarbox stack .linked.path-bar button:checked {
-  background-color: rgba(143, 76, 56, 0.8);
-  color: #fff8f6;
+  background-color: rgba(61, 95, 144, 0.8);
+  color: #f9f9ff;
 }
 dialog #pathbarbox stack .linked.path-bar button:hover {
-  background-color: rgba(255, 219, 209, 0.7);
-  color: #231917;
+  background-color: rgba(212, 227, 255, 0.7);
+  color: #191c20;
 }
 dialog placessidebar {
-  background-color: rgba(255, 248, 246, 0.7);
+  background-color: rgba(249, 249, 255, 0.7);
 }
 dialog placessidebar row {
   padding: 10px;
 }
 dialog placessidebar row:selected {
-  background-color: #8f4c38;
-  color: #fff8f6;
+  background-color: #3d5f90;
+  color: #f9f9ff;
 }
 dialog placessidebar row:selected:hover {
-  color: #231917;
+  color: #191c20;
 }
 dialog placessidebar row:hover {
-  background-color: #ffdbd1;
+  background-color: #d4e3ff;
 }
 dialog placessidebar row image {
   padding-right: 10px;
@@ -884,11 +884,11 @@ dialog placessidebar row image {
 
 .workspace__container {
   background-color: #ffffff;
-  color: #231917;
+  color: #191c20;
   margin-top: 3px;
   margin-bottom: 3px;
   margin-right: 3px;
-  border-radius: 4px 4px 4px 4px;
+  border-radius: 0px 0px 0px 0px;
   padding-left: 6px;
   padding-right: 6px;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
@@ -896,30 +896,30 @@ dialog placessidebar row image {
 .workspace__container .workspace-button {
   min-height: 10px;
   min-width: 10px;
-  border: solid 2px #231917;
-  border-radius: 6.6666666667px 6.6666666667px 6.6666666667px 6.6666666667px;
+  border: solid 2px #191c20;
+  border-radius: 0px 0px 0px 0px;
   padding: 2px;
 }
 .workspace__container .workspace-button .fill {
-  border-radius: 2.8571428571px 2.8571428571px 2.8571428571px 2.8571428571px;
+  border-radius: 0px 0px 0px 0px;
 }
 .workspace__container .workspace-button:hover {
-  border-color: #8f4c38;
+  border-color: #3d5f90;
 }
 .workspace__container .workspace-button.active {
-  border-color: #8f4c38;
+  border-color: #3d5f90;
 }
 .workspace__container .workspace-button.active .fill {
-  min-width: 30px;
+  min-width: 35px;
 }
 .workspace__container .workspace-button.occupied:hover .fill {
-  background-color: #8f4c38;
+  background-color: #3d5f90;
 }
 .workspace__container .workspace-button.occupied .fill {
-  background-color: #231917;
+  background-color: #191c20;
 }
 .workspace__container .workspace-button.occupied.active .fill {
-  background-color: #8f4c38;
+  background-color: #3d5f90;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,31 +1,31 @@
 {
   "wallpaper": {
     "folder": "{{home}}/wallpapers",
-    "current": "team-avatar.png"
+    "current": "deer.jpg"
   },
   "theme": {
     "dark_mode": false,
     "window_margin": "0, 12, 12, 12",
     "hyprland_window_margin": "0, 12, 12, 12",
-    "border_radius": "10, 10",
+    "border_radius": "0",
     "bar": {
       "margin": "12, 12, 12, 12",
-      "border_radius": "6",
+      "border_radius": "0",
       "launcher_icon": "",
-      "workspace_active_width": "30"
+      "workspace_active_width": "35"
     }
   },
   "osd": {
     "regular": {
-      "position": "bottom right",
+      "position": "bottom",
       "vertical": true,
-      "margin": "12, 12, 70, 12",
+      "margin": "12, 12, 75, 12",
       "capslock": true,
       "mic": true
     },
     "progress": {
-      "position": "right",
-      "vertical": true,
+      "position": "bottom left",
+      "vertical": false,
       "margin": "12, 12, 24, 12",
       "brightness": true,
       "volume": true

@@ -101,7 +101,7 @@ button {
   }
 
   background-color: if($dark_mode, $background, $on_secondary);
-  color: if($dark_mode, $primary, $on_background);
+  color: $on_background;
   padding: 4px 6px;
   font-weight: 600;
   border-radius: divide-each($bar_border_radius, 1.5);
@@ -187,7 +187,7 @@ button {
   .content.vertical {
     margin: 8px 0px;
 
-    >*:first-child>* {
+    > *:first-child > * {
       image {
         margin-right: 6px;
       }

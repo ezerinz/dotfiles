@@ -1,0 +1,53 @@
+.workspace__container {
+  background-color: if($dark_mode, $background, $on_secondary);
+  color: $on_background;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-right: 3px;
+  border-radius: divide-each($bar_border_radius, 1.5);
+  padding-left: 6px;
+  padding-right: 6px;
+  box-shadow: if($dark_mode, none, 1px 1px 2px rgba(0, 0, 0, 0.4));
+
+  .workspace-button {
+    min-height: 10px;
+    min-width: 10px;
+    border: solid 2px $on_background;
+    border-radius: divide-each($border_radius, 1.6);
+    padding: 2px;
+
+    .fill {
+      border-radius: divide-each($border_radius, 3.5);
+    }
+
+    &:hover {
+      border-color: $primary;
+    }
+
+    &.active {
+      border-color: $primary;
+
+      .fill {
+        min-width: $workspace_active_width;
+      }
+    }
+
+    &.occupied {
+      &:hover {
+        .fill {
+          background-color: $primary;
+        }
+      }
+
+      .fill {
+        background-color: $on_background;
+      }
+
+      &.active {
+        .fill {
+          background-color: $primary;
+        }
+      }
+    }
+  }
+}
