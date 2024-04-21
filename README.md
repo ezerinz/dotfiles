@@ -22,6 +22,9 @@ My personal dotfiles.
 - wayshot
 - sassc
 - matugen
+```
+hyprland dart-sass aylurs-gtk-shell slurp wf-recorder wayshot matugen-bin hyprpicker libadwaita-without-adwaita-git
+```
 
 ### Optional
 - hyprpicker
