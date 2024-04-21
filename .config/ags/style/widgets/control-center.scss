@@ -1,31 +1,10 @@
-.panel-button {
-  &.active {
-    .panel-control-center.empty {
-      color: $background;
-    }
-  }
-
-  .panel-control-center {
-    &.empty {
-      color: transparentize($color: $on_background, $amount: 0.6);
-    }
-  }
-}
-
 .control-center__container {
-  @include window;
-
   .brightness-box {
     padding: 10px;
-    padding-bottom: 0px;
-  }
-
-  .qs-buttons {
-    padding: 0px 10px;
   }
 
   .notifications__container {
-    padding-bottom: 10px;
+    padding: 10px 0px;
 
     .placeholder {
       image {
@@ -49,8 +28,8 @@
       }
 
       button {
-        border-radius: $border_radius/2;
-        background-color: transparentize($color: $on_secondary, $amount: 0.3);
+        border-radius: divide-each($border_radius, 2);
+        background-color: $on_secondary;
         padding: 10px;
 
         &:hover {
@@ -62,7 +41,7 @@
     .notification {
       margin: 5px 10px;
       margin-right: 13px;
-      background-color: transparentize($color: $on_secondary, $amount: 0.3);
+      background-color: $on_secondary;
 
       .actions button {
         background-color: transparentize($color: $on_background, $amount: 0.9);
@@ -80,35 +59,32 @@
     }
   }
 
-  separator {
-    background-color: transparentize($color: $on_background, $amount: 0.8);
-    min-height: 2px;
-    margin: 10px 0px;
-  }
+  .qs-buttons {
+    padding: 10px;
 
-  .qs-button {
-    background-color: transparentize($color: $on_secondary, $amount: 0.3);
-    color: $on_background;
-    padding: 6px 4px;
-    // border: solid 0.5px $primary;
-
-    &:active {
-      background-color: $primary;
+    .qs-button {
+      background-color: $on_secondary;
       color: $on_background;
-    }
+      padding: 6px 4px;
 
-    &:hover {
-      background-color: $primary_container;
-    }
+      &:active {
+        background-color: $primary;
+        color: $on_background;
+      }
 
-    .label {
-      font-weight: 500;
-      font-size: 12px;
-    }
+      &:hover {
+        background-color: $primary_container;
+      }
 
-    &.active {
-      background-color: $primary;
-      color: $background;
+      .label {
+        font-weight: 500;
+        font-size: 12px;
+      }
+
+      &.active {
+        background-color: $primary;
+        color: $background;
+      }
     }
   }
 }

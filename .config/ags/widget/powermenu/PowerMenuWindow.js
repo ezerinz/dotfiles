@@ -27,7 +27,7 @@ const SysButton = (action, label) =>
 
 const Container = () =>
   Widget.Box({
-    class_name: "powermenu__container",
+    class_names: ["powermenu__container", "window-content"],
     spacing: 6,
     homogeneous: true,
     children: [

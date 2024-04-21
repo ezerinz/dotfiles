@@ -1,6 +1,5 @@
 .media__container {
   .player {
-    @include window;
     margin-top: 0px;
     padding: 10px;
 
@@ -40,8 +39,8 @@
 
     button {
       padding: 4px;
-      box-shadow: unset;
-      border-radius: $border_radius / 2;
+      box-shadow: none;
+      border-radius: divide-each($border_radius, 2);
     }
   }
 }

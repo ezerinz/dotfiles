@@ -1,6 +1,8 @@
 import GLib from "gi://GLib";
 import Conf from "./services/configuration.js";
-import { cpWallpaper, setScssVariable, setTheme } from "./functions/theme.js";
+import { cpWallpaper } from "./functions/wallpaper.js";
+import { setTheme } from "./functions/theme/init.js";
+import { setScssVariable } from "./functions/theme/ags.js";
 import { sendBatch } from "./functions/utils.js";
 
 export const HOME = Utils.HOME;
@@ -8,6 +10,10 @@ export const HOME = Utils.HOME;
 export const clock = Variable(GLib.DateTime.new_now_local(), {
   poll: [1000, () => GLib.DateTime.new_now_local()],
 });
+
+export const capsLockState = Variable(
+  Utils.exec(`brightnessctl -d input3::capslock g`),
+);
 
 const divide = ([total, free]) => free / total;
 
@@ -44,7 +50,7 @@ export const ram = Variable(0, {
 
 export const configs = {
   wallpaper: {
-    folder: Conf("wallpaper.folder", () => null, { home: Utils.HOME }),
+    folder: Conf("wallpaper.folder", () => null, { home: HOME }),
     current: Conf("wallpaper.current", (self) => {
       cpWallpaper(self.value);
     }),
@@ -59,7 +65,7 @@ export const configs = {
     }),
     border_radius: Conf("theme.border_radius", (self) => {
       setScssVariable("border_radius", self.value);
-      sendBatch([`decoration:rounding ${self.value}`]);
+      sendBatch([`decoration:rounding ${self.value.split(",")[0].trim()}`]);
     }),
     bar: {
       margin: Conf("theme.bar.margin", (self) => {
@@ -75,6 +81,26 @@ export const configs = {
           setScssVariable("workspace_active_width", self.value);
         },
       ),
+    },
+  },
+  osd: {
+    regular: {
+      position: Conf("osd.regular.position"),
+      vertical: Conf("osd.regular.vertical"),
+      margin: Conf("osd.regular.margin", (self) => {
+        setScssVariable("osd_regular_margin", self.value);
+      }),
+      capslock: Conf("osd.regular.capslock"),
+      mic: Conf("osd.regular.mic"),
+    },
+    progress: {
+      position: Conf("osd.progress.position"),
+      vertical: Conf("osd.progress.vertical"),
+      margin: Conf("osd.progress.margin", (self) => {
+        setScssVariable("osd_progress_margin", self.value);
+      }),
+      brightness: Conf("osd.progress.brightness"),
+      volume: Conf("osd.progress.volume"),
     },
   },
 };

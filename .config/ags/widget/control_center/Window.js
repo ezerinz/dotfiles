@@ -13,7 +13,7 @@ const Container = ({ width = 350 }) =>
     hexpand: false,
     children: [
       Widget.Box({
-        class_name: "control-center__container",
+        class_names: ["control-center__container", "window-content"],
         css: `min-width: ${width}px;`,
         hexpand: false,
         vexpand: true,

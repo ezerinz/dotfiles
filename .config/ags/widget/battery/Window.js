@@ -61,7 +61,6 @@ const Item = (profile) =>
       hpack: "center",
       children: [
         Widget.Icon({ icon: `power-profile-${profile}-symbolic`, size: 16 }),
-        // Widget.Label(capitalizeFirst(profile)),
       ],
     }),
   });
@@ -78,6 +77,7 @@ const PowerProfileContainer = () =>
       Widget.Box({
         spacing: 6,
         vertical: false,
+        homogeneous: true,
         setup: (self) => {
           self.hook(powerProfiles, (box) => {
             box.children = powerProfiles.profiles.map((profile) =>
@@ -103,7 +103,6 @@ const PercentLabel = () =>
 const LevelBar = () =>
   Widget.Overlay({
     child: Widget.LevelBar({
-      class_name: "levelbar",
       bar_mode: "discrete",
       max_value: 10,
       value: battery.bind("percent").as((p) => p / 10),
@@ -120,8 +119,7 @@ const BatteryInfo = () =>
 
 const Container = () =>
   Widget.Box({
-    class_name: "battery-popup__container",
-    // spacing: 10,
+    class_names: ["battery-popup__container", "window-content"],
     vertical: true,
     hexpand: false,
     children: [BatteryInfo(), PowerProfileContainer()],

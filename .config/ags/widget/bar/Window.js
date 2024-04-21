@@ -39,12 +39,11 @@ const end = () =>
 
 export default () =>
   Widget.Window({
-    class_names: ["bar__window"],
     name: "bar__window",
     exclusivity: "exclusive",
     anchor: ["top", "left", "right"],
     child: Widget.CenterBox({
-      class_names: ["bar__container"],
+      class_names: ["bar__container", "window-content"],
       start_widget: start(),
       center_widget: center(),
       end_widget: end(),

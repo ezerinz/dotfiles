@@ -1,8 +1,7 @@
 // @ts-nocheck
 import { Variable as Var } from "resource:///com/github/Aylur/ags/variable.js";
-import Gio from "gi://Gio";
-import { deepMerge } from "../functions/deep_merge.js";
-import { replacePlaceholders, reverseReplace } from "../functions/replaces.js";
+import { deepMerge } from "../functions/utils.js";
+import { replacePlaceholders, reverseReplace } from "../functions/utils.js";
 export const configPath = App.configDir + "/config.json";
 
 class Conf extends Var {

@@ -7,6 +7,7 @@ const WorkspaceButton = (ws) =>
     child: Widget.Box({
       class_name: "fill",
     }),
+    vpack: "center",
     onClicked: () => dispatch(ws.id),
     setup: (self) => {
       self.hook(hyprland, () => {
@@ -24,7 +25,7 @@ export default () =>
     onScrollUp: () => Utils.exec("hyprnome"),
     onScrollDown: () => Utils.exec("hyprnome --previous -n"),
     child: Widget.Box({
-      class_names: ["workspace__container", "panel-button"],
+      class_names: ["workspace__container"],
       spacing: 4,
       hexpand: false,
       vexpand: false,

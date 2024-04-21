@@ -1,9 +1,8 @@
 .powermenu__container {
-  @include window;
   padding: 10px;
 
   button {
-    background-color: transparentize($color: $on_secondary, $amount: 0.3);
+    background-color: $on_secondary;
 
     &:focus {
       background-color: $primary;
@@ -35,7 +34,6 @@
 }
 
 .verification__container {
-  @include window;
   padding: 10px;
 
   .text-box {
@@ -55,7 +53,7 @@
     margin-top: 10px;
 
     button {
-      background-color: transparentize($color: $on_secondary, $amount: 0.3);
+      background-color: $on_secondary;
       padding: 10px 40px;
 
       &:focus {

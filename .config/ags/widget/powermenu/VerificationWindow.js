@@ -5,7 +5,7 @@ const WINDOW_NAME = "verification__window";
 
 const Container = () =>
   Widget.Box({
-    class_name: "verification__container",
+    class_names: ["verification__container", "window-content"],
     vertical: true,
     children: [
       Widget.Box({

@@ -1,5 +1,4 @@
 .system-monitor__container {
-  background-color: transparentize($color: $background, $amount: 0.3);
   padding: 10px;
   padding-top: 0px;
 
@@ -11,7 +10,7 @@
     .fill {
       min-height: 15px;
       min-width: 15px;
-      border-radius: $border_radius / 1.5;
+      border-radius: divide-each($border_radius, 1.5);
       background-color: $primary;
       border: solid 1px $primary;
     }
@@ -19,7 +18,7 @@
     .empty {
       min-width: 15px;
       min-height: 15px;
-      border-radius: $border_radius / 1.5;
+      border-radius: divide-each($border_radius, 1.5);
       border: solid 1px $primary;
     }
   }
@@ -70,13 +69,13 @@
     min-height: 55px;
     font-size: 8px;
     margin: 4px;
-    background-color: transparentize($color: $on_secondary, $amount: 0.3);
+    background-color: $on_secondary;
     color: $primary;
 
     box {
       min-height: 55px;
       min-width: 55px;
-      background-color: transparentize($color: $on_secondary, $amount: 0.3);
+      background-color: $on_secondary;
       margin: 14px;
       border-radius: 99px;
     }

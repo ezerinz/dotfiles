@@ -6,7 +6,7 @@ export const WINDOW_NAME = "network__window";
 
 const Container = () =>
   Widget.Box({
-    class_name: "network-info__container",
+    class_names: ["network-info__container", "window-content"],
     hexpand: false,
     vertical: true,
     children: [

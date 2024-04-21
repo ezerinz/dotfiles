@@ -72,7 +72,7 @@ const Container = ({ width = 500, height = 500, spacing = 12 }) => {
 
   return Widget.Box({
     vertical: true,
-    class_name: "applauncher__container",
+    class_names: ["applauncher__container", "window-content"],
     children: [
       entry,
       Widget.Scrollable({

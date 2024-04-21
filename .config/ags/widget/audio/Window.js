@@ -51,7 +51,7 @@ export const Volume = () =>
 
 export const Microphone = () =>
   Widget.Box({
-    class_name: "slider horizontal",
+    class_name: "microphone",
     visible: audio.bind("recorders").as((a) => a.length > 0),
     spacing: 6,
     children: [VolumeIndicator("microphone"), VolumeSlider("microphone")],
@@ -125,8 +125,8 @@ const SettingsButton = () =>
 
 export const AppMixer = () =>
   Menu({
-    name: "app-mixer",
     parentWindowName: WINDOW_NAME,
+    name: "app-mixer",
     icon: "mixer-symbolic",
     title: "App Mixer",
     content: [
@@ -158,13 +158,12 @@ export const SinkSelector = () =>
 
 const Container = () =>
   Widget.Box({
-    class_name: "audio__container",
+    class_names: ["audio__container", "window-content"],
     spacing: 8,
     vertical: true,
     children: [
       Row([Volume], [AppMixer, SinkSelector]),
-      Widget.Box({
-        class_name: "separator",
+      Widget.Separator({
         visible: audio.bind("recorders").as((a) => a.length > 0),
       }),
       Microphone(),

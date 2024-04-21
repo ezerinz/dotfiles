@@ -6,7 +6,7 @@ export const WINDOW_NAME = "datemenu__window";
 const Container = () =>
   Widget.Box({
     vertical: true,
-    class_name: "datemenu__container",
+    class_names: ["datemenu__container", "window-content"],
     children: [
       Widget.Label({
         label: clock.bind().as((t) => t.format("%T")),

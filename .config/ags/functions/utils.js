@@ -52,3 +52,71 @@ export async function bash(strings, ...values) {
     return "";
   });
 }
+
+export function matugenStringify(format, json) {
+  let result = "";
+
+  for (let key in json) {
+    let value = json[key];
+    result += format.replace("{{key}}", key).replace("{{value}}", value) + "\n";
+  }
+
+  return result;
+}
+
+export function applyCss() {
+  const scss = App.configDir + "/style/main.scss";
+  const css = App.configDir + "/style.css";
+
+  sh(`sass ${scss} ${css}`).then(() => {
+    App.resetCss();
+    App.applyCss(css);
+  });
+}
+
+const isObject = (item) => {
+  return item && typeof item === "object" && !Array.isArray(item);
+};
+
+export function deepMerge(target, ...sources) {
+  if (!sources.length) return target;
+  const source = sources.shift();
+
+  if (isObject(target) && isObject(source)) {
+    for (const key in source) {
+      if (isObject(source[key])) {
+        if (!target[key])
+          Object.assign(target, {
+            [key]: {},
+          });
+        deepMerge(target[key], source[key]);
+      } else {
+        Object.assign(target, {
+          [key]: source[key],
+        });
+      }
+    }
+  }
+
+  return deepMerge(target, ...sources);
+}
+
+export function replacePlaceholders(str, data) {
+  if (typeof str !== "string") {
+    return str;
+  }
+  return str.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+    return data[key] || match;
+  });
+}
+
+export function reverseReplace(str, data) {
+  for (const key in data) {
+    if (data.hasOwnProperty(key)) {
+      const value = data[key];
+      const regex = new RegExp(value, "g");
+      str = str.replace(regex, `{{${key}}}`);
+    }
+  }
+  return str;
+}

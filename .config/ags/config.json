@@ -1,18 +1,34 @@
 {
   "wallpaper": {
     "folder": "{{home}}/wallpapers",
-    "current": "pawel-czerwinski-unsplash.jpg"
+    "current": "team-avatar.png"
   },
   "theme": {
     "dark_mode": true,
-    "window_margin": "6, 12, 12, 12",
-    "hyprland_window_margin": "6, 12, 12, 12",
-    "border_radius": "8",
+    "window_margin": "0, 12, 12, 12",
+    "hyprland_window_margin": "0, 12, 12, 12",
+    "border_radius": "10, 10",
     "bar": {
-      "margin": "12, 12, 6, 12",
+      "margin": "12, 12, 12, 12",
       "border_radius": "6",
       "launcher_icon": "",
       "workspace_active_width": "30"
+    }
+  },
+  "osd": {
+    "regular": {
+      "position": "bottom right",
+      "vertical": true,
+      "margin": "12, 12, 70, 12",
+      "capslock": true,
+      "mic": true
+    },
+    "progress": {
+      "position": "right",
+      "vertical": true,
+      "margin": "12, 12, 24, 12",
+      "brightness": true,
+      "volume": true
     }
   }
 }

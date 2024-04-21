@@ -121,7 +121,7 @@ const Player = (player) => {
   });
 
   return Widget.Box(
-    { class_name: "player" },
+    { class_names: ["player", "window-content"] },
     img,
     Widget.Box(
       {

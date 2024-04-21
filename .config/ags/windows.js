@@ -14,6 +14,8 @@ import VerificationWindow from "./widget/powermenu/VerificationWindow.js";
 import PowerMenuWindow from "./widget/powermenu/PowerMenuWindow.js";
 import AudioWindow from "./widget/audio/Window.js";
 import SystemMonitorWindow from "./widget/system_monitor/Window.js";
+import ProgressOsd from "./widget/osd/ProgressOsd.js";
+import RegularOsd from "./widget/osd/RegularOsd.js";
 
 App.addIcons(`${App.configDir}/assets`);
 
@@ -32,4 +34,6 @@ export default [
   VerificationWindow(),
   HyprsplashWindow(),
   SystemMonitorWindow(),
+  ProgressOsd(),
+  RegularOsd(),
 ];

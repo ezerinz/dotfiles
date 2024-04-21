@@ -38,9 +38,9 @@ const WallItem = (folder, wall) =>
           vpack: "center",
           truncate: "end",
         }),
-        Widget.Icon({
-          icon: "object-select-symbolic",
-          // label: "󰄬",
+        Widget.Label({
+          // icon: "object-select-symbolic",
+          label: "󰄬",
           class_name: "checkmark",
           setup: (self) => {
             self.hook(configs.wallpaper.current, (icon) => {
@@ -56,6 +56,7 @@ const WallpaperPicker = ({ width = 500, spacing = 12 }) => {
   const list = Widget.Box({
     vertical: true,
     spacing,
+    hexpand: true,
   }).hook(configs.wallpaper.folder, (self) => {
     const path = configs.wallpaper.folder.value;
     self.vpack = "start";
@@ -65,6 +66,7 @@ const WallpaperPicker = ({ width = 500, spacing = 12 }) => {
       self.vpack = "center";
       self.children = [
         Widget.Label({
+          hpack: "center",
           label: "There's nothing here.",
           css: "font-size: 14px; font-weight: 600;",
         }),
@@ -104,12 +106,12 @@ const WallpaperPicker = ({ width = 500, spacing = 12 }) => {
   });
 
   return Widget.Box({
-    class_name: "wallpaper-picker__container",
+    class_names: ["wallpaper-picker__container", "window-content"],
     vertical: true,
     vexpand: true,
     children: [
       Widget.Box({
-        spacing: 10,
+        spacing: 8,
         children: [
           entry,
           Widget.Button({
@@ -127,6 +129,8 @@ const WallpaperPicker = ({ width = 500, spacing = 12 }) => {
         class_name: "path",
         css: `margin-bottom: ${spacing}px`,
         label: configs.wallpaper.folder.bind().as((p) => `Path: ${p}`),
+        truncate: "end",
+        max_width_chars: 40,
         hpack: "start",
       }),
       Widget.Scrollable({

@@ -51,7 +51,7 @@ function PopupList() {
   const box = Widget.Box({
     hpack: "end",
     vertical: true,
-    spacing: 10,
+    spacing: 8,
     css: `min-width: 350px;`,
   });
 
@@ -80,8 +80,8 @@ function PopupList() {
     .hook(notifications, remove, "closed");
 }
 
-export default (monitor = "") =>
-  Widget.Window({
+export default (monitor = "") => {
+  const win = Widget.Window({
     monitor,
     name: `notifications${monitor}`,
     anchor: ["top", "right"],
@@ -91,3 +91,10 @@ export default (monitor = "") =>
       child: PopupList(),
     }),
   });
+
+  Object.assign(win, {
+    //disable?
+    animation: "0",
+  });
+  return win;
+};

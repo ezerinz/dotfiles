@@ -133,7 +133,7 @@ const DayDots = () =>
 
 const Container = () =>
   Widget.Box({
-    class_name: "system-monitor__container",
+    class_names: ["system-monitor__container", "window-content"],
     vertical: true,
     spacing: 8,
     children: [Date(), DayDots(), Widget.Separator(), CpuAndRam()],
