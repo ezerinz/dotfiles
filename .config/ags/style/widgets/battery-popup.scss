@@ -17,7 +17,7 @@
     }
 
     .time-remaining {
-      color: $inverse_surface;
+      color: $on_background;
       font-size: 13px;
       margin-top: 4px;
       margin-bottom: 10px;
@@ -35,7 +35,7 @@
     .item {
       box-shadow: 1px 1px 2px transparentize($color: rgb(0, 0, 0), $amount: 0.7);
       border-radius: divide-each($border_radius, 1.5);
-      color: $inverse_surface;
+      color: $on_background;
       background-color: $on_secondary;
       min-height: 24px;
 

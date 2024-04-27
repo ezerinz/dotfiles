@@ -1,6 +1,6 @@
 export default ({ window = "", child, setup, ...rest }) =>
   Widget.Button({
-    child: Widget.Box({ child }),
+    child: Widget.Box({ hpack: "center", child }),
     setup: (self) => {
       let open = false;
 

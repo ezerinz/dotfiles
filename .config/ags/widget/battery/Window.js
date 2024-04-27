@@ -1,8 +1,11 @@
+import { layoutPos } from "../../functions/utils.js";
+import { configs } from "../../vars.js";
 import PopupWindow from "../PopupWindow.js";
 
 const powerProfiles = await Service.import("powerprofiles");
 const battery = await Service.import("battery");
 export const WINDOW_NAME = "battery__window";
+const { bar } = configs.theme;
 
 function formatTimeUntilCharged(seconds) {
   const hours = Math.floor(seconds / 3600);
@@ -125,10 +128,19 @@ const Container = () =>
     children: [BatteryInfo(), PowerProfileContainer()],
   });
 
-export default () =>
+const BatteryWindow = () =>
   PopupWindow({
     name: WINDOW_NAME,
     animation: "slide top",
-    layout: "top-right",
+    layout: layoutPos(bar.position.value, "top-right"),
     child: Container(),
   });
+
+export default function() {
+  App.addWindow(BatteryWindow());
+
+  bar.position.connect("changed", () => {
+    App.removeWindow(WINDOW_NAME);
+    App.addWindow(BatteryWindow());
+  });
+}

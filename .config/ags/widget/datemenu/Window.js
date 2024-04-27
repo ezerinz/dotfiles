@@ -1,7 +1,10 @@
-import { clock } from "../../vars.js";
+import { layoutPos } from "../../functions/utils.js";
+import { clock, configs } from "../../vars.js";
 import PopupWindow from "../PopupWindow.js";
 
 export const WINDOW_NAME = "datemenu__window";
+
+const { bar } = configs.theme;
 
 const Container = () =>
   Widget.Box({
@@ -20,10 +23,19 @@ const Container = () =>
     ],
   });
 
-export default () =>
+const DateMenuWindow = () =>
   PopupWindow({
     name: WINDOW_NAME,
-    layout: "top-left",
+    layout: layoutPos(bar.position.value, "top-left"),
     animation: "slide top",
     child: Container(),
   });
+
+export default function() {
+  App.addWindow(DateMenuWindow());
+
+  bar.position.connect("changed", () => {
+    App.removeWindow(WINDOW_NAME);
+    App.addWindow(DateMenuWindow());
+  });
+}

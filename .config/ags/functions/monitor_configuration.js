@@ -10,14 +10,19 @@ export default function() {
   const theme = configs.theme;
   const bar = theme.bar;
   const osd = configs.osd;
+  const sysmonitor = configs.system_monitor;
+  const window = theme.window;
+
   Utils.monitorFile(configPath, (file, type) => {
     // Monitor non Utils.writeFile event
     if (type === Gio.FileMonitorEvent.ATTRIBUTE_CHANGED) {
       const configJson = JSON.parse(Utils.readFile(file.get_path()) || "{}");
       const wallpaperJson = configJson.wallpaper;
       const themeJson = configJson.theme;
+      const windowJson = themeJson.window;
       const barJson = themeJson.bar;
       const osdJson = configJson.osd;
+      const sysmonitorJson = configJson.system_monitor;
 
       if (wallpaper.folder.value != rep(wallpaperJson.folder, { home: HOME }))
         wallpaper.folder.setValue(rep(wallpaperJson.folder, { home: HOME }));
@@ -28,19 +33,53 @@ export default function() {
       if (theme.dark_mode.value != themeJson.dark_mode)
         theme.dark_mode.setValue(themeJson.dark_mode);
 
-      if (theme.window_margin.value != themeJson.window_margin)
-        theme.window_margin.setValue(themeJson.window_margin);
+      if (window.margin.value != windowJson.margin)
+        window.margin.setValue(windowJson.margin);
 
-      if (
-        theme.hyprland_window_margin.value != themeJson.hyprland_window_margin
-      )
-        theme.hyprland_window_margin.setValue(themeJson.hyprland_window_margin);
+      if (window.hyprland_margin.value != windowJson.hyprland_margin)
+        window.hyprland_margin.setValue(windowJson.hyprland_margin);
+
+      if (window.opacity.value != windowJson.opacity)
+        window.opacity.setValue(windowJson.opacity);
+
+      if (window.border.value != windowJson.border)
+        window.border.setValue(windowJson.border);
 
       if (theme.border_radius.value != themeJson.border_radius)
         theme.border_radius.setValue(themeJson.border_radius);
 
+      if (bar.position.value != barJson.position)
+        bar.position.setValue(barJson.position);
+
+      if (bar.border.value != barJson.border)
+        bar.border.setValue(barJson.border);
+
+      if (bar.opacity.value != barJson.opacity)
+        bar.opacity.setValue(barJson.opacity);
+
+      if (bar.button_opacity.value != barJson.button_opacity)
+        bar.button_opacity.setValue(barJson.button_opacity);
+
+      if (bar.shadow.value != barJson.shadow)
+        bar.shadow.setValue(barJson.shadow);
+
+      if (bar.button_padding.value != barJson.button_padding)
+        bar.button_padding.setValue(barJson.button_padding);
+
+      if (bar.button_spacing.value != barJson.button_spacing)
+        bar.button_spacing.setValue(barJson.button_spacing);
+
+      if (bar.button_shadow.value != barJson.button_shadow)
+        bar.button_shadow.setValue(barJson.button_shadow);
+
+      if (bar.button_border_radius.value != barJson.button_border_radius)
+        bar.button_border_radius.setValue(barJson.button_border_radius);
+
       if (bar.margin.value != barJson.margin)
         bar.margin.setValue(barJson.margin);
+
+      if (bar.padding.value != barJson.padding)
+        bar.padding.setValue(barJson.padding);
 
       if (bar.border_radius.value != barJson.border_radius)
         bar.border_radius.setValue(barJson.border_radius);
@@ -80,6 +119,12 @@ export default function() {
 
       if (osd.progress.volume.value != osdJson.progress.volume)
         osd.progress.volume.setValue(osdJson.progress.volume);
+
+      if (sysmonitor.position.value != sysmonitorJson.position)
+        sysmonitor.position.setValue(sysmonitorJson.position);
+
+      if (sysmonitor.margin.value != sysmonitorJson.margin)
+        sysmonitor.margin.setValue(sysmonitorJson.margin);
     }
   });
 }

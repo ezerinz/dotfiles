@@ -1,34 +1,52 @@
 {
   "wallpaper": {
     "folder": "{{home}}/wallpapers",
-    "current": "deer.jpg"
+    "current": "green-grass-aesthetic-desktop-wallpaper.jpg"
   },
   "theme": {
-    "dark_mode": false,
-    "window_margin": "0, 12, 12, 12",
-    "hyprland_window_margin": "0, 12, 12, 12",
-    "border_radius": "0",
+    "dark_mode": true,
+    "border_radius": "8",
+    "window": {
+      "margin": "12",
+      "hyprland_margin": "12",
+      "border": false,
+      "opacity": 0.7
+    },
     "bar": {
-      "margin": "12, 12, 12, 12",
-      "border_radius": "0",
-      "launcher_icon": "",
+      "position": "right",
+      "opacity": 0.0,
+      "shadow": false,
+      "border": false,
+      "button_opacity": 0.7,
+      "button_padding": "4, 10",
+      "button_spacing": 4,
+      "button_shadow": false,
+      "button_border_radius": "6",
+      "margin": "12",
+      "padding": "3",
+      "border_radius": "8",
+      "launcher_icon": "",
       "workspace_active_width": "35"
     }
   },
   "osd": {
     "regular": {
-      "position": "bottom",
+      "position": "right",
       "vertical": true,
-      "margin": "12, 12, 75, 12",
+      "margin": "0, 12, 12, 12",
       "capslock": true,
       "mic": true
     },
     "progress": {
-      "position": "bottom left",
-      "vertical": false,
-      "margin": "12, 12, 24, 12",
+      "position": "right",
+      "vertical": true,
+      "margin": "12",
       "brightness": true,
       "volume": true
     }
+  },
+  "system_monitor": {
+    "position": "bottom left",
+    "margin": "12, 12, 12, 12"
   }
 }

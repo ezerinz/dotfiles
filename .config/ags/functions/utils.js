@@ -120,3 +120,39 @@ export function reverseReplace(str, data) {
   }
   return str;
 }
+
+export function isVertical(pos) {
+  return pos === "left" || pos === "right";
+}
+
+export const posIndex = (pos) => {
+  switch (pos) {
+    case "top":
+      return 0;
+    case "right":
+      return 1;
+    case "bottom":
+      return 2;
+    default:
+      return 3;
+  }
+};
+
+export const layoutPos = (pos, layout) => {
+  const win = {
+    top: {},
+    left: {
+      "top-right": "bottom-left",
+    },
+    right: {
+      "top-right": "bottom-right",
+      "top-left": "top-right",
+    },
+    bottom: {
+      "top-left": "bottom-left",
+      "top-right": "bottom-right",
+    },
+  };
+
+  return win[pos][layout] ?? layout;
+};

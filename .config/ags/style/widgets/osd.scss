@@ -17,83 +17,18 @@
     margin: $osd_progress_margin;
     padding: 4px;
 
-    .vertical {
-      scale {
-        trough {
-          min-height: 230px;
-          min-width: 40px;
-          border-radius: divide-each($border_radius, 1.5);
-          border-bottom-right-radius: 0px;
-          border-bottom-left-radius: 0px;
-
-          highlight {
-            background-color: $primary;
-            border-radius: divide-each($border_radius, 1.5);
-            border-bottom-right-radius: 0px;
-            border-bottom-left-radius: 0px;
-          }
-        }
-      }
-
-      .icon {
-        color: $background;
-        background-color: $primary;
-        border-radius: divide-each($border_radius, 1.5);
-        border-top-right-radius: 0px;
-        border-top-left-radius: 0px;
-      }
+    .icon {
+      color: $background;
     }
-
-    .horizontal {
-      scale {
-        trough {
-          min-height: 40px;
-          min-width: 230px;
-          border-radius: divide-each($border_radius, 1.5);
-          border-top-left-radius: 0px;
-          border-bottom-left-radius: 0px;
-
-          highlight {
-            background-color: $primary;
-            border-radius: divide-each($border_radius, 1.5);
-            border-top-left-radius: 0px;
-            border-bottom-left-radius: 0px;
-          }
-        }
-      }
-
-      .icon {
-        color: $background;
-        background-color: $primary;
-        border-radius: divide-each($border_radius, 1.5);
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
-      }
-    }
-
-    // &.vertical {
-    //   min-width: 40px;
-    //   min-height: 300px;
-    //
-    //   trough {
-    //     border-bottom-right-radius: 0px;
-    //     border-bottom-left-radius: 0px;
-    //
-    //     highlight {
-    //       border-bottom-right-radius: 0px;
-    //       border-bottom-left-radius: 0px;
-    //     }
-    //   }
-    // }
 
     .fill {
       background-color: $primary;
       border-radius: divide-each($border_radius, 1.5);
     }
+  }
 
-    .progress {
-      background-color: transparentize($color: $on_secondary, $amount: 0.3);
-      border-radius: divide-each($border_radius, 1.5);
-    }
+  .progress {
+    background-color: transparentize($color: $on_secondary, $amount: 0.3);
+    border-radius: divide-each($border_radius, 1.5);
   }
 }

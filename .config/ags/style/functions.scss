@@ -10,4 +10,4 @@
 }
 
 //transparentize
-$background_color: transparentize($background, 0.3);
+$background_color: transparentize($background, 1-$window_opacity);

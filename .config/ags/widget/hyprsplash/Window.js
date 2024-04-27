@@ -1,3 +1,4 @@
+import { isVertical } from "../../functions/utils.js";
 import { configs } from "../../vars.js";
 
 const Text = () =>
@@ -10,8 +11,10 @@ export default () =>
   Widget.Window({
     name: "hyprsplash__window",
     layer: "bottom",
-    anchor: ["bottom"],
-    margins: configs.theme.window_margin
+    anchor: configs.theme.bar.position
+      .bind()
+      .as((v) => (v === "bottom" ? ["top"] : ["bottom"])),
+    margins: configs.theme.window.margin
       .bind()
       .as((v) => v.split(",").map(Number)),
     child: Text(),

@@ -1,5 +1,4 @@
 import { cpu, ram, configs, clock } from "../../vars.js";
-import GLib from "gi://GLib";
 
 const CpuProgress = () =>
   Widget.Box({
@@ -9,9 +8,9 @@ const CpuProgress = () =>
       Widget.CircularProgress({
         class_name: "progress",
         value: cpu.bind(),
-        child: Widget.Box({
-          vertical: true,
-          children: [Widget.Icon("applications-electronics-symbolic")],
+        child: Widget.Icon({
+          icon: "applications-electronics-symbolic",
+          hpack: "center",
         }),
       }),
       Widget.Box({
@@ -39,10 +38,7 @@ const RamProgress = () =>
       Widget.CircularProgress({
         class_name: "progress",
         value: ram.bind(),
-        child: Widget.Box({
-          vertical: true,
-          children: [Widget.Icon("nvidia-ram-symbolic")],
-        }),
+        child: Widget.Icon({ icon: "nvidia-ram-symbolic", hpack: "center" }),
       }),
       Widget.Box({
         vertical: true,
@@ -142,7 +138,7 @@ const Container = () =>
 export default () =>
   Widget.Window({
     name: "system-monitor__window",
-    anchor: ["bottom", "left"],
+    anchor: configs.system_monitor.position.bind().as((v) => v.split(" ")),
     layer: "bottom",
     child: Container(),
   });

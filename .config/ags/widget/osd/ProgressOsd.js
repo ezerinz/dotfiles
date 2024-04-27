@@ -1,12 +1,13 @@
 import brightness from "../../services/brightness.js";
 import { icon } from "../../functions/utils.js";
 import { configs } from "../../vars.js";
+import Progress from "./Progress.js";
 const WINDOW_NAME = "osd__window";
 const DELAY = 3000;
 
 const audio = await Service.import("audio");
 
-const Container = () => {
+const Container = (vertical) => {
   const indicator = Widget.Icon({
     class_name: "icon",
     size: 40,
@@ -14,26 +15,17 @@ const Container = () => {
     hpack: "start",
   });
 
-  const slider = Widget.Slider({
-    vertical: configs.osd.progress.vertical.bind(),
-    inverted: configs.osd.progress.vertical.bind(),
-    hexpand: true,
-    vexpand: true,
-    sensitive: false,
-    draw_value: false,
-  });
-
-  const progress = Widget.Box({
-    vertical: configs.osd.progress.vertical.bind(),
-    children: configs.osd.progress.vertical
-      .bind()
-      .as((v) => (v ? [slider, indicator] : [indicator, slider])),
+  const progress = Progress({
+    vertical,
+    width: vertical ? 40 : 260,
+    height: vertical ? 260 : 40,
+    child: indicator,
   });
 
   let count = 0;
   function show(value, icon) {
     indicator.icon = icon;
-    slider.value = value;
+    progress.setValue(value);
     App.openWindow(WINDOW_NAME);
     count++;
     Utils.timeout(DELAY, () => {
@@ -84,7 +76,7 @@ export default () => {
     anchor: configs.osd.progress.position.bind().as((v) => v.split(" ")),
     visible: false,
     layer: "overlay",
-    child: Container(),
+    child: configs.osd.progress.vertical.bind().as(Container),
   });
 
   return win;

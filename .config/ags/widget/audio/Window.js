@@ -1,7 +1,9 @@
-import { icon, sh } from "../../functions/utils.js";
+import { icon, layoutPos, sh } from "../../functions/utils.js";
+import { configs } from "../../vars.js";
 import PopupWindow from "../PopupWindow.js";
 import { Arrow, Menu, Row } from "../ToggleButton.js";
 const audio = await Service.import("audio");
+const { bar } = configs.theme;
 
 export const WINDOW_NAME = "audio__window";
 
@@ -170,10 +172,19 @@ const Container = () =>
     ],
   });
 
-export default () =>
+const AudioWindow = () =>
   PopupWindow({
     name: WINDOW_NAME,
     animation: "slide top",
-    layout: "top-right",
+    layout: layoutPos(bar.position.value, "top-right"),
     child: Container(),
   });
+
+export default function() {
+  App.addWindow(AudioWindow());
+
+  bar.position.connect("changed", () => {
+    App.removeWindow(WINDOW_NAME);
+    App.addWindow(AudioWindow());
+  });
+}

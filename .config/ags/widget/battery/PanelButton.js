@@ -1,3 +1,5 @@
+import { isVertical } from "../../functions/utils.js";
+import { configs } from "../../vars.js";
 import PanelButton from "../PanelButton.js";
 import { WINDOW_NAME } from "./Window.js";
 const battery = await Service.import("battery");
@@ -10,6 +12,7 @@ export default () =>
     },
     child: Widget.Box({
       class_name: "panel-battery",
+      vertical: configs.theme.bar.position.bind().as(isVertical),
       setup: (self) => {
         self.hook(battery, () => {
           self.toggleClassName("charging", battery.charging);

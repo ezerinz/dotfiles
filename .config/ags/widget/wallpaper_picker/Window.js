@@ -18,7 +18,7 @@ function getWallpaperList(path) {
 }
 
 function getFilename(str) {
-  return str.split("\\").pop().split("/").pop().toLowerCase();
+  return str.split("\\").pop().split("/").pop();
 }
 
 const WallItem = (folder, wall) =>

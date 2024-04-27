@@ -10,5 +10,7 @@ export default () =>
     },
     child: Widget.Label({
       label: configs.theme.bar.launcher_icon.bind(),
+      hpack: "center",
+      xalign: 0,
     }),
   });

@@ -1,5 +1,7 @@
 const network = await Service.import("network");
 const bluetooth = await Service.import("bluetooth");
+import { isVertical } from "../../functions/utils.js";
+import { configs } from "../../vars.js";
 import PanelButton from "../PanelButton.js";
 import { WINDOW_NAME } from "./Window.js";
 
@@ -20,6 +22,7 @@ export default () =>
     window: WINDOW_NAME,
     child: Widget.Box({
       spacing: 4,
+      vertical: configs.theme.bar.position.bind().as(isVertical),
       children: [WifiIndicator(), BluetoothIndicator()],
     }),
     on_clicked: () => {

@@ -3,8 +3,7 @@
   padding-top: 0px;
 
   border-radius: $border_radius;
-  margin: $margin;
-  margin-bottom: 80px;
+  margin: $system_monitor_margin;
 
   .day-dots {
     .fill {
@@ -76,14 +75,14 @@
       min-height: 55px;
       min-width: 55px;
       background-color: $on_secondary;
-      margin: 14px;
+      margin: 15px;
       border-radius: 99px;
     }
 
     image {
       font-size: 16px;
-      margin: 5px;
-      margin-left: 6px;
+      // margin: 5px;
+      // margin-left: 6px;
     }
   }
 }

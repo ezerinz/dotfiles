@@ -5,11 +5,14 @@
 }
 
 .window-content {
-  margin: $margin;
+  margin: $window_margin;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: $border-radius;
   background-color: $background_color;
   color: $on_background;
+  border: if($window_border,
+      1px solid transparentize($on_background, 0.7),
+      none);
 }
 
 .entry-box {
@@ -34,7 +37,7 @@ scrolledwindow {
   .item {
     background-color: $on_secondary;
     padding: 4px;
-    color: $inverse_surface;
+    color: $on_background;
     margin-left: 10px;
     margin-right: 10px;
 
@@ -100,13 +103,21 @@ button {
     }
   }
 
-  background-color: if($dark_mode, $background, $on_secondary);
+  .timer.vert {
+    font-size: 12px;
+  }
+
+  background-color: transparentize(if($dark_mode, $background, $on_secondary),
+    1-$bar_button_opacity );
   color: $on_background;
-  padding: 4px 6px;
+  padding: $panel_button_padding;
   font-weight: 600;
-  border-radius: divide-each($bar_border_radius, 1.5);
-  margin: 3px 0px 3px 0px;
-  box-shadow: if($dark_mode, none, 1px 1px 2px rgba(0, 0, 0, 0.4));
+  // border-radius: divide-each($bar_border_radius, 1.5);
+  border-radius: $bar_button_border_radius;
+  // margin: $bar_padding;
+  // margin-top: nth($list: $bar_padding, $n: 1);
+  // margin-bottom: nth($list: $bar_padding, $n: 3);
+  box-shadow: if($bar_button_shadow, 1px 1px 2px rgba(0, 0, 0, 0.4), none);
 
   &:hover {
     background-color: $primary_container;
@@ -187,7 +198,7 @@ button {
   .content.vertical {
     margin: 8px 0px;
 
-    > *:first-child > * {
+    >*:first-child>* {
       image {
         margin-right: 6px;
       }
