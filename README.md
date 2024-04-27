@@ -5,11 +5,12 @@ My personal dotfiles.
 - Compositor: Hyprland
 - Terminal: Alacritty
 - Text editor: Neovim
-
-![2024-04-18_04-14-11](https://github.com/ezerinz/dotfiles/assets/100193740/0d1795f7-9afa-4c34-828f-8a1b2da1de53)
-![2024-04-18_04-13-29](https://github.com/ezerinz/dotfiles/assets/100193740/ee3346b1-efc9-457b-9f9c-b0c56312192c)
-![2024-04-18_04-14-22](https://github.com/ezerinz/dotfiles/assets/100193740/eabd0415-fd0b-4b6a-9470-1c81826d37d8)
-![2024-04-18_04-26-06](https://github.com/ezerinz/dotfiles/assets/100193740/06f2c22a-bd02-405c-9482-b53cc6198ba1)
+  
+![2024-04-27_20-05-27](https://github.com/ezerinz/dotfiles/assets/100193740/24d262be-1f51-4a08-99bc-9bfbbfb23ad4)
+![2024-04-27_20-00-20](https://github.com/ezerinz/dotfiles/assets/100193740/16a21353-b542-4575-9f01-288116ba858c)
+![2024-04-27_20-02-07](https://github.com/ezerinz/dotfiles/assets/100193740/3791e3c2-ad34-4320-8946-0844031adfd7)
+![2024-04-27_20-00-40](https://github.com/ezerinz/dotfiles/assets/100193740/0f272735-93db-4298-ae72-c7ffd3f60599)
+![2024-04-27_20-04-08](https://github.com/ezerinz/dotfiles/assets/100193740/0ff7b4b6-4c83-4c0c-a4d1-469f049d55ac)
 
 ## Note
 
