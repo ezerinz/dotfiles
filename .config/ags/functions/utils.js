@@ -66,7 +66,7 @@ export function matugenStringify(format, json) {
 
 export function applyCss() {
   const scss = App.configDir + "/style/main.scss";
-  const css = App.configDir + "/style.css";
+  const css = TMP + "/style.css";
 
   sh(`sass ${scss} ${css}`).then(() => {
     App.resetCss();

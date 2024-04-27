@@ -7,10 +7,12 @@ import globals from "./functions/globals.js";
 import { setupWindows } from "./windows.js";
 
 export default function() {
-  setupWindows();
-  initHyprland();
   globals();
+  setupWindows();
   initWallpaper();
-  watchConfiguration();
   initTheme();
+  initHyprland();
+  watchConfiguration();
+
+  Utils.ensureDirectory(TMP);
 }

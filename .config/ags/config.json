@@ -14,10 +14,10 @@
     },
     "bar": {
       "position": "top",
-      "opacity": 0.0,
+      "opacity": 0.7,
       "shadow": false,
       "border": false,
-      "button_opacity": 0.7,
+      "button_opacity": 0,
       "button_padding": "4, 10",
       "button_spacing": 4,
       "button_shadow": false,

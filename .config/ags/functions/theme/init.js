@@ -3,13 +3,21 @@ import setHyprland from "./hyprland.js";
 import setAlacritty from "./alacritty.js";
 import setGtk from "./gtk.js";
 import Gio from "gi://Gio";
-import { applyCss } from "../utils.js";
+import { applyCss, sh } from "../utils.js";
 import { configs } from "../../vars.js";
 
 export function setTheme() {
-  const themeJson = JSON.parse(
-    Utils.readFile(App.configDir + "/colors.json") || "{}",
-  );
+  const colorsFile = Utils.readFile(TMP + "/colors.json");
+  if (colorsFile === "") {
+    sh(`matugen color hex "#282828" --json hex`).then((out) => {
+      Utils.writeFile(
+        JSON.stringify(JSON.parse(out), null, 2),
+        TMP + "/colors.json",
+      ).catch(print);
+    });
+  }
+
+  const themeJson = JSON.parse(Utils.readFile(TMP + "/colors.json") || "{}");
   const themeMode = configs.theme.dark_mode.value ? "dark" : "light";
   const theme = themeJson.colors[themeMode];
   const harmonizedColors = themeJson.harmonized_colors;
@@ -21,7 +29,7 @@ export function setTheme() {
 }
 
 function monitorTheme() {
-  Utils.monitorFile(App.configDir + "/colors.json", (_, eventType) => {
+  Utils.monitorFile(TMP + "/colors.json", (_, eventType) => {
     if (eventType === Gio.FileMonitorEvent.CHANGES_DONE_HINT) {
       setTheme();
     }
