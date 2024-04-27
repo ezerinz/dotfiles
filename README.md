@@ -16,6 +16,7 @@ My personal dotfiles.
 - If you want hyprland config, you only need ags dan hypr folder.
 - Something may not work for you, I use this configuration in my used Thinkpad x270 and didn't think about dual monitor.
 - Please forgive my poorly written scss/css & js, I'm open to suggestions
+- Most widgets were copied from author of Ags, aylur ([dotfiles](https://github.com/Aylur/dotfiles)), the difference is I don't know how to write typescript
 
 ### Dependencies
 
@@ -35,5 +36,4 @@ hyprland dart-sass aylurs-gtk-shell slurp wf-recorder wayshot matugen-bin hyprpi
 
 - hyprpicker
 - libadwaita-without-adwaita
-
-Most widget were copied from author of Ags, aylur ([dotfiles](https://github.com/Aylur/dotfiles)), the difference is I don't know how to write typescript
+- hyprnome (I use fork from someone, [here](https://github.com/rehanzo/hyprnome/tree/max-one-empty-x))
