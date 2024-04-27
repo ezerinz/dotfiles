@@ -1,5 +1,7 @@
 # Dotfiles
-My personal dotfiles. 
+
+My personal dotfiles.
+
 - Compositor: Hyprland
 - Terminal: Alacritty
 - Text editor: Neovim
@@ -10,11 +12,13 @@ My personal dotfiles.
 ![2024-04-18_04-26-06](https://github.com/ezerinz/dotfiles/assets/100193740/06f2c22a-bd02-405c-9482-b53cc6198ba1)
 
 ## Note
+
 - If you want hyprland config, you only need ags dan hypr folder.
 - Something may not work for you, I use this configuration in my used Thinkpad x270 and didn't think about dual monitor.
-- Please forgive my poorly written scss/css & js, I'm open to suggestions 
+- Please forgive my poorly written scss/css & js, I'm open to suggestions
 
 ### Dependencies
+
 - hyprland (ofc)
 - ags
 - wf-recorder
@@ -22,10 +26,14 @@ My personal dotfiles.
 - wayshot
 - sassc
 - matugen
+
 ```
 hyprland dart-sass aylurs-gtk-shell slurp wf-recorder wayshot matugen-bin hyprpicker libadwaita-without-adwaita-git
 ```
 
 ### Optional
+
 - hyprpicker
 - libadwaita-without-adwaita
+
+Most widget were copied from author of Ags, aylur ([dotfiles](https://github.com/Aylur/dotfiles)), the difference is I don't know how to write typescript
