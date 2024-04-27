@@ -13,7 +13,7 @@
       "opacity": 0.7
     },
     "bar": {
-      "position": "right",
+      "position": "top",
       "opacity": 0.0,
       "shadow": false,
       "border": false,
@@ -31,16 +31,16 @@
   },
   "osd": {
     "regular": {
-      "position": "right",
+      "position": "left",
       "vertical": true,
       "margin": "0, 12, 12, 12",
       "capslock": true,
       "mic": true
     },
     "progress": {
-      "position": "right",
-      "vertical": true,
-      "margin": "12",
+      "position": "left bottom",
+      "vertical": false,
+      "margin": "12, 12, 205, 12",
       "brightness": true,
       "volume": true
     }

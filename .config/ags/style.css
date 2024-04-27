@@ -5,7 +5,7 @@
 }
 
 .window-content {
-  margin: 12px 0px 12px 12px;
+  margin: 0px 12px 12px 12px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: 8px 8px 8px 8px;
   background-color: rgba(17, 20, 15, 0.7);
@@ -71,7 +71,7 @@ button:hover {
 .panel-button {
   background-color: rgba(17, 20, 15, 0.7);
   color: #e1e4d9;
-  padding: 10px 4px 10px 4px;
+  padding: 4px 10px 4px 10px;
   font-weight: 600;
   border-radius: 6px 6px 6px 6px;
   box-shadow: none;
@@ -519,7 +519,7 @@ switch slider {
 
 .notification {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  margin: 12px 0px 12px 12px;
+  margin: 0px 12px 12px 12px;
   margin-bottom: 6px;
   border-radius: 8px 8px 8px 8px;
   background-color: rgba(17, 20, 15, 0.7);
@@ -603,7 +603,7 @@ switch slider {
   font-weight: 600;
 }
 .osd.progress {
-  margin: 12px 12px 12px 12px;
+  margin: 12px 12px 205px 12px;
   padding: 4px;
 }
 .osd.progress .icon {
@@ -848,7 +848,7 @@ dialog placessidebar row image {
   background-color: rgba(17, 20, 15, 0.7);
   color: #e1e4d9;
   border-radius: 6px 6px 6px 6px;
-  padding: 10px 4px 10px 4px;
+  padding: 4px 10px 4px 10px;
   box-shadow: none;
 }
 .workspace__container .workspace-button {
