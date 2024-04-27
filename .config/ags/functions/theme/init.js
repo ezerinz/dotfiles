@@ -19,7 +19,7 @@ export function setTheme() {
 
   const themeJson = JSON.parse(Utils.readFile(TMP + "/colors.json") || "{}");
   const themeMode = configs.theme.dark_mode.value ? "dark" : "light";
-  const theme = themeJson.colors[themeMode];
+  const theme = themeJson["colors"][themeMode];
   const harmonizedColors = themeJson.harmonized_colors;
 
   setAgs(theme);

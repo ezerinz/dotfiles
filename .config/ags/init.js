@@ -13,6 +13,4 @@ export default function() {
   initTheme();
   initHyprland();
   watchConfiguration();
-
-  Utils.ensureDirectory(TMP);
 }

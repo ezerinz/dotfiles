@@ -5,6 +5,7 @@ import GLib from "gi://GLib";
 
 export default function globals() {
   globalThis.TMP = GLib.get_tmp_dir() + "/ags";
+  Utils.ensureDirectory(TMP);
   globalThis.recorder = recorder;
   globalThis.brightness = brightness;
   globalThis.update_capslock = () => {
