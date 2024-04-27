@@ -4,7 +4,7 @@ import = ['~/.config/alacritty/generated-colors.toml']
 decorations = "None"
 dynamic_padding = true
 opacity = 0.7
-dimensions = { columns = 55, lines = 12 }
+dimensions = { columns = 80, lines = 30 }
 padding = { x = 10, y = 10 }
 
 [font.normal]
