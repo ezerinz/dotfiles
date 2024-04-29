@@ -6,6 +6,8 @@ import { setScssVariable } from "./functions/theme/ags.js";
 import { sendBatch } from "./functions/utils.js";
 import { setGapsOut } from "./functions/theme/hyprland.js";
 import { isVertical } from "./functions/utils.js";
+import setGtk from "./functions/theme/gtk.js";
+import { setAlacrittyOpacity } from "./functions/theme/alacritty.js";
 
 export const HOME = Utils.HOME;
 
@@ -72,9 +74,7 @@ export const configs = {
           key: "window_margin",
           value: self.value,
         });
-      }),
-      hyprland_margin: Conf("theme.window.hyprland_margin", (self) => {
-        sendBatch([`general:gaps_out ${self.value}`]);
+        setGapsOut();
       }),
       opacity: Conf("theme.window.opacity", (self) => {
         setScssVariable({
@@ -82,6 +82,8 @@ export const configs = {
           value: self.value,
           need_format: false,
         });
+        setGtk();
+        setAlacrittyOpacity(self.value);
       }),
       border: Conf("theme.window.border", (self) => {
         setScssVariable({
@@ -100,8 +102,8 @@ export const configs = {
           ),
           `animation workspaces,1,7,menu_decel,${isVertical(self.value) ? `slidevert` : "slide"}`,
         ]);
+        setGapsOut();
         setScssVariable({ bar_pos: self.value });
-        setGapsOut(self.value);
       }),
       border: Conf("theme.bar.border", (self) => {
         setScssVariable({

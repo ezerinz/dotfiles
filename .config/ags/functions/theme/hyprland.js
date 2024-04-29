@@ -7,9 +7,11 @@ export default function setHyprland(theme) {
   const primaryColor = theme.primary.replace("#", "");
   let margin = format(configs.theme.window.margin.value, true, false);
   margin = margin.split(" ");
-  margin[posIndex(configs.theme.bar.position.value)] = "0";
+  const marginValue = Number(
+    margin[posIndex(configs.theme.bar.position.value)],
+  );
+  margin[posIndex(configs.theme.bar.position.value)] = `${marginValue / 2}`;
   margin = margin.join(", ");
-
   sendBatch([
     `decoration:col.shadow rgb(${bgColor})`,
     `decoration:rounding ${configs.theme.border_radius.value.split(",")[0].trim()}`,
@@ -19,10 +21,13 @@ export default function setHyprland(theme) {
   ]);
 }
 
-export function setGapsOut(bar_pos) {
-  let margin = format(configs.theme.window.margin.value, true, false);
+export function setGapsOut() {
+  const bar_pos = configs.theme.bar.position.value;
+  const value = configs.theme.window.margin.value;
+  let margin = format(value, true, false);
   margin = margin.split(" ");
-  margin[posIndex(bar_pos)] = "0";
+  const marginValue = Number(margin[posIndex(bar_pos)]);
+  margin[posIndex(bar_pos)] = `${marginValue / 2}`;
   margin = margin.join(", ");
 
   sendBatch([`general:gaps_out ${margin}`]);

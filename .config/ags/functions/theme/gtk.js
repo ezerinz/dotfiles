@@ -1,4 +1,4 @@
-import { HOME } from "../../vars.js";
+import { HOME, configs } from "../../vars.js";
 import Gio from "gi://Gio";
 
 const settings = new Gio.Settings({
@@ -15,14 +15,24 @@ function setGtkSetting(themeScheme) {
 }
 
 export default async function setGtk(theme, themeScheme) {
+  if (themeScheme === undefined) {
+    themeScheme = configs.theme.dark_mode.value ? "dark" : "light";
+  }
+
+  if (theme === undefined) {
+    theme = JSON.parse(Utils.readFile(TMP + "/colors.json") || "{}").colors[
+      themeScheme
+    ];
+  }
+
   const primaryColor = theme.primary;
   const bgColor = theme.background;
   const gtkCss = [
     `accent_bg_color ${primaryColor};`,
-    `view_bg_color alpha(${bgColor}, 0.7);`,
-    `sidebar_bg_color alpha(${bgColor}, 0.7);`,
+    `view_bg_color alpha(${bgColor}, ${configs.theme.window.opacity.value});`,
+    `sidebar_bg_color alpha(${bgColor}, ${configs.theme.window.opacity.value});`,
     `headerbar_bg_color ${bgColor};`,
-    `popover_bg_color alpha(${bgColor}, 0.7);`,
+    `popover_bg_color alpha(${bgColor}, ${configs.theme.window.opacity.value});`,
   ];
   Utils.writeFile(
     gtkCss

@@ -36,9 +36,6 @@ export default function() {
       if (window.margin.value != windowJson.margin)
         window.margin.setValue(windowJson.margin);
 
-      if (window.hyprland_margin.value != windowJson.hyprland_margin)
-        window.hyprland_margin.setValue(windowJson.hyprland_margin);
-
       if (window.opacity.value != windowJson.opacity)
         window.opacity.setValue(windowJson.opacity);
 

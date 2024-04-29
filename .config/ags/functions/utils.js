@@ -5,6 +5,7 @@ const substitutes = {
   "transmission-gtk": "transmission",
   "blueberry.py": "blueberry",
   Caprine: "facebook-messenger",
+  "Alacritty-symbolic": "terminal-symbolic",
   "com.raggesilver.BlackBox-symbolic": "terminal-symbolic",
   "org.wezfurlong.wezterm-symbolic": "terminal-symbolic",
   "audio-headset-bluetooth": "audio-headphones-symbolic",

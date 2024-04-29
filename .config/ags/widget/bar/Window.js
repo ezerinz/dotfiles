@@ -10,12 +10,13 @@ import NetworkPanelButton from "../network/PanelButton.js";
 import AudioPanelButton from "../audio/PanelButton.js";
 import { configs } from "../../vars.js";
 import { isVertical } from "../../functions/utils.js";
+const hyprland = await Service.import("hyprland");
 
 const WINDOW_NAME = "bar__window";
 
 const getAnchor = () => ({
-  left: ["top", "bottom", "left"],
-  right: ["top", "bottom", "right"],
+  left: ["left", "top", "bottom"],
+  right: ["right", "top", "bottom"],
   top: ["top", "left", "right"],
   bottom: ["bottom", "left", "right"],
 });
@@ -79,7 +80,9 @@ const BarWindow = () => {
   const win = Widget.Window({
     name: "bar__window",
     exclusivity: "exclusive",
+    visible: false,
     anchor: configs.theme.bar.position.bind().as((pos) => getAnchor()[pos]),
+    // anchor,
     child: Widget.CenterBox({
       vertical: configs.theme.bar.position.bind().as(isVertical),
       class_names: ["bar__container", "window-content"],
@@ -96,7 +99,7 @@ const BarWindow = () => {
   });
 
   Object.assign(win, {
-    animation: "popin 85%",
+    animation: `slide`,
   });
 
   return win;
@@ -104,11 +107,21 @@ const BarWindow = () => {
 
 export default function() {
   App.addWindow(BarWindow());
+  Utils.timeout(100, () => {
+    App.openWindow(WINDOW_NAME);
+  });
 
-  configs.theme.bar.position.connect("changed", () => {
-    App.removeWindow(WINDOW_NAME);
-    Utils.timeout(500, () => {
+  configs.theme.bar.position.connect("changed", (self) => {
+    App.toggleWindow(WINDOW_NAME);
+    Utils.timeout(300, () => {
+      App.removeWindow(WINDOW_NAME);
       App.addWindow(BarWindow());
+      Utils.timeout(100, () => {
+        hyprland.message(
+          `keyword layerrule animation slide ${self.value}, ${WINDOW_NAME}`,
+        );
+        App.openWindow(WINDOW_NAME);
+      });
     });
   });
 }

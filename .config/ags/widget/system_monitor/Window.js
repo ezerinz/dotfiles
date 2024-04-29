@@ -60,6 +60,7 @@ const RamProgress = () =>
 
 const CpuAndRam = () =>
   Widget.Box({
+    hpack: "center",
     children: [CpuProgress(), RamProgress()],
   });
 

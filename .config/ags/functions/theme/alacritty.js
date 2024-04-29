@@ -1,4 +1,4 @@
-import { HOME } from "../../vars.js";
+import { HOME, configs } from "../../vars.js";
 function stringify(title, template) {
   let result = title;
 
@@ -9,6 +9,20 @@ function stringify(title, template) {
 
   return result;
 }
+export function setAlacrittyOpacity(opacity) {
+  if (opacity === undefined) {
+    opacity = configs.theme.window.opacity.value;
+  }
+
+  Utils.writeFile(
+    `[window]
+opacity = ${opacity}
+`,
+    // ${colorNorm}
+    HOME + "/.config/alacritty/opacity.toml",
+  ).then(() => {});
+}
+
 export default function setAlacritty(themeJson, harmonizedColors, themeScheme) {
   const themeDark = themeJson.colors["dark"];
   const theme = themeJson.colors[themeScheme];
@@ -50,5 +64,6 @@ ${colorBright}${colorString}
 `,
     // ${colorNorm}
     HOME + "/.config/alacritty/generated-colors.toml",
-  ).then(() => { });
+  ).then(() => {});
+  setAlacrittyOpacity();
 }

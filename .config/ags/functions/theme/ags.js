@@ -65,9 +65,9 @@ export function setScssVariable({
     window_border: false,
   };
 
-  data.window_margin = format(configs.theme.window.margin.value).split(" ");
-  data.window_margin[posIndex(bar_pos)] = "0px";
-  data.window_margin = data.window_margin.join(" ");
+  let idx = [2, 3, 0, 1];
+
+  data.window_margin = format(configs.theme.window.margin.value);
   data.border_radius = format(configs.theme.border_radius.value);
   data.bar_border_radius = format(configs.theme.bar.border_radius.value);
   data.bar_margin = format(configs.theme.bar.margin.value);
@@ -103,6 +103,15 @@ export function setScssVariable({
     update[key] = need_format ? format(value, four_values) : value;
   }
   let merged = { ...data, ...update };
+
+  merged.window_margin = merged.window_margin.split(" ");
+  const tempWindowMargin =
+    Number(merged.window_margin[posIndex(bar_pos)].replace("px", "")) / 2;
+  merged.window_margin[posIndex(bar_pos)] = `${tempWindowMargin}px`;
+  merged.window_margin = merged.window_margin.join(" ");
+  merged.bar_margin = merged.bar_margin.split(" ");
+  merged.bar_margin[idx[posIndex(bar_pos)]] = `${tempWindowMargin}px`;
+  merged.bar_margin = merged.bar_margin.join(" ");
 
   let result = "";
 

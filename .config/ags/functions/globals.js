@@ -1,6 +1,6 @@
 import recorder from "../services/screen_record.js";
 import brightness from "../services/brightness.js";
-import { capsLockState } from "../vars.js";
+import { capsLockState, configs } from "../vars.js";
 import GLib from "gi://GLib";
 
 export default function globals() {
@@ -12,5 +12,8 @@ export default function globals() {
     Utils.exec(`brightnessctl -d input3::capslock g`, (stdout) => {
       capsLockState.setValue(stdout);
     });
+  };
+  globalThis.moveBar = (pos) => {
+    configs.theme.bar.position.updateValue(pos);
   };
 }

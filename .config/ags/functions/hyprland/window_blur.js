@@ -8,7 +8,7 @@ export default function windowBlur() {
       `layerrule blur, ${name}`,
       noIgnorealpha.some((skip) => name?.includes(skip))
         ? ""
-        : `layerrule ignorealpha 0.7, ${name}`,
+        : `layerrule ignorealpha 0.3, ${name}`,
     ]),
   );
 }

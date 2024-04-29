@@ -1,3 +1,4 @@
+import { icon } from "../../functions/utils.js";
 import { configs } from "../../vars.js";
 import PanelButton from "../PanelButton.js";
 
@@ -9,9 +10,10 @@ const ClientIcon = () =>
     size: 18,
     icon: hyprland.active.bind("client").as((client) => {
       const app = apps.list.find((app) => app.match(client.class));
-      return client.class === ""
-        ? "desktop-symbolic"
-        : app?.icon_name + "-symbolic";
+      return icon(
+        (client.class === "" ? "desktop" : app?.icon_name) + "-symbolic",
+        "application-x-executable-symbolic",
+      );
     }),
   });
 
@@ -22,6 +24,7 @@ export default () =>
       .as((v) => (v === "" ? "Desktop" : v)),
     child: Widget.Box({
       spacing: 3,
+      vpack: "center",
       children: [
         ClientIcon(),
         Widget.Label({
