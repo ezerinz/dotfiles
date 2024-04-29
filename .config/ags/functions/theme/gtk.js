@@ -20,9 +20,8 @@ export default async function setGtk(theme, themeScheme) {
   }
 
   if (theme === undefined) {
-    theme = JSON.parse(Utils.readFile(TMP + "/colors.json") || "{}").colors[
-      themeScheme
-    ];
+    theme = JSON.parse(Utils.readFile(App.configDir + "/colors.json") || "{}")
+      .colors[themeScheme];
   }
 
   const primaryColor = theme.primary;
