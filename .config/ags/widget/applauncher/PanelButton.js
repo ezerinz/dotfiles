@@ -8,9 +8,21 @@ export default () =>
     on_clicked: () => {
       App.toggleWindow(WINDOW_NAME);
     },
-    child: Widget.Label({
-      label: configs.theme.bar.launcher_icon.bind(),
-      hpack: "center",
-      xalign: 0,
+    child: configs.theme.bar.launcher_icon.bind().as((icon) => {
+      const isGtkIcon = Utils.lookUpIcon(icon);
+
+      if (isGtkIcon) {
+        return Widget.Icon({
+          icon: icon,
+          hpack: "center",
+          xalign: 0,
+        });
+      } else {
+        return Widget.Label({
+          label: icon,
+          hpack: "center",
+          xalign: 0,
+        });
+      }
     }),
   });
