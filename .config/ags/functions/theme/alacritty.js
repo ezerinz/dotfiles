@@ -23,8 +23,9 @@ opacity = ${opacity}
   ).then(() => {});
 }
 
-export default function setAlacritty(themeJson, harmonizedColors, themeScheme) {
+export default function setAlacritty(themeJson, themeScheme) {
   const themeDark = themeJson.colors["dark"];
+  const themeLight = themeJson.colors["light"];
   const theme = themeJson.colors[themeScheme];
   const isDark = themeScheme == "dark";
 
@@ -34,33 +35,34 @@ export default function setAlacritty(themeJson, harmonizedColors, themeScheme) {
   ]);
 
   let colorTemplate = [
-    ["red", harmonizedColors.red],
-    ["green", harmonizedColors.green],
-    ["yellow", harmonizedColors.yellow],
-    ["blue", harmonizedColors.blue],
-    ["magenta", harmonizedColors.magenta],
-    ["cyan", harmonizedColors.cyan],
+    ["black", themeDark.surface_container],
+    ["red", theme.red],
+    ["green", theme.green],
+    ["yellow", theme.yellow],
+    ["blue", theme.blue],
+    ["magenta", theme.magenta],
+    ["cyan", theme.cyan],
+    ["white", themeLight.surface_container],
   ];
 
-  let colorString = stringify("", colorTemplate);
+  let colorBrightTemplate = [
+    ["black", themeDark.surface_bright],
+    ["red", theme.bright_red],
+    ["green", theme.bright_green],
+    ["yellow", theme.bright_yellow],
+    ["blue", theme.bright_blue],
+    ["magenta", theme.bright_magenta],
+    ["cyan", theme.bright_cyan],
+    ["white", themeLight.surface_bright],
+  ];
 
-  let colorNormal = stringify("[colors.normal]\n", [
-    ["black", isDark ? themeDark.surface : themeDark.on_background],
-    ["white", isDark ? harmonizedColors.white : theme.on_primary_fixed],
-  ]);
-
-  let colorBright = stringify("[colors.bright]\n", [
-    ["black", isDark ? themeDark.surface_bright : themeDark.primary_fixed],
-    [
-      "white",
-      isDark ? harmonizedColors.white2 : theme.on_primary_fixed_variant,
-    ],
-  ]);
+  let colorString = stringify("[colors.normal]\n", colorTemplate);
+  let colorBrightString = stringify("[colors.bright]\n", colorBrightTemplate);
 
   Utils.writeFile(
     `${background}
-${colorNormal}${colorString}
-${colorBright}${colorString}
+${colorString}
+${colorBrightString}
 `,
     // ${colorNorm}
     HOME + "/.config/alacritty/generated-colors.toml",

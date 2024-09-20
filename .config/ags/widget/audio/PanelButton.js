@@ -1,4 +1,3 @@
-import "../PanelButton.js";
 import PanelButton from "../PanelButton.js";
 import { WINDOW_NAME } from "./Window.js";
 const audio = await Service.import("audio");

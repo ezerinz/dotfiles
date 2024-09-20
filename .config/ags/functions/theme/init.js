@@ -21,19 +21,16 @@ export function setTheme() {
   const themeJson = JSON.parse(colors || "{}");
   const themeMode = configs.theme.dark_mode.value ? "dark" : "light";
   const theme = themeJson["colors"][themeMode];
-  const harmonizedColors = themeJson.harmonized_colors;
 
   setAgs(theme);
   setHyprland(theme);
   setGtk(theme, themeMode);
-  setAlacritty(themeJson, harmonizedColors, themeMode);
+  setAlacritty(themeJson, themeMode);
 }
 
 function monitorTheme() {
-  Utils.monitorFile(App.configDir + "/colors.json", (_, eventType) => {
-    if (eventType === Gio.FileMonitorEvent.CHANGES_DONE_HINT) {
-      setTheme();
-    }
+  Utils.monitorFile(App.configDir + "/colors.json", () => {
+    setTheme();
   });
   Utils.monitorFile(App.configDir + "/style/", applyCss);
 }

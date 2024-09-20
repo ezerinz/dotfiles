@@ -1,51 +1,52 @@
 {
   "wallpaper": {
     "folder": "{{home}}/wallpapers",
-    "current": "green-grass-aesthetic-desktop-wallpaper.jpg"
+    "current": "drawing.png"
   },
   "theme": {
     "dark_mode": true,
     "border_radius": "8",
     "window": {
-      "margin": "12",
+      "margin": "12, 12, 12, 12",
       "border": false,
-      "opacity": 0.6
+      "opacity": 0.8
     },
     "bar": {
       "position": "top",
-      "opacity": 0,
+      "launcher_icon": "",
+      "border_radius": "8",
+      "workspace_active_width": "35",
+      "opacity": 0.7,
       "shadow": false,
       "border": false,
-      "button_opacity": 0.6,
+      "button_opacity": 0,
       "button_padding": "4, 8",
-      "button_spacing": 4,
+      "button_spacing": 6,
       "button_shadow": false,
-      "button_border_radius": "6",
+      "button_border_radius": "8",
       "margin": "12",
-      "padding": "3",
-      "border_radius": "0",
-      "launcher_icon": "",
-      "workspace_active_width": "35"
+      "padding": "4"
     }
   },
   "osd": {
     "regular": {
-      "position": "right bottom",
+      "position": "right",
       "vertical": true,
-      "margin": "0, 12, 40, 0",
-      "capslock": true,
+      "margin": "12",
+      "capslock": false,
       "mic": true
     },
     "progress": {
-      "position": "left bottom",
+      "position": "bottom",
       "vertical": false,
-      "margin": "12, 12, 205, 12",
+      "margin": "12",
       "brightness": true,
       "volume": true
     }
   },
   "system_monitor": {
-    "position": "bottom left",
+    "position": "bottom right",
     "margin": "12, 12, 12, 12"
   }
 }
+

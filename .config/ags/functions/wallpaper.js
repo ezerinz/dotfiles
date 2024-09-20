@@ -15,7 +15,7 @@ export function setWallpaper(path) {
     "swww",
     "img",
     "--transition-type",
-    "any",
+    "random",
     "--transition-fps",
     "60",
     path,
@@ -23,7 +23,7 @@ export function setWallpaper(path) {
 }
 
 export default function initWallpaper() {
-  Utils.monitorFile(`${HOME}/.config/background/`, (file, eventType) => {
+  Utils.monitorFile(`${HOME}/.config/background`, (file, eventType) => {
     if (eventType === Gio.FileMonitorEvent.CHANGES_DONE_HINT) {
       setWallpaper(file.get_path());
     }

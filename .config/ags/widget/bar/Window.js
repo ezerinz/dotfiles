@@ -8,6 +8,7 @@ import ControlCenterPanelButton from "../control_center/PanelButton.js";
 import ScreenRecordPanelButton from "../screen_record/PanelButton.js";
 import NetworkPanelButton from "../network/PanelButton.js";
 import AudioPanelButton from "../audio/PanelButton.js";
+import CapslockIndicatorPanelButton from "../caps_lock/PanelButton.js";
 import { configs } from "../../vars.js";
 import { isVertical } from "../../functions/utils.js";
 const hyprland = await Service.import("hyprland");
@@ -54,6 +55,7 @@ const center = () =>
 const endChildren = () => [
   ScreenRecordPanelButton(),
   NetworkSpeedIndicator(),
+  CapslockIndicatorPanelButton(),
   NetworkPanelButton(),
   AudioPanelButton(),
   BatteryPanelButton(),
@@ -105,7 +107,7 @@ const BarWindow = () => {
   return win;
 };
 
-export default function() {
+export default function () {
   App.addWindow(BarWindow());
   Utils.timeout(100, () => {
     App.openWindow(WINDOW_NAME);

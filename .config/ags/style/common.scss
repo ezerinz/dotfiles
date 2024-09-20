@@ -1,7 +1,7 @@
 * {
   all: unset;
-  font-size: 14px;
-  font-family: "Ubuntu Nerd Font";
+  font-size: 0.9rem;
+  font-family: "Jetbrains Mono NFM";
 }
 
 .window-content {
@@ -10,9 +10,11 @@
   border-radius: $border-radius;
   background-color: $background_color;
   color: $on_background;
-  border: if($window_border,
-      1px solid transparentize($on_background, 0.7),
-      none);
+  border: if(
+    $window_border,
+    1px solid transparentize($on_background, 0.7),
+    none
+  );
 }
 
 .entry-box {
@@ -107,8 +109,10 @@ button {
     font-size: 12px;
   }
 
-  background-color: transparentize(if($dark_mode, $background, $on_secondary),
-    1-$bar_button_opacity );
+  background-color: transparentize(
+    if($dark_mode, $background, $on_secondary),
+    1-$bar_button_opacity
+  );
   color: $on_background;
   padding: $panel_button_padding;
   font-weight: 600;
@@ -198,7 +202,7 @@ button {
   .content.vertical {
     margin: 8px 0px;
 
-    >*:first-child>* {
+    > *:first-child > * {
       image {
         margin-right: 6px;
       }
