@@ -1,5 +1,8 @@
 # Dotfiles
 
+> [!WARNING]
+> This branch using agsv1, you can install it from this [PKGBUILD](https://github.com/kotontrion/PKGBUILDS/tree/main/agsv1)
+
 My personal dotfiles.
 
 - Compositor: Hyprland
