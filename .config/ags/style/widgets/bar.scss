@@ -1,9 +1,0 @@
-.bar__container {
-  background-color: transparentize($color: $background,
-      $amount: 1 - $bar_opacity );
-  margin: $bar_margin;
-  border-radius: $bar_border_radius;
-  box-shadow: if($bar_shadow, 1px 1px 3px rgba(0, 0, 0, 0.4), none);
-  padding: $bar_padding;
-  border: if($bar_border, 1px solid transparentize($on_background, 0.7), none);
-}
