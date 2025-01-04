@@ -1,4 +1,0 @@
-[submodule "epik-shell"]
-	path = epik-shell
-	url = https://github.com/ezerinz/epik-shell
-	branch = main
